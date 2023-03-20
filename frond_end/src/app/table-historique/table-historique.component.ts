@@ -4,10 +4,18 @@ import { Component, OnInit } from '@angular/core';
 import { Temphum } from '../models/temphum'; 
 import { SocketService } from '../meteo.service';
 import { io } from 'socket.io-client';
-
 import { Temp_Humid } from '../services/interfaces/movie';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, from } from 'rxjs';
 import { UsersService } from '../services/users.service';
+import histo from '../histo.json';
+
+export interface donne{
+temperature:string;
+humidite_sol:string;
+humidite_serre:string;
+}
+
+
 @Component({
   selector: 'app-table-historique',
   templateUrl: './table-historique.component.html',
@@ -27,9 +35,10 @@ last: any;
  moyTemp!: number;
  moyHum!: number;
 searchText!: string;
-itemsperpage: number =12;
+itemsperpage: number =5;
 p: number = 1;
 show:boolean = false;
+hist:donne[]= histo
 
 
 	constructor(private serre:UsersService) { }// importation du service 
