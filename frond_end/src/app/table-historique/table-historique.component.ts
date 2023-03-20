@@ -22,7 +22,7 @@ export class TableHistoriqueComponent implements OnInit{
  temp12: any;
  temp19: any;
  temp20: any;
- dethier1: any;
+last: any;
  dethierr: any;
  moyTemp!: number;
  moyHum!: number;
@@ -32,14 +32,14 @@ p: number = 1;
 show:boolean = false;
 
 
-	constructor(private serServe :UsersService) { }// importation du service 
+	constructor(private serre:UsersService) { }// importation du service 
   ngOnInit()  {
    
 /* Fonction pour la recuperation des données humidité et temperature */
-    this.serServe.historique().subscribe((data)=>{
+    this.serre.historique().subscribe((data)=>{
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
-     this.dethier1 = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere
+     this.last = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere
     
      /* console.log(this.dethier1);
       console.log(this.dethierr); */
@@ -48,7 +48,7 @@ show:boolean = false;
      this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
      this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
      this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
-     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.dethier1 && e.Date <= this.currentDate  && e.Date !== this.dethierr )
+     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last )
     /*  console.log(this.temp20); */
      
     /*  this.temp20.forEach(function (temperature:any) {
