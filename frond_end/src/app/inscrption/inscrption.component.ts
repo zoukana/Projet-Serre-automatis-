@@ -22,7 +22,7 @@ export class InscrptionComponent implements OnInit {
   errorMsg: any;
   spin = false;
   imgHeight = false;
-  roles: string | null;
+  roles!: string | null;
 
   //Validation formulaire en temps reel
   constructor(private userService: UsersService, private formBuilder: FormBuilder, private router: Router) {
