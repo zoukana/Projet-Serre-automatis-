@@ -1,5 +1,5 @@
 .pagination::ng-deep .ngx-pagination .current{
-    background-image: #287481;
+    background-color: #287481;
  }
 
  .d-flex{
