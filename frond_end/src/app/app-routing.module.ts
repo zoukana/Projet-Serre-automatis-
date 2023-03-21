@@ -11,6 +11,7 @@ import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { DiagrammeComponent } from './diagramme/diagramme.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
+import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
 
 import { AuthGuard } from "./services/user.guard";
 
@@ -27,6 +28,7 @@ const routes: Routes = [
 {path:"diagramme", component: DiagrammeComponent},
 {path:"table", component: TableHistoriqueComponent/* , canActivate: [AuthGuard] */},
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
+{path:"arrosage", component: GestionArrosageComponent, /* canActivate: [AuthGuard] */},
 
 { path: '', redirectTo: '/login', pathMatch: 'full' },
 /* { path: '**', redirectTo: '/accueil' }, */
