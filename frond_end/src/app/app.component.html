@@ -1,5 +1,5 @@
-<!--   <app-header *ngIf="showHead"></app-header> -->
-  <div class="d-flex">
+  <!-- <app-header *ngIf="showHead"></app-header> -->
+   <div class="d-flex">
     <div class="fixed-left">
       <app-sidebar *ngIf="showHead"></app-sidebar>
     </div>
@@ -16,19 +16,19 @@
             </button>
           </div>
         </nav> 
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
           <a *ngFor="let h of hist" [routerLink]="h">
             {{h}}
           </a>
-        </div> 
-       <div>
-         <router-outlet></router-outlet>
+        </div> -->
+<!--       <div>
+        <router-outlet></router-outlet>
 
     </div>
   </div>
-</div> 
+</div> -->
 
- 
+<!-- <app-table-historique></app-table-historique> -->
 
 
  <!-- <app-utilisateur></app-utilisateur> -->
@@ -36,4 +36,4 @@
  <!--  <app-inscrption></app-inscrption> 
    <app-login></app-login>  
  -->
- 
+ <router-outlet></router-outlet>
