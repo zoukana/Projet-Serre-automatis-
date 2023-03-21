@@ -12,6 +12,7 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { DiagrammeComponent } from './diagramme/diagramme.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
 import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
+import { LocalisationComponent } from './localisation/localisation.component';
 
 import { AuthGuard } from "./services/user.guard";
 
@@ -29,6 +30,8 @@ const routes: Routes = [
 {path:"table", component: TableHistoriqueComponent, /*canActivate: [AuthGuard]*/},
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
 {path:"arrosage", component: GestionArrosageComponent, /* canActivate: [AuthGuard] */},
+{path:"localisation", component: LocalisationComponent, /* canActivate: [AuthGuard] */},
+
 
 { path: '', redirectTo: '/login', pathMatch: 'full' },
 /* { path: '**', redirectTo: '/accueil' }, */
