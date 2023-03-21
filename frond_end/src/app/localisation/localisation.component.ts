@@ -1,5 +1,5 @@
 import { Component,NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 
 // @NgModule({
 //   imports: [

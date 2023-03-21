@@ -21,7 +21,7 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
 import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
 import { LocalisationComponent } from './localisation/localisation.component';
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
     transports: ["websocket"]
@@ -64,9 +64,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
 
         SocketIoModule.forRoot(config),
 
-        AgmCoreModule.forRoot({
-            apiKey:'AIzaSyCxAv0CVKvj0d_QKjprqmok50C5syVoNxg'
-        })
+        // AgmCoreModule.forRoot({
+        //     apiKey:'AIzaSyCxAv0CVKvj0d_QKjprqmok50C5syVoNxg'
+        // })
 
 
     ],
