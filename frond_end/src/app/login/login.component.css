@@ -1,18 +1,78 @@
-    .gradient-custom-2{
-        background-image:linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)),
-        url('../../assets/conn.webp');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
-    
-    @media (min-width: 768px) {
-    .gradient-form {
-    height: 100vh !important;
-    }
-    }
-    @media (min-width: 769px) {
-    .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    }
-    } 
+*, ::before, ::after{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: Montserrat, sans-serif;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box{
+  width: 500px;
+  height: auto;
+  padding: 25px;
+  border-radius: 3px;
+}
+.input-control{
+  position: relative;
+  display: flex;
+  margin-bottom: 50px;
+  
+}
+.input-control label{
+  position: absolute;
+  top: 50%;
+  left:0px;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 20px;
+  transition: 0.4s ease-out;
+}
+.input-control input{
+  display: block;
+  width: 80%;
+  padding: 10px 0px;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 3px solid white;
+  font-size: 20px;
+  transition: 0.4s ease-out;
+}
+.input-control:focus-within label,
+.input-control.animation label{
+  
+  top: 0px;
+  transform: translateY(-100%);
+  color:white ;
+}
+.input-control:focus-within input,
+.input-control.animation input{
+
+  border-bottom: white;
+}
+.back{
+  width: 130px;
+  height: 130px;
+  background-color: midnightblue;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  align-items: center;
+  position: absolute;
+  margin-top: -20%;
+  margin-left: 25%;
+}
+.btn{
+  display: block;
+  width: auto;
+  padding: 15px 60px;
+  border: none;
+  background-color: midnightblue;
+  margin-right:12% ;
+}
+ 
