@@ -28,7 +28,7 @@ const routes: Routes = [
 {path:"diagramme", component: DiagrammeComponent},
 {path:"table", component: TableHistoriqueComponent, canActivate: [AuthGuard]},
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
-{path:"arrosage", component: GestionArrosageComponent, canActivate: [AuthGuard]},
+{path:"arrosage", component: GestionArrosageComponent, /* canActivate: [AuthGuard] */},
 
 { path: '', redirectTo: '/login', pathMatch: 'full' },
 /* { path: '**', redirectTo: '/accueil' }, */
