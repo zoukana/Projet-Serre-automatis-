@@ -5,6 +5,7 @@ import { SocketService } from '../meteo.service';
 import { UsersService } from '../services/users.service';
 import { Serre } from '../models/serre'; 
 import { Socket } from 'ngx-socket-io';
+import bodyParser from 'body-parser';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class AccueilDashboardComponent implements OnInit {
   temp!:any[]
   moyTemp:any;
   moyHum:any;
+  gar:boolean =true;
   dethier:any;
   temp20: any;
   img:boolean =false
@@ -73,5 +75,13 @@ export class AccueilDashboardComponent implements OnInit {
     this.img = false;
     this.socket.emit('active', '0');
   }
+onclick (){
+if(this.gar= false){
+  this.gar= true;
+}
+else{
+  this.gar= false;
+}
+}
 
 }

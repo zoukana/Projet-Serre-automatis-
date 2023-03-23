@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-matricule: {
-required: true,
+const serreSchema = new mongoose.Schema({
+/* matricule: {
+required: false,
 type: String
 },
 nom: {
@@ -16,7 +16,7 @@ type: String
 prenom: {
 required: true,
 type: String
-},
+}, */
 
 email: {
     required: true,
@@ -28,13 +28,13 @@ password:{
     type: String
 },
 
-etat:{
-    required: true,
+/* etat:{
+    required: false,
     type: Boolean
 },
 
 date_inscri:{
-    required: true,
+    required: false,
     type: Date
 },
 
@@ -50,8 +50,8 @@ date_archive:{
 img:{
     required: false,
     type:String
-}
+} */
 })
 
 
-module.exports = mongoose.model('users', dataSchema);/* users nom de la collection */
+module.exports = mongoose.model('users', serreSchema);/* users nom de la collection */

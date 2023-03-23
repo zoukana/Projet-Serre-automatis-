@@ -11,12 +11,11 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/acceuil', title: 'Dashboard',  icon: 'bi bi-speedometer2', class: '' },
-    { path: '/profil', title: 'Profil',  icon:'bi bi-person-circle', class: '' },
-    { path: '/admin', title: 'Liste Active',  icon:'bi bi-table', class: '' },
-    { path: '/pageArchive', title: 'Liste Archive',  icon:'bi bi-table', class: '' },
-    { path: '/table', title: 'Historique',  icon:'bi bi-collection', class: '' },
-    { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' }
+    { path: '/acceuil', title: 'HOME',  icon: 'fa fa-home', class: '' },
+    { path: '/localisation', title: 'GEOLOCALISATION',  icon:'bi bi-table', class: '' },
+    { path: '/table', title: 'HISTORIQUE',  icon:'bi bi-table', class: '' },
+    { path: '/arrosage', title: 'PARAMETRE',  icon:'bi bi-collection', class: '' },
+  /*   { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' } */
 ];
 
 export const USERS: RouteInfo[] = [
