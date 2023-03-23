@@ -26,7 +26,7 @@ email: {
 password:{
     required: true,
     type: String
-},
+}
 
 /* etat:{
     required: false,

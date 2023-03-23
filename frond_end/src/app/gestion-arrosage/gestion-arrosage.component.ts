@@ -1,7 +1,7 @@
 import { data } from 'jquery';
 
 import { Component, OnInit } from '@angular/core';
-import { Temphum } from '../models/temphum'; 
+import { Serre} from '../models/serre'; 
 import { SocketService } from '../meteo.service';
 import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
@@ -21,7 +21,7 @@ export interface donne{
 })
 export class GestionArrosageComponent implements OnInit{
   /* Declaration des variables */
-  temphum!: Temphum[] ;
+  Serre!: Serre[] ;
   temp! :any [];
   currentDate!: any;
   temp8: any;
@@ -51,12 +51,12 @@ export class GestionArrosageComponent implements OnInit{
       /* console.log(this.dethier1);
        console.log(this.dethierr); */
       /** filtre des temperatures  */
-      this.temphum = data as unknown as Temphum[];
+      /* this.temphum = data as unknown as Temphum[];
       this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
       this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
       this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
       this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last )
-     /*  console.log(this.temp20); */
+ */     /*  console.log(this.temp20); */
       
      /*  this.temp20.forEach(function (temperature:any) {
        console.log(temperature.temperature);

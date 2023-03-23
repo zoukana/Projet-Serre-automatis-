@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const check = require('./midleware');
 var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/test";
+var url = "mongodb+srv://oumy:1234@cluster0.aymongodb.net/arrosage";
 module.exports = router;
 
 /* pour la connection */
