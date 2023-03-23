@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from "chart.js/auto";
 import { data } from 'jquery';
 import { UsersService } from '../services/users.service';
-import { Serre} from '../models/serre';
+import { Temphum } from '../models/temphum';
 @Component({
   selector: 'app-diagramme',
   templateUrl: './diagramme.component.html',
@@ -10,7 +10,7 @@ import { Serre} from '../models/serre';
 })
 export class DiagrammeComponent implements OnInit {
   chart: Chart <"line", any, string> | undefined;
-  serre! : Serre[];
+  temphum! : Temphum [];
   temp! :any [];
   currentDate!: any;
   temp8: any;
@@ -25,16 +25,16 @@ export class DiagrammeComponent implements OnInit {
     this.weather.getData()
     .subscribe(data => {
        /* console.log(data)  */
-      this.serre= data as unknown as Serre[];
+      this.temphum = data as unknown as Temphum[];
       
       this.currentDate = (new Date().getDate()-1) + '/' + (new Date().getMonth()+1 ) + '/'+  new Date().getFullYear();
        /* console.log(this.currentDate);   */
-     /*  
+      
      this.temphum = data as unknown as Temphum[];
      this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"  && e.Date == this.currentDate )
      this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
      this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
-      console.log(this.temp8);  */
+      console.log(this.temp8); 
      
     const t8 = this.temp8[0].temperature;
     const h8 = this.temp8[0].humidite;
