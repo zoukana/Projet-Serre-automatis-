@@ -19,6 +19,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
+import { ModifComponent } from './modif/modif.component';
 import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 // import { AgmCoreModule } from '@agm/core';
@@ -44,6 +45,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
         AccueilDashboardComponent,
         SidebarComponent,
         TableHistoriqueComponent,
+        ModifComponent,
         GestionArrosageComponent,
         LocalisationComponent
         
