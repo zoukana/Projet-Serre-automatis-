@@ -20,6 +20,9 @@ import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
 import { ModifComponent } from './modif/modif.component';
+import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
+import { LocalisationComponent } from './localisation/localisation.component';
+// import { AgmCoreModule } from '@agm/core';
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
     transports: ["websocket"]
@@ -42,7 +45,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
         AccueilDashboardComponent,
         SidebarComponent,
         TableHistoriqueComponent,
-        ModifComponent
+        ModifComponent,
+        GestionArrosageComponent,
+        LocalisationComponent
         
     ],
     bootstrap: [AppComponent],
@@ -59,7 +64,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
         NgStyle,
         NgClass,
 
-        SocketIoModule.forRoot(config)
+        SocketIoModule.forRoot(config),
+
+        // AgmCoreModule.forRoot({
+        //     apiKey:'AIzaSyCxAv0CVKvj0d_QKjprqmok50C5syVoNxg'
+        // })
 
 
     ],
