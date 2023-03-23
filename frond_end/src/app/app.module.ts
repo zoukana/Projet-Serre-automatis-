@@ -14,7 +14,7 @@ import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
 import { InscrptionComponent } from './inscrption/inscrption.component';
-import { PageArchiveComponent } from './page-archive/page-archive.component';
+
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
@@ -39,7 +39,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
         SimpleusersComponent,
         LoginComponent,
         InscrptionComponent,
-        PageArchiveComponent,
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,

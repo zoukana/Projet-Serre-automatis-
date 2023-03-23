@@ -1,7 +1,7 @@
 import { data } from 'jquery';
 
 import { Component, OnInit } from '@angular/core';
-import { Temphum } from '../models/temphum'; 
+import { Serre } from '../models/serre'; 
 import { SocketService } from '../meteo.service';
 import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
@@ -23,11 +23,11 @@ humidite_serre:string;
 })
 export class TableHistoriqueComponent implements OnInit{
  /* Declaration des variables */
- temphum!: Temphum[] ;
+ Serre!: Serre[] ;
  temp! :any [];
  currentDate!: any;
- temp8: any;
- temp12: any;
+ temp7h: any;
+ temp18h: any;
  temp19: any;
  temp20: any;
 last: any;
@@ -53,26 +53,26 @@ hist:donne[]= histo
      /* console.log(this.dethier1);
       console.log(this.dethierr); */
      /** filtre des temperatures  */
-     this.temphum = data as unknown as Temphum[];
-     this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
-     this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
-     this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
-     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last )
+     this.Serre= data as unknown as Serre[];
+     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
+     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
+    /*  this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
+     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last ) */
     /*  console.log(this.temp20); */
      
     /*  this.temp20.forEach(function (temperature:any) {
       console.log(temperature.temperature);
     });  */
 
-    const t8 = this.temp8[0].temperature;
-    const h8 = this.temp8[0].humidite;
-    const t12 = this.temp12[0].temperature;
-    const h12 = this.temp12[0].humidite;
-    const t19 = this.temp19[0].temperature;
-    const h19 = this.temp19[0].humidite;
+    const t7 = this.temp7h[0].temperature;
+    const h7 = this.temp7h[0].humidite;
+    const t18 = this.temp18h[0].temperature;
+    const h18 = this.temp18h[0].humidite;
+    /* const t19 = this.temp19[0].temperature;
+    const h19 = this.temp19[0].humidite; */
     /* calcul de la temperature et de l'humidité moyenne */ 
-    this.moyTemp = (parseInt(String(t8)) + parseInt(String(t12)) + parseInt(String(t19))) / 3;
-    this.moyHum = (parseInt(String(h8)) + parseInt(String(h12)) + parseInt(String(h19))) / 3;
+    this.moyTemp = (parseInt(String(t7)) + parseInt(String(t18)) ) / 2;
+    this.moyHum = (parseInt(String(h7)) + parseInt(String(h18)) ) / 2;
     
     })     
      

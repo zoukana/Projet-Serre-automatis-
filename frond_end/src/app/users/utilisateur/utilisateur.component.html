@@ -39,19 +39,19 @@
           <td class="col-2">{{user.prenom}}</td>             
           <td class="col-2">{{user.email}}</td>           
           <td class="col-2">{{user.roles}}</td>
-      <td class="d-flex justify-content-arround col-2" *ngIf="isActif; else archive;"> 
-        <span class="btn btn-outline-danger" title="archiver" (click)="deleteId(user._id,user.etat)"><i class="bi bi-archive" id="i1" ></i></span>
+   <!--    <td class="d-flex justify-content-arround col-2" *ngIf="isActif; else archive;">  -->
+        <!-- <span class="btn btn-outline-danger" title="archiver" (click)="deleteId(user._id,user.etat)"><i class="bi bi-archive" id="i1" ></i></span>
         &nbsp;
         <span  class="btn btn-outline-primary" title="modifier" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"><i class="bi bi-pen-fill" id="i2" ></i></span>
-        &nbsp;
-        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td>
+        &nbsp; -->
+        <!-- <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td>
         <ng-template #archive>
           <td> 
       
         
             <span class="btn btn-outline-danger" title="désarchiver" (click)="ddeleteId(user._id,user.etat)"><i class="bi bi-arrow-up-square" id="i1"  ></i></span>
             </td>  
-        </ng-template> 
+        </ng-template>  -->
                       
         </tr>   
         </tbody>
@@ -134,7 +134,7 @@
       </div>
       </div>
   <div class="d-flex justify-content-center gap-5" style="margin-top: 60px;">
-    <button type="submit" class="btn btn-danger" (click)="modifUsers()">Modifier</button>
+   <!--  <button type="submit" class="btn btn-danger" (click)="modifUsers()">Modifier</button> -->
     <button  class="btn btn-success" (click)="this.showForm = false;">Annuler</button>
   </div>
   </form> 

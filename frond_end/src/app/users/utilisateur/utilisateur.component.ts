@@ -31,7 +31,7 @@ emailExiste:any;
 spin= false;
 errorMsg:any;
 show:boolean = false;
-roles:any
+/* roles:any */
 
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder, private router: Router){
@@ -44,6 +44,9 @@ roles:any
     this.route = this.router.routerState.snapshot.url
     this.isActif = this.route == '/admin' ? true : false
   } 
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   simpleAlert(){  
     Swal.fire(
@@ -53,7 +56,7 @@ roles:any
     ) 
   } 
  
-
+/* 
 ngOnInit(): void {
   
   this.userService.getUsers().subscribe( 
@@ -64,24 +67,24 @@ ngOnInit(): void {
         this.userActif = this.users.filter((e:any)=> e.etat == this.isActif && e.email != localStorage.getItem('email')?.replace(/['"]+/g, ''))
         
       }
-); 
-this.roles = localStorage.getItem('roles');
+);  */
+/* this.roles = localStorage.getItem('roles');
 if (this.roles !="admin") {
   this.router.navigateByUrl('acceuil')
   
 }
 
-}
+} */
 
-retrieveData(){
+/* retrieveData(){
   this.userService.getUsers().subscribe((data:any)=>{
     this.users = data;
      this.totalUser = data.length; 
   })
-}
+} */
 
 /* pour changer le role d'un utilisateur */
-changeRole=(id:any,roles:any)=> {
+/* changeRole=(id:any,roles:any)=> {
  roles == "Admin" ? roles = "Utilisateur": roles = "Admin"
 
  const user ={
@@ -112,7 +115,7 @@ changeRole=(id:any,roles:any)=> {
   
 })
  
-}
+} */
 
 /* pour archiver un utilisateur */
 deleteId=(id:any,etat:any)=> {
@@ -134,7 +137,7 @@ etat == "false" ? etat = true : etat = false
   confirmButtonText: 'ok!',  
   cancelButtonText: 'Annuler'  
 }).then((result) => {  
-  if (result.value) {  
+/*   if (result.value) {  
 
     this.userService.modifUsers(id,user).subscribe(
 
@@ -143,7 +146,7 @@ etat == "false" ? etat = true : etat = false
         this.ngOnInit();
       }
    );  
-  }
+  } */
 }) 
  
  
@@ -161,7 +164,7 @@ getUserData(id:any,email:any,prenom:any,nom:any){
         });  
     }  
 /* modifier un utilisateur */
-modifUsers (){
+/* modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
     this.submitted = true
@@ -169,9 +172,9 @@ modifUsers (){
    if(this.userEditForm.invalid){
     this.spin = false
     return ;
-  }
+  } */
   /* pour montrer que l'email existe deja lors de la modification */
-  console.log(iterator.email  )
+/*   console.log(iterator.email  )
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
     this.emailExiste = "Email existe déjà";
     setTimeout(() => {
@@ -179,15 +182,15 @@ modifUsers (){
     }, 2000);
     return;
   }
-}
+} */
 
- const user ={
+/*  const user ={
   nom : this.userEditForm.value.nom,
   prenom: this.userEditForm.value.prenom,
   email: this.userEditForm.value.email
  }
- 
- this.userService.changeRole(id,user).subscribe(
+  */
+/*  this.userService.changeRole(id,user).subscribe(
    
    data=>{
     Swal.fire({  
@@ -212,17 +215,17 @@ modifUsers (){
   
 },
  
-  error =>{
+  error =>{ */
    /*  console.log(error ) */
-  }
- );
-}
+/*   }
+ ); */
+/* } */
 
 public afficher():void{
   this.show = !this.show;
 }
 /* pour desarchiver un utilisateur */
-ddeleteId=(id:any,etat:any)=> {
+/* ddeleteId=(id:any,etat:any)=> {
 
 
   etat == true ? etat = false : etat = true
@@ -255,7 +258,8 @@ ddeleteId=(id:any,etat:any)=> {
   }
 }) 
 
-}
+}*/
 
 }
 
+ 

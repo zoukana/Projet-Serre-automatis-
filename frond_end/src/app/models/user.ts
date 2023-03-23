@@ -11,7 +11,7 @@ date_archive?:Date; */
 password?: String;
 data?:{
     token: String;
-   /*  roles: String;
+    /* roles: String;
     img: String; */
     email:String;
 };

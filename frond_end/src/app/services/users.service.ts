@@ -4,7 +4,7 @@ import { User } from '../models/user';
 import { env } from 'src/env';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
-import { Temphum } from '../models/temphum';
+import { Serre} from '../models/serre';
 
 
 @Injectable({
@@ -31,8 +31,8 @@ export class UsersService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         /* console.log(user.data) */
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
-        localStorage.setItem('role', JSON.stringify(user.data?.roles));
-        localStorage.setItem('img', JSON.stringify(user.data?.img));
+       /*  localStorage.setItem('role', JSON.stringify(user.data?.roles));
+        localStorage.setItem('img', JSON.stringify(user.data?.img)); */
         localStorage.setItem('email', JSON.stringify(user.data?.email));
 
         this.currentUserSubject.next(user);
@@ -62,9 +62,9 @@ export class UsersService {
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)
   };
-  getData(){
-    return this.httpClient.get<Temphum>(`${env.apiUrl}/pap`)
-  };
+  /* getData(){
+    return this.httpClient.get<Serre>(`${env.apiUrl}/pap`)
+  }; */
 
 
   historique(){
@@ -92,9 +92,9 @@ export class UsersService {
       this.router.navigate(['']);
     }
   }
-  getRole(){
+ /*  getRole(){
     return localStorage.getItem('role');
-  }
+  } */
 }
 
 
