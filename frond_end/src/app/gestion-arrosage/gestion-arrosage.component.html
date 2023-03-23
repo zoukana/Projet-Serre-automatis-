@@ -21,13 +21,13 @@
         </tr>
         <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
           <th scope="row"><h4>Humidité</h4></th>
-          <td>{{i.humidite_serre}}°C</td>
-          <td>{{i.humidite_serre}}°C</td>
+          <td>{{i.humidite_serre}}%</td>
+          <td>{{i.humidite_serre}}%</td>
         </tr>
         <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
           <th scope="row"><h4>Humidité sol</h4></th>
-          <td>{{i.humidite_serre}}°C</td>
-          <td>{{i.humidite_serre}}°C</td>
+          <td>{{i.humidite_serre}}%</td>
+          <td>{{i.humidite_serre}}%</td>
         </tr>
         <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
           <th scope="row"><h4>Débit</h4></th>
@@ -39,38 +39,6 @@
     </tbody>
   </table>
 
-
-    <!-- <table class="table table-bordered border-dark" style="margin-bottom: 200px;" >
-    <thead >
-      <tr >
-        <th scope="col" style="width: 33%;"><h4>Données &nbsp; / &nbsp; Heures</h4> </th>
-        <th  scope="col" style="width: 33%;"><h4>07h 00</h4></th>
-        <th scope="col" style="width: 33%;"><h4>18h 00</h4></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
-        <th scope="row"><h4>Température</h4></th>
-        <td> {{i.temperature}}°C</td>
-      </tr>
-      <tr>
-        <th scope="row"><h4>Humidité</h4></th>
-        <td>40%</td>
-        <td>30%</td>
-      </tr>
-   <tr>
-    <th scope="row"><h4>Humidité sol</h4></th>
-    <td>40%</td>
-    <td>80%</td>
-   </tr>
-   <tr>
-    <th scope="row"><h4>Débit</h4></th>
-    <td>1L</td>
-    <td>1L</td>
-   </tr>
-   
-    </tbody>
-  </table> -->
 
   <div class="container">
     <div class="row">
