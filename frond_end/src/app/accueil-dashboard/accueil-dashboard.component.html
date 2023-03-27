@@ -8,7 +8,7 @@
 </head>
 <body class="bg-light">
 
-<div class="container justify-content-between custom-line d-flex justify-content-around" style=" height: 60px;  background-color: #D9D9D9;">
+<div class="container justify-content-between custom-line d-flex justify-content-around mt-4" style=" height: 60px;  background-color: #D9D9D9;">
   <h3 class="text-center mt-2 ">LES DONNEES EN TEMPS REEL</h3>
 </div>
   
@@ -58,10 +58,10 @@
               <div class=" d-flex justify-content-center" *ngIf="!img">
                 <button type="button" class="btn btn-success" (click)="allumer()">On</button> 
               </div>-->
-              <div class=" d-flex justify-content-center" *ngIf="img">
+              <!-- <div class=" d-flex justify-content-center" *ngIf="img">
                 <button type="button" class="btn btn-danger" (click)="eteindre()">Off</button> 
               </div>
-  
+   -->
             
           </div>
         </div>
@@ -100,33 +100,29 @@
     
     <!-- Affichage des trois Temperatures et Humidités  -->
     <div class="container justify-content-between custom-line" >
-        <div class="card d-flex align-items-center bg-light" style="width: 248px; height: 317px;">
+      <div class="card d-flex align-items-center bg-light" style="width: 248px; height: 317px;">
            
-            <div class="card-body   mr-auto">
-              <div class=" d-flex justify-content-between"> 
-                <div >
-                  <p class="mt-4"> Allumer </p>
-                  <p> Eteindre </p>
-                </div>
-               
-                <img class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
-              </div>
-              <img  class="mt-1" style=" height: 158px; width: 171px; " src="../../assets/Capture d__cran du 2023-03-06 15-40-11 3.png" alt="Card image cap">
-                <!-- h3 class="text-center">08:00</h3>
-                <div>
-                <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
-                <img *ngIf="t8 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">-->
-             <!--    <ng-template #archive> 
-                  <img class="card-img-top rounded-circle taicard" src="../../assets/fan-gif-46-black-fan-transparent-background.gif" alt="Card image cap">
-                </ng-template> 
-                <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/fan-gif-46-black-fan-transparent-background.gif" alt="Card image cap">
-               -->  <!--
-              </div>
-                <div class="centered">{{t8}}°C</div>
-                <h5 class="card-title">Card title</h5>
-              <h3 class="text-center">HUMIDITE : {{h8}}%</h3> -->
+        <div class="card-body  mr-auto">
+
+
+          <div class=" d-flex justify-content-between"> 
+            <div >
+              <p class="mt-4"> Ouverture </p>
+               <p> Fermeture </p>
             </div>
-          </div> 
+            
+               
+              <img *ngIf="img" (click)="eteindre()"class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
+            
+           
+         
+              <img *ngIf="!img"   (click)="allumer()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+          </div>
+          <img *ngIf="img" style=" height: 160px; width: 160px; " src="../../assets/FANNNNNN.png" alt="Card image cap">
+          <img *ngIf="!img" style=" height: 160px; width: 160px; " src="../../assets/fan-gif-46-black-fan-transparent-background.gif" alt="Card image cap">
+        
+        </div>
+      </div>
         
           <div class="card d-flex align-items-center bg-light" style="width: 248px; height: 317px;">
            
@@ -136,67 +132,43 @@
               <div class=" d-flex justify-content-between"> 
                 <div >
                   <p class="mt-4"> Ouverture </p>
-                  <p> Fermeture </p>
+                   <p> Fermeture </p>
                 </div>
-                <div *ngIf="img" >
-                  <button (click)="eteindre()"> 
-                  <img class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
                 
-                </button></div>
+                   
+                  <img *ngIf="porte" (click)="off_porte_click()"class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
+                
                
-                 <img *ngIf="img" lass="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap"> 
+             
+                  <img *ngIf="!porte"   (click)="on_porte_click()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
               </div>
-              <img style=" height: 160px; width: 160px; " src="../../assets/2fl..jpg" alt="Card image cap">
-            <!--   <ng-template #archive> 
-                <img class="card-img-top rounded-circle taicard" src="../../assets/fan-gif-46-black-fan-transparent-background.gif" alt="Card image cap">
-              </ng-template> 
-              <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/fan-gif-46-black-fan-transparent-background.gif" alt="Card image cap">
-               --> <!--  <h3 class="text-center">12:00</h3>
-                <div>
-                  <img *ngIf="t12 >= 30 ; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
-                  <img *ngIf="t12 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/12h.jpeg" alt="Card image cap">
-                  <ng-template #archive>
-                    <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
-                  </ng-template> 
-                </div>
-                <div class="centered">{{t12}}°C</div>
+              <img *ngIf="porte" style=" height: 160px; width: 160px; " src="../../assets/2fl..jpg" alt="Card image cap">
+              <img *ngIf="!porte" style=" height: 160px; width: 160px; " src="../../assets/ffm.jpg" alt="Card image cap">
             
-            
-                <h5 class="card-title">Card title</h5>
-              <h3 class="text-center">HUMIDITE : {{h12}}%</h3> -->
             </div>
           </div>
         
-          <div class="card d-flex align-items-center bg-light" style="width: 248px;height: 317px;">
-            
-            <div class="card-body mt-6 mr-auto " >
+          <div class="card d-flex align-items-center bg-light" style="width: 248px; height: 317px;">
+           
+            <div class="card-body  mr-auto">
+
+
               <div class=" d-flex justify-content-between"> 
                 <div >
                   <p class="mt-4"> Ouverture </p>
-                  <p> Fermeture </p>
+                   <p> Fermeture </p>
                 </div>
+                
+                   
+                  <img *ngIf="toit" (click)="off_toit_click()"class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
+                
                
-                <img class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
+             
+                  <img *ngIf="!toit"   (click)="on_toit_click()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
               </div>
-              <img  class="mt-5" style=" height: 100px; width: 170px; " src="../../assets/72560-5577467 2.png" alt="Card image cap">
-             <!--  <ng-template #archive> 
-                <img class="card-img-top rounded-circle taicard" src="../../assets/2fl..jpg" alt="Card image cap">
-              </ng-template> 
-              <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/2fl..jpg" alt="Card image cap"> -->
-             
-               <!--  <h3 class="text-center">19:00</h3>
-                <div>
-                <img *ngIf="t19 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/19hh.jpeg" alt="Card image cap">
-                <img *ngIf="t19 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/19h.jpeg" alt="Card image cap">               
-                <ng-template #archive>
-                  <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
-                </ng-template> 
-                </div>
-                <div class="centered">{{t19}}°C</div>
-              <h5 class="card-title">Card title</h5>
-              
-              <h3 class="text-center">HUMIDITE : {{h19}}%</h3> -->
-             
+              <img *ngIf="toit" style=" height: 160px; width: 160px; " src="../../assets/72560-5577467 2.png" alt="Card image cap">
+              <img *ngIf="!toit" style=" height: 160px; width: 160px; " src="../../assets/72560-5579745 1.png" alt="Card image cap">
+            
             </div>
           </div>
           <div class="card d-flex align-items-center" style="width: 248px;height: 317px;">
@@ -219,8 +191,12 @@
             <div class="d-flex justify-content-center  mt-1 mr-auto bg-light" style="width: 248px;height: 147px;">
               
             
-              <img  class="d-flex align-items-center mt-4" style="width: 128px;height: 104px;"  src="../../assets/Rectangle 122.png" alt="Card image cap"> 
-              <div class="mt-3" > <img class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> </div>
+              <img  *ngIf="!arrosage"  class="d-flex align-items-center mt-4" style="width: 128px;height: 104px;"  src="../../assets/arrosage.png" alt="Card image cap"> 
+              <img  *ngIf="arrosage"  class="d-flex align-items-center mt-4" style="width: 128px;height: 104px;"  src="../../assets/arrosage.gif" alt="Card image cap"> 
+              <div class="mt-3" > <img  *ngIf="arrosage" (click)="off_arrosage_click()" class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap"> 
+                <img *ngIf="!arrosage"   (click)="on_arrosage_click()"class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> 
+              </div>
+
              <!--  <div>
                <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
               <img *ngIf="t8 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">

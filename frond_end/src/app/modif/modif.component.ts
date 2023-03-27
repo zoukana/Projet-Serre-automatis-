@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
 import { io } from 'socket.io-client';
-
 import { Temp_Humid } from '../services/interfaces/movie';
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-modif',
+  templateUrl: './modif.component.html',
+  styleUrls: ['./modif.component.css']
 })
-export class LoginComponent implements OnInit {
+export class ModifComponent {
+
+
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
@@ -32,6 +34,11 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
+  
+     
+
+      
+      
     
 
        
@@ -81,3 +88,5 @@ this.spin = true
    );
 }
 }
+
+
