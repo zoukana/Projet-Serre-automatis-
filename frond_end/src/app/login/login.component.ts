@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { SocketService } from '../meteo.service';
+
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   
 
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router,private meteoservice:SocketService) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router,) {
     
   }
   
@@ -35,18 +35,7 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
-      this.meteoservice.onFetch().subscribe((data)=>{
-        /* console.log(data); */
-        
-      })
-     
-
-      
-      
-      this.meteoservice.onFetchitem().subscribe((mute)=>{
-      /*   console.log(mute); */
-        
-      })
+    
 
        
   }
