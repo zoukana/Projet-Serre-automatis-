@@ -20,7 +20,7 @@ humidite_serre:string;
   selector: 'app-table-historique',
   templateUrl: './table-historique.component.html',
   styleUrls: ['./table-historique.component.css']
-})
+}) 
 export class TableHistoriqueComponent implements OnInit{
  /* Declaration des variables */
  temphum!: Temphum[] ;
