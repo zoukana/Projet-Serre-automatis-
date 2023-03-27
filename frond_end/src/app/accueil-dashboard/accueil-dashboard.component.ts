@@ -33,14 +33,7 @@ export class AccueilDashboardComponent implements OnInit {
   constructor( private serServe :UsersService, private socket: Socket){}
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    this.meteoservice.onFetch().subscribe((data)=>{
-    /*   console.log(data); */  
-      this.Serre= Array(data)
-    })
-=======
    
->>>>>>> test22
 
     //recuperation temperature par heur données et calsul des moyenne 
     this.serServe.historique().subscribe((data)=>{
