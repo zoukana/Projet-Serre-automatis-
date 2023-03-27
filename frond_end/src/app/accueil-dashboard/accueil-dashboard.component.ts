@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UsersService } from '../services/users.service';
-import { Serre} from '../models/serre'; 
+import { Temphum } from '../models/temphum'; 
 import { Socket } from 'ngx-socket-io';
 import bodyParser from 'body-parser';
 
@@ -17,7 +17,7 @@ export class AccueilDashboardComponent implements OnInit {
 
   currentDate:any;
   tempHum: any = []
-  serre!: Serre[] ;
+  temphum!: Temphum[] ;
   temp12:any
   temp8:any
   temp19:any
