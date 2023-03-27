@@ -89,15 +89,42 @@
     </div>
   </div>
     <hr style="color:red;">
-    <ul class="nav nav-pills flex-column mb-auto mt-6">
+    <ul class="nav nav-pills flex-column mt-15">
     
-      <div class="mt-12" >
-      <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-        <a  [routerLink]="[menuItem.path]" style="text-decoration: none;gap: 15px;" class="nav-link link-light fs-5 d-flex">
-          <i class="{{menuItem.icon}} text-dark"></i>
-          <p class="text-dark">{{menuItem.title}}</p>
+      <div class="mt-19" >
+      <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
+        <a  routerLink="/acceuil" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="fs-5 d-flex">
+          <i class=" fa fa-home text-dark"></i>
+          <p class="text-dark fs-15">HOME</p>
         </a>
+     
     </li>
+    <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
+      <a  routerLink="/localisation" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="fs-5 d-flex">
+        <i class=" fa fa-history text-dark"></i>
+        <p class="text-dark fs-15">LOCALISATION</p>
+      </a>
+    </li>
+ <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
+  <a  routerLink="/table" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="nav-link link-light fs-5 d-flex">
+    <i class=" fa fa-map-marker text-dark"></i>
+    <p class="text-dark fs-15">HISTORIQUE</p>
+  </a>
+ </li>
+ 
+    <a  routerLink="/arrosage" style="text-decoration: none;gap: 15px; margin-top: 25px;" class=" fs-5 d-flex">
+       <i class="fa fa-cogs text-dark"></i>
+      <p class="text-dark fs-15">PARAMETRE</p> <select class="bi bi-caret-down-fill" style="width: 20px;">
+        <option value=""></option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+    </select>
+    
+    </a>
   </div >
 <!--   <div>
     <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItemsUser" class="{{menuItem.class}}">
