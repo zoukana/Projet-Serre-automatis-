@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/acceuil', title: 'HOME',  icon: 'fa fa-home', class: '' },
     { path: '/localisation', title: 'LOCALISATION',  icon:'fa fa-map-marker', class: '' },
     { path: '/table', title: 'HISTORIQUE',  icon:'fa fa-history', class: '' },
-  /*   { path: '/arrosage', title: 'PARAMETRE',  icon:'fa fa-cogs', class: '' }, */
+   { path: '/arrosage', title: 'PARAMETRE',  icon:'fa fa-cogs', class: '' }, 
   /*   { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' } */
 ];
 
