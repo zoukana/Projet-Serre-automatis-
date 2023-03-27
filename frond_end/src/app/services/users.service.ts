@@ -4,7 +4,7 @@ import { User } from '../models/user';
 import { env } from 'src/env';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
-import { Temphum } from '../models/serre';
+import { Temphum } from '../models/temphum';
 
 
 @Injectable({
