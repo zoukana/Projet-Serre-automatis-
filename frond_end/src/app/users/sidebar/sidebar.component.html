@@ -112,19 +112,22 @@
   </a>
  </li>
  
-    <a  routerLink="/arrosage" style="text-decoration: none;gap: 15px; margin-top: 25px;" class=" fs-5 d-flex">
-       <i class="fa fa-cogs text-dark"></i>
-      <p class="text-dark fs-15">PARAMETRE</p> <select class="bi bi-caret-down-fill" style="width: 20px;">
-        <option value=""></option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish</option>
-    </select>
-    
+   
+      
+      <!-- <p class="text-dark fs-15">PARAMETRE</p>  -->
+      <div class="dropdown">
+        <a  style="text-decoration: none;gap: 15px; margin-top: 25px;" class=" fs-5 d-flex">
+        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-cogs text-dark"></i> &nbsp;&nbsp; PARAMETRES
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="dropdown-item" type="button" routerLink="/arrosage">Gestion D'arrosage</button></li>
+          <li><button class="dropdown-item" type="button" routerLink="/modif">Modifier_mot_passe</button></li>
+        </ul>
+            
     </a>
+      </div>
+
   </div >
 <!--   <div>
     <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItemsUser" class="{{menuItem.class}}">
