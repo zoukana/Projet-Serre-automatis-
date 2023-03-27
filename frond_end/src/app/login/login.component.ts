@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
   submitted = false;
   errorSms:any;
   spin= false;
+  verifPass: any = true;
+  invalid= false;
+  errorMsg:any;
   
 
 

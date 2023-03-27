@@ -19,6 +19,7 @@ export class ModifComponent {
   submitted = false;
   errorSms:any;
   spin= false;
+  verifPass: any = true;
   
 
 
@@ -92,6 +93,29 @@ this.spin = true
     }
     }
    );
+}
+
+
+checkPassword = () => {
+
+  let pass1 = this.registerForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
+  let pass2 = this.registerForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
+/* 
+  console.log(pass1 != pass2) */
+
+  if (pass1 != pass2) {
+    this.verifPass = false;
+    this.registerForm = this.formBuilder.group(
+      {
+
+        password: [''],
+        password2: [''],
+
+      })
+
+    setTimeout(() => { this.verifPass = true }, 3001);
+  }
+  
 }
 }
 

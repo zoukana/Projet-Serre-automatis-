@@ -15,11 +15,13 @@
 
         <form action="" class="bloc" (submit)="onSubmit()" [formGroup]="registerForm">
 
-            <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
+            <!-- <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
                 <span>{{errorSms}}</span>
-            </div> 
+            </div>  -->
             
-                
+            <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+                <span>les deux password ne correspondent pas!</span>
+              </div>
                 <div class="group">
                     <label for="mdp">Ancien <span style="color: red;">*</span></label>
                     <input type="password" id="mdp"  [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
@@ -40,7 +42,7 @@
          <div class="group">
             <label for="mdp">  Nouveau <span style="color: red;">*</span></label>
             <input type="password" id="mdp"  [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-            formControlName="password" type="password" class="form-control" id="pass2">
+            formControlName="password" type="password" class="form-control" id="pass1">
         </div>
 
         <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
@@ -56,7 +58,7 @@
             <div class="group">
                 <label for="mdp"> confirmation <span style="color: red;">*</span></label>
                 <input type="password" id="mdp"  [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-                formControlName="password" type="password" class="form-control" id="pass2">
+                formControlName="password" type="password" class="form-control" id="pass2" #pass2 (change)="checkPassword()">
             </div>
 
             <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
