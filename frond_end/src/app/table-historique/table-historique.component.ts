@@ -2,7 +2,7 @@ import { data } from 'jquery';
 
 import { Component, OnInit } from '@angular/core';
 import { Serre } from '../models/serre'; 
-import { SocketService } from '../meteo.service';
+/* import { SocketService } from '../meteo.service'; */
 import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
 import { BehaviorSubject, from } from 'rxjs';
@@ -20,7 +20,7 @@ humidite_serre:string;
   selector: 'app-table-historique',
   templateUrl: './table-historique.component.html',
   styleUrls: ['./table-historique.component.css']
-})
+}) 
 export class TableHistoriqueComponent implements OnInit{
  /* Declaration des variables */
  Serre!: Serre[] ;

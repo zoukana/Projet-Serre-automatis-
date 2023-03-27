@@ -15,22 +15,33 @@
     </thead>
     <tbody>
       <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
-          <th scope="row"><h4>Température</h4></th>
+          <th scope="row">
+            <h4>
+            <img src="../../assets/thermometres-mesurant-chaleur-froid-vector-illustration-icone-thermometre-equipement-montrant-chaud_-removebg-preview (3) 1.png" alt="">
+            Température</h4></th>
           <td>{{i.temperature}}°C</td>
           <td>{{i.temperature}}°C</td>
         </tr>
         <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
-          <th scope="row"><h4>Humidité</h4></th>
+          <th scope="row"><h4>         
+                <img src="../../assets/237866-removebg-preview 1.png" alt=""> &nbsp; &nbsp;
+            Humidité</h4></th>
           <td>{{i.humidite_serre}}%</td>
           <td>{{i.humidite_serre}}%</td>
         </tr>
         <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
-          <th scope="row"><h4>Humidité sol</h4></th>
+          <th scope="row">
+            <h4>           
+             <img  src="../../assets/237866-removebg-preview 1.png" alt="">  &nbsp; &nbsp;
+            Humidité sol</h4>
+          </th>
           <td>{{i.humidite_serre}}%</td>
           <td>{{i.humidite_serre}}%</td>
         </tr>
         <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
-          <th scope="row"><h4>Débit</h4></th>
+          <th scope="row"><h4 >
+            <img  src="../../assets/images.png" style="height: 80px;" alt="">  &nbsp; 
+            Débit</h4></th>
           <td>1L</td>
           <td>1L</td>
         </tr>
@@ -53,7 +64,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-Vulez-vous vraiment effectuez cette option
+Voulez-vous vraiment effectuez cette option
 </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/arrosage">NON</button>
@@ -87,7 +98,7 @@ Vulez-vous vraiment effectuez cette option
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-Vulez-vous vraiment effectuez cette option
+Voulez-vous vraiment effectuez cette option
 </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/arrosage">NON</button>

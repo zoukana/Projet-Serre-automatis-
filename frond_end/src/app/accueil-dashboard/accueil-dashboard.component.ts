@@ -1,7 +1,7 @@
 import { data } from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocketService } from '../meteo.service';
+
 import { UsersService } from '../services/users.service';
 import { Serre } from '../models/serre'; 
 import { Socket } from 'ngx-socket-io';
@@ -23,18 +23,24 @@ export class AccueilDashboardComponent implements OnInit {
   temp!:any[]
   moyTemp:any;
   moyHum:any;
-  gar:boolean =true;
+  toit:boolean =true;
+  porte:boolean =true;
+  arrosage:boolean =false;
   dethier:any;
   temp20: any;
-  img:boolean =false
+  img:boolean =true;
   t8:any;t12:any;t19:any;h8:any;h12:any;h19:any;
-  constructor(private meteoservice:SocketService, private serServe :UsersService, private socket: Socket){}
+  constructor( private serServe :UsersService, private socket: Socket){}
 
   ngOnInit(): void {
+<<<<<<< HEAD
     this.meteoservice.onFetch().subscribe((data)=>{
     /*   console.log(data); */  
       this.Serre= Array(data)
     })
+=======
+   
+>>>>>>> test22
 
     //recuperation temperature par heur données et calsul des moyenne 
     this.serServe.historique().subscribe((data)=>{
@@ -75,13 +81,31 @@ export class AccueilDashboardComponent implements OnInit {
     this.img = false;
     this.socket.emit('active', '0');
   }
-onclick (){
-if(this.gar= false){
-  this.gar= true;
-}
-else{
-  this.gar= false;
-}
-}
+on_toit_click (){
 
+  this.toit= true;
+}
+off_toit_click (){
+  
+    this.toit= false;
+  
+   }
+   on_porte_click (){
+
+    this.porte= true;
+  }
+  off_porte_click (){
+    
+      this.porte= false;
+    
+     }
+     on_arrosage_click (){
+
+      this.arrosage= true;
+    }
+    off_arrosage_click (){
+      
+        this.arrosage= false;
+      
+       }
 }

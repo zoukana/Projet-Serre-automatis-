@@ -2,13 +2,13 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
-import { UsernameValidator } from './username.validator';
+/* import { UsernameValidator } from './username.validator'; */
 import Swal from 'sweetalert2'; 
 
 @Component({
   selector: 'app-utilisateur',
   templateUrl:'./utilisateur.component.html',
-  styleUrls: ['./utilisateur.component.css']
+/*   styleUrls: ['./utilisateur.component.css'] */
 })
 
 export class UtilisateurComponent implements OnInit {
@@ -37,8 +37,8 @@ show:boolean = false;
   constructor(private userService : UsersService, private formBuilder : FormBuilder, private router: Router){
     this.userEditForm = this.formBuilder.group({
       id:[''],
-      prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-      nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      /* prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]], */
       email: ['', [Validators.required,Validators.email]],
     });
     this.route = this.router.routerState.snapshot.url
@@ -158,8 +158,8 @@ getUserData(id:any,email:any,prenom:any,nom:any){
       this.showForm = true;
       this.userEditForm = this.formBuilder.group({
           id:[id],
-          prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace]],
-          nom: [nom, [Validators.required,UsernameValidator.cannotContainSpace]],
+         /*  prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          nom: [nom, [Validators.required,UsernameValidator.cannotContainSpace]], */
           email: [email, [Validators.required,Validators.email]],
         });  
     }  

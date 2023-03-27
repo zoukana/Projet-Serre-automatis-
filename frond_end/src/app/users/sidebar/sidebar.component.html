@@ -89,15 +89,45 @@
     </div>
   </div>
     <hr style="color:red;">
-    <ul class="nav nav-pills flex-column mb-auto mt-6">
+    <ul class="nav nav-pills flex-column mt-15">
     
-      <div class="mt-12" >
-      <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-        <a  [routerLink]="[menuItem.path]" style="text-decoration: none;gap: 15px;" class="nav-link link-light fs-5 d-flex">
-          <i class="{{menuItem.icon}} text-dark"></i>
-          <p class="text-dark">{{menuItem.title}}</p>
+      <div class="mt-19" >
+      <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
+        <a  routerLink="/acceuil" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="fs-5 d-flex">
+          <i class=" fa fa-home text-dark"></i>
+          <p class="text-dark fs-15">HOME</p>
         </a>
+     
     </li>
+    <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
+      <a  routerLink="/localisation" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="fs-5 d-flex">
+        <i class=" fa fa-history text-dark"></i>
+        <p class="text-dark fs-15">LOCALISATION</p>
+      </a>
+    </li>
+ <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
+  <a  routerLink="/table" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="nav-link link-light fs-5 d-flex">
+    <i class=" fa fa-map-marker text-dark"></i>
+    <p class="text-dark fs-15">HISTORIQUE</p>
+  </a>
+ </li>
+ 
+   
+      
+      <!-- <p class="text-dark fs-15">PARAMETRE</p>  -->
+      <div class="dropdown">
+        <a  style="text-decoration: none;gap: 15px; margin-top: 25px;" class=" fs-5 d-flex">
+        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-cogs text-dark"></i> &nbsp;&nbsp; PARAMETRES
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="dropdown-item" type="button" routerLink="/arrosage">Gestion D'arrosage</button></li>
+          <li><button class="dropdown-item" type="button" routerLink="/modif">Modifier_mot_passe</button></li>
+        </ul>
+            
+    </a>
+      </div>
+
   </div >
 <!--   <div>
     <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItemsUser" class="{{menuItem.class}}">

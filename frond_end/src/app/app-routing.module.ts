@@ -1,12 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InscrptionComponent } from './inscrption/inscrption.component';
-import { ModificationComponent } from './modification/modification.component';
 
-import { ProfilComponent } from './profil/profil.component';
-import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
+
 import { LoginComponent } from './login/login.component';
-import { SimpleusersComponent } from './users/simpleusers/simpleusers.component';
+
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
@@ -16,16 +13,15 @@ import { ModifComponent } from './modif/modif.component';
 import { AuthGuard } from "./services/user.guard";
 
 const routes: Routes = [
-{path: "pageArchive" , component: UtilisateurComponent, canActivate: [AuthGuard]},
-{path: "admin", component: UtilisateurComponent, canActivate: [AuthGuard]},
-{path: "profil", component: ProfilComponent, canActivate: [AuthGuard]},
-{path: "user", component: SimpleusersComponent, canActivate: [AuthGuard]},
+
 {path:"acceuil", component: AccueilDashboardComponent/* , canActivate: [AuthGuard] */},
-{path:"inscription", component: InscrptionComponent,/* canActivate: [AuthGuard]*/},
+
 {path:"login", component: LoginComponent},
 {path:"sides", component: SidebarComponent},
 {path:"", component: LoginComponent},
-{path:"table", component: TableHistoriqueComponent/* , canActivate: [AuthGuard] */},
+
+{path:"table", component: TableHistoriqueComponent, /*canActivate: [AuthGuard]*/},
+
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
 {path:"arrosage", component: GestionArrosageComponent, /* canActivate: [AuthGuard] */},
 {path:"localisation", component: LocalisationComponent, /* canActivate: [AuthGuard] */},
@@ -33,7 +29,7 @@ const routes: Routes = [
 
 { path: '', redirectTo: '/login', pathMatch: 'full' },
 /* { path: '**', redirectTo: '/accueil' }, */
-{path:"modification", component: ModificationComponent, canActivate: [AuthGuard]},
+
 
 
 
