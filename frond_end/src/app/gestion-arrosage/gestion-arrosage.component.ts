@@ -1,7 +1,7 @@
 import { data } from 'jquery';
 
 import { Component, OnInit } from '@angular/core';
-import { Temphum } from '../models/temphum'; 
+import { Temphum } from '../models/serre'; 
 
 import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
