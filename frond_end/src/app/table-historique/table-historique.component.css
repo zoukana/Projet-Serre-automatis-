@@ -2,9 +2,9 @@
     background-color: #287481;
  }
 
- .d-flex{
-    background-color: #D9D9D9;
-    
+ .form-inline{
+ 
+    margin-left: 1000px;
  }
  .table{
 border:solid black 3px;
