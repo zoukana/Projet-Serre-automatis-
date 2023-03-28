@@ -52,8 +52,8 @@ router.post("/login",  async (req, res, next) => {
         data: {
           userId: existingUser.id,
           email: existingUser.email,
-          /* roles: existingUser.roles,
-          img: existingUser.img, */
+          prenom: existingUser.prenom,
+          nom: existingUser.nom,
           token: token,
         },
     });
@@ -62,19 +62,15 @@ router.post("/login",  async (req, res, next) => {
 /*  la méthode POST passe les paramètres dans le corps de la requête. */
 router.post('/post', async(req, res) => {
 
-const { email, password/* , prenom, nom, date_inscri, roles, etat, matricule, img  */} = req.body;
+const { email, password, prenom, nom} = req.body;
 const users = [];
 
 const newUser = Model({
     email,
     password, 
-    /* prenom, 
-    nom, 
-    date_inscri,
-    roles,
-    etat, 
-    matricule,
-    img */
+     prenom, 
+    nom
+ 
 
 });
 

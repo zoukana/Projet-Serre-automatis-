@@ -17,7 +17,7 @@
     
       
 
-        <form action="" class="bloc" (submit)="onSubmit()" [formGroup]="registerForm">
+        <form action="" class="bloc" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
             <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
                 <span>{{errorSms}}</span>
