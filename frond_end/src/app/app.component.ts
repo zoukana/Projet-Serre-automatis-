@@ -60,7 +60,9 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userService.getLogOut();
+
     this.router.navigateByUrl('login')
+    // window.location.reload
   }
 
   ngOnInit(){

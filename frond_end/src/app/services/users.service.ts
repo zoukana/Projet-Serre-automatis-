@@ -100,10 +100,15 @@ export class UsersService {
   }
 
   getLogOut(){
-    let removeToken = localStorage.removeItem('currentUser');
-    if (removeToken == null) {
-      this.router.navigate(['']);
-    }
+  localStorage.removeItem('currentUser');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('nom');
+  localStorage.removeItem('email');
+
+  // this.router.navigate(['']);
+
+    // if (removeToken == null && removeprenom == null &&  removenom == null && removemail == null) {
+    // }
   }
  /*  getRole(){
     return localStorage.getItem('role');
