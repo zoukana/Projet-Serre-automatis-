@@ -28,7 +28,7 @@ export class TableHistoriqueComponent implements OnInit{
  currentDate!: any;
  temp7h: any;
  temp18h: any;
- temp19: any;
+ 
  temp20: any;
 last: any;
  dethierr: any;
@@ -50,9 +50,7 @@ hist:donne[]= histo
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
      this.last = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere
     
-     /* console.log(this.dethier1);
-      console.log(this.dethierr); */
-     /** filtre des temperatures  */
+   
      this.Serre= data as unknown as Serre[];
      this.temp7h = this.Serre.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
      this.temp18h = this.Serre.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
@@ -68,9 +66,7 @@ hist:donne[]= histo
     const h7 = this.temp7h[0].humidite;
     const t18 = this.temp18h[0].temperature;
     const h18 = this.temp18h[0].humidite;
-    /* const t19 = this.temp19[0].temperature;
-    const h19 = this.temp19[0].humidite; */
-    /* calcul de la temperature et de l'humidité moyenne */ 
+  
     this.moyTemp = (parseInt(String(t7)) + parseInt(String(t18)) ) / 2;
     this.moyHum = (parseInt(String(h7)) + parseInt(String(h18)) ) / 2;
     

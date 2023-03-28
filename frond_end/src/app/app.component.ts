@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { ROUTES } from '../app/users/sidebar/sidebar.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -56,8 +57,23 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.userService.getLogOut();
-    this.router.navigateByUrl('login')
+    // this.userService.getLogOut();
+    // this.router.navigateByUrl('login')
+    Swal.fire({
+      title: 'Voulez-vous vous vous deconnecter?',
+      icon: 'warning',
+      confirmButtonColor: "#B82010 ",
+      cancelButtonColor: "green" ,
+      showCancelButton: true,
+      confirmButtonText: 'oui',
+      cancelButtonText: 'Annuler',
+  
+    })
+    .then((result) => {
+      if(result.isConfirmed){
+        this.userService.getLogOut();
+      }
+    })
   }
 
   ngOnInit(){
