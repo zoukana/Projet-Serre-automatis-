@@ -31,9 +31,12 @@ export class UsersService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         /* console.log(user.data) */
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
-       /*  localStorage.setItem('role', JSON.stringify(user.data?.roles));
-        localStorage.setItem('img', JSON.stringify(user.data?.img)); */
         localStorage.setItem('email', JSON.stringify(user.data?.email));
+        localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
+        localStorage.setItem('nom', JSON.stringify(user.data?.nom));
+
+
+
 
         this.currentUserSubject.next(user);
         return user;
@@ -45,7 +48,12 @@ export class UsersService {
   getToken() {
     return localStorage.getItem('currentUser');
   }
- 
+  getPrenom() {
+    return localStorage.getItem('prenom');
+  }
+  getnom() {
+    return localStorage.getItem('nom');
+  }
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem('currentUser');
     return authToken !== null ? true : false;
@@ -87,10 +95,15 @@ export class UsersService {
   }
 
   getLogOut(){
-    let removeToken = localStorage.removeItem('currentUser');
-    if (removeToken == null) {
-      this.router.navigate(['']);
-    }
+  localStorage.removeItem('currentUser');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('nom');
+  localStorage.removeItem('email');
+
+  // this.router.navigate(['']);
+
+    // if (removeToken == null && removeprenom == null &&  removenom == null && removemail == null) {
+    // }
   }
  /*  getRole(){
     return localStorage.getItem('role');

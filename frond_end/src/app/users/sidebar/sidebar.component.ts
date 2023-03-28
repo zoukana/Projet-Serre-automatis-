@@ -45,6 +45,7 @@ constructor(private userService : UsersService, private sanitizer: DomSanitizer,
   this.menuItemsUser = USERS.filter(menuItem => menuItem);
 }
 ngOnInit(): void {
+
   this.roles = localStorage.getItem('role') == "Admin"
  if (this.userService.getLoggedIn() !== "Admin") {
     this.roles = true
@@ -70,6 +71,9 @@ ngOnInit(): void {
   );
 
 }
+
+
+
 logOut(){
 this.userService.getLogOut();
 // this.ngOnInit()

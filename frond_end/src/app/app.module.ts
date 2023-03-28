@@ -16,6 +16,7 @@ import { TableHistoriqueComponent } from './table-historique/table-historique.co
 import { ModifComponent } from './modif/modif.component';
 import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
 import { LocalisationComponent } from './localisation/localisation.component';
+import { JwtInterceptorService } from './helpers/interceptor.service';
 // import { AgmCoreModule } from '@agm/core';
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
@@ -28,7 +29,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
 @NgModule({
     declarations: [
         AppComponent,
-       LoginComponent,
+        LoginComponent,
         AccueilDashboardComponent,
         SidebarComponent,
         TableHistoriqueComponent,
@@ -60,7 +61,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
 
     ],
     providers: [
-       
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }
       ],
 })
 export class AppModule {}
