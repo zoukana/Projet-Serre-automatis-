@@ -1,19 +1,20 @@
 const mongoose = require('mongoose');
 
-const data1Schema = new mongoose.Schema({
+const serreSchema = new mongoose.Schema({
 temperature: {
 type: String
 },
-humidite: {
+humidite_sol: {
 type: String
 },
+humidite_serre: {
+    type: String
+    },
 Date: {
 type: String
-},
-Heure: {
-type: String
 }
+
 })
 
 
-module.exports = mongoose.model('tempHum2', data1Schema);/* users nom de la collection */
+module.exports = mongoose.model('serre', serreSchema);/* users nom de la collection */

@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
-
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';

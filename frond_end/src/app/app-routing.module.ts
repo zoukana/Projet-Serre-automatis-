@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
 import { GestionArrosageComponent } from './gestion-arrosage/gestion-arrosage.component';
 import { LocalisationComponent } from './localisation/localisation.component';
