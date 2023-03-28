@@ -71,7 +71,7 @@ export class UsersService {
     return this.httpClient.get(`${env.apiUrl}/pap`)
   };
 
-  changeRole(id:any,user: User){
+/*   changeRole(id:any,user: User){
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
   };
@@ -81,7 +81,7 @@ export class UsersService {
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
   }
-
+ */
   addUsers(user: User){
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }
