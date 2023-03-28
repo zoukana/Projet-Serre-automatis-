@@ -30,7 +30,7 @@ img{
   border: 5px;
   border-radius: 0px;
   display: flex;
-  margin-left: 370px;
+  margin-left: 420px;
   margin-top: -150px;
 
 
@@ -41,7 +41,7 @@ img{
   background-color: rgba(40, 116, 129, 0.8);
   position: absolute;
   top: 210px;
-  margin-left: 370px;
+  margin-left: 420px;
   margin-top: -0px;
   text-align: center;
   color: white;
@@ -100,8 +100,8 @@ i{
   border-radius: 50%;
   align-items: center;
  
-   margin-top: -200%; 
-  margin-left: 0%;
+  margin-top: -100%; 
+  margin-left: 35%;
   position: absolute;
 
 }

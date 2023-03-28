@@ -18,6 +18,7 @@
                
                
                 <div class="col-md-6 right">
+                    <form action=""  (submit)="onSubmit()" [formGroup]="registerForm">
                     <div class="back">
                         <svg width="80" height="80" viewBox="0 0 147 130" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M73.1243 73.0757C95.7711 73.0208 114.1 56.6499 114.046 36.5267C113.991 16.4035 95.5724 0.121602 72.9256 0.17644C50.2788 0.231279 31.9494 16.6022 32.0043 36.7254C32.0592 56.8486 50.4775 73.1305 73.1243 73.0757ZM109.609 81.0873L93.9131 81.1253C87.5961 83.7225 80.5639 85.2076 73.1574 85.2255C65.7509 85.2435 58.7392 83.7923 52.3797 81.2259L36.6836 81.2639C16.5436 81.3126 0.260354 95.8561 0.30914 113.752L0.32018 117.802C0.338467 124.51 6.47791 129.937 14.0268 129.919L132.531 129.632C140.08 129.613 146.19 124.156 146.171 117.449L146.16 113.399C146.111 95.5029 129.749 81.0385 109.609 81.0873Z" fill="white"/>
@@ -32,23 +33,35 @@
                             <p>Vous pouvez scanner avec votre carte pour se connecter </p>
                             </div>
                         <div class="input-field">
-                            <input type="text" class="input" id="email" required autocomplete="off">
+                            <input type="text" class="input" id="email" required autocomplete="off" formControlName="email" >
+                            <div *ngIf="registerForm.controls['email'].dirty &&  registerForm.controls['email'].errors && registerForm.controls['email'].errors['required']" class="text-red-600">
+                                <span style="color: red;"> <p>Ce champ est requis</p></span>
+                              </div>
+                              <div *ngIf="registerForm.controls['email'].dirty &&  registerForm.controls['email'].errors && registerForm.controls['email'].errors['pattern']" class="text-red-600">
+                                <span><p>Ce format est incorrect</p></span>
+                              </div>
                             <label for="email"><span> <svg width="25" height="25" viewBox="0 0 47 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M45.4969 10.5976C45.8502 10.3385 46.3755 10.5809 46.3755 10.9904V28.082C46.3755 30.2968 44.4281 32.0938 42.0278 32.0938H4.3477C1.94741 32.0938 0 30.2968 0 28.082V10.9988C0 10.5809 0.51629 10.3469 0.878599 10.606C2.90753 12.0602 5.59767 13.9073 14.8365 20.1004C16.7477 21.3875 19.9723 24.0954 23.1878 24.0787C26.4214 24.1037 29.7093 21.3373 31.548 20.1004C40.7869 13.9073 43.468 12.0519 45.4969 10.5976ZM23.1878 21.3958C25.2891 21.4293 28.3144 18.9554 29.8361 17.9357C41.8557 9.88722 42.7705 9.18516 45.5422 7.1793C46.0675 6.80321 46.3755 6.21816 46.3755 5.59969V4.01172C46.3755 1.79692 44.4281 0 42.0278 0H4.3477C1.94741 0 0 1.79692 0 4.01172V5.59969C0 6.21816 0.307962 6.79485 0.83331 7.1793C3.60497 9.17681 4.5198 9.88722 16.5394 17.9357C18.0611 18.9554 21.0864 21.4293 23.1878 21.3958Z" fill="white"/>
                                 </svg> </span>  Adress mail<span style="color: red;">*</span></label>
                         </div>
                         <div class="input-field">
-                            <input type="password" class="input" id="password" required>
+                            <input type="password" class="input" id="password" required  formControlName="password">
+                            <div *ngIf="registerForm.controls['password'].dirty &&  registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="text-red-600">
+                               <span style="color: red;"> <p>Ce champ est requis</p></span>
+                              </div>
                             <label for="password"> <span><svg width="25" height="25" viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M36.906 16.3057H34.6916V11.0646C34.6916 4.9645 28.3991 0 20.6673 0C12.9355 0 6.64308 4.9645 6.64308 11.0646V16.3057H4.42872C1.9837 16.3057 0 17.8708 0 19.7998V33.7761C0 35.7051 1.9837 37.2702 4.42872 37.2702H36.906C39.351 37.2702 41.3347 35.7051 41.3347 33.7761V19.7998C41.3347 17.8708 39.351 16.3057 36.906 16.3057ZM27.3104 16.3057H14.0243V11.0646C14.0243 8.17469 17.0044 5.82346 20.6673 5.82346C24.3303 5.82346 27.3104 8.17469 27.3104 11.0646V16.3057Z" fill="white"/>
                                 </svg>
                                 </span>mot de passe<span style="color: red;">*</span></label>
                         </div> <br>
+
+                        
                         <div class="input-field">
-                            <input type="submit"  class="submit" value="Se connecter">
+                            <input type="submit" (click)="onSubmit()" class="submit" value="Se connecter">
                             
                         </div>
                      </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -76,7 +89,7 @@
 
 
 
-
+<!-- 
 <form action="" class="bloc" (submit)="onSubmit()" [formGroup]="registerForm">
 
     <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
@@ -120,20 +133,20 @@
     class="text-danger">
  <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
      Ce champ est requis
- </div>
+ </div> -->
  <!-- <div *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
    Password doit contenir au minimum 8 caractères
  </div> -->
-</div>
+<!-- </div>
 
     <div class="group "> 
         <button  type="submit" (click)="onSubmit()"  class="bouton">
             CONNEXION
        </button>
-        <!-- <input type="" *ngIf="!spin" value="CONNEXION" class="btn login" > -->
+        <input type="" *ngIf="!spin" value="CONNEXION" class="btn login" > 
     </div>
 </form>
-
+ -->
 
 
 
