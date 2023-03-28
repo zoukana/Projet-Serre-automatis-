@@ -100,12 +100,14 @@
     margin: auto;
     
    }
-  .bloc .group .btn{
+  .bloc .group .modif{
     display: block;
     width: auto;
     padding: 15px 60px;
     border: 1px solid rgba(0, 38, 77, 1);
-    
+    text-align: center;
+    color: white;
+    margin-left: 25%;
     background: rgba(0, 38, 77, 1);
     
   }

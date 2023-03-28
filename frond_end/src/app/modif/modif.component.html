@@ -72,7 +72,12 @@
      </div>
 
             <div class="group "> 
-                <input type="submit" *ngIf="!spin" value="modifier" class="btn login" >
+                <button type="submit" (click)="onSubmit()" class="modif">
+                    Modifier
+                </button> 
+
+                <!-- <input type="submit" *ngIf="!spin" value="modifier" class="btn login" > -->
+              
             </div>
         </form>
     </div>

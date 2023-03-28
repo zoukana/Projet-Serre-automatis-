@@ -46,7 +46,7 @@ this.submitted = true
 this.spin = true
 
  if(this.registerForm.invalid){
-  this.spin = false
+ /*  this.spin = false */
   return ;
 } 
 
