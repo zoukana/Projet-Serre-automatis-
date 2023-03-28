@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   errorSms:any;
   spin= false;
+  router: any;
   
 
 
@@ -42,6 +43,7 @@ onSubmit(){
 this.submitted = true
 this.spin = true
 
+
  if(this.registerForm.invalid){
   this.spin = false
   return ;
@@ -58,11 +60,12 @@ this.spin = true
   //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
     data=>{
-     /*  console.log(data) */
-      /* if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
+      console.log(data) 
+
+      /* if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") { */
           this.route.navigateByUrl('acceuil')
-          this.spin = true
-      }  */
+      /*     this.spin = true
+      }  */ 
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
     error=>{

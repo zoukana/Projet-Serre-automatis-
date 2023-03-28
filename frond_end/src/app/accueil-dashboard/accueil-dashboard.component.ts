@@ -1,7 +1,6 @@
 import { data } from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { UsersService } from '../services/users.service';
 import { Serre } from '../models/serre'; 
 import { Socket } from 'ngx-socket-io';
@@ -14,6 +13,7 @@ import bodyParser from 'body-parser';
   styleUrls: ['./accueil-dashboard.component.css']
 })
 export class AccueilDashboardComponent implements OnInit {
+  [x: string]: any;
 
   currentDate:any;
   tempHum: any = [];
@@ -30,14 +30,17 @@ export class AccueilDashboardComponent implements OnInit {
   temp20: any;
   img:boolean =true;
   t8:any;t12:any;t19:any;h8:any;h12:any;h19:any;
+  users:any;
+  userActif!:any
+  getItem: any = {};
   constructor( private serServe :UsersService, private socket: Socket){}
 
+
   ngOnInit(): void {
-   
 
     //recuperation temperature par heur données et calsul des moyenne 
-    this.serServe.historique().subscribe((data)=>{
-      //console.log(data);
+    /* this.serServe.historique().subscribe((data)=>{
+      console.log(data); */
      /* this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
      this.dethier = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); */
     /*  console.log(this.dethier); */
@@ -62,8 +65,35 @@ export class AccueilDashboardComponent implements OnInit {
     /* this.moyTemp = (parseInt(String(this.t8)) + parseInt(String(this.t12)) + parseInt(String(this.t19))) / 3;
     this.moyHum = (parseInt(String(this.h8)) + parseInt(String(this.h12)) + parseInt(String(this.h19))) / 3; */
     
-    })  
+    
+    /* })  */ 
+
+    
+  const mail = localStorage.getItem('email')?.replace(/['"]+/g, '');
+  const prenom = localStorage.getItem('prenom');
+  const nom = localStorage.getItem('prenom');
+
+
+
+  // console.log(mail);
+    this.serServe.getUsers().subscribe(
+      data => {
+        console.log(data);
+        
+        this.users = data;
+        
+        this.userActif = this.users.filter((e: any) =>  e.prenom == prenom )
+        console.log(this.userActif);
+
+        
+  
+      })
+
   }
+  
+     
+  
+
 
   allumer(){
     this.img = true;

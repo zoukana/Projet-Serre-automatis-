@@ -22,6 +22,9 @@ export class AppComponent implements OnInit {
   showHead:any;
   history: Set<any> = new Set()
   hist: any[] = []
+
+   prenom = localStorage.getItem('prenom');
+    nom = localStorage.getItem('nom');
   constructor(private userService : UsersService, private router: Router,location: Location,  private element: ElementRef ) {
     setInterval(() => {
       this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds()}, + 1);
@@ -61,6 +64,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
+
+    
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
