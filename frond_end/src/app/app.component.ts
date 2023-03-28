@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   history: Set<any> = new Set()
   hist: any[] = []
 
-   prenom = localStorage.getItem('prenom');
+   prenom = localStorage.getItem('prenom');   
     nom = localStorage.getItem('nom');
   constructor(private userService : UsersService, private router: Router,location: Location,  private element: ElementRef ) {
     setInterval(() => {
