@@ -128,7 +128,7 @@ io.on('connection', function(socket) {
 
 
   http.listen(3001, ()=>{
-    console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
+    console.log('server started at ${3000}')/* apres avoir ecouter le port 3000 affiche les données */
 })
 /* parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {

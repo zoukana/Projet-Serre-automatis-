@@ -19,6 +19,7 @@ export class ModifComponent {
   submitted = false;
   errorSms:any;
   spin= false;
+  verifPass:any = true;
   
 
 
@@ -38,9 +39,6 @@ export class ModifComponent {
      
 
       
-      
-    
-
        
   }
 
@@ -54,38 +52,31 @@ this.spin = true
   return ;
 } 
 
- /* /insertion sur la base de données/ */
-  const user ={
  
-   email : this.registerForm.value. email,
-   password: this.registerForm.value. password,
   
+   
+}
+
+checkPassword = () => {
+
+  let pass1 = this.registerForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
+  let pass2 = this.registerForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
+/* 
+  console.log(pass1 != pass2) */
+
+  if (pass1 != pass2) {
+    this.verifPass = false;
+    this.registerForm = this.formBuilder.group(
+      {
+
+        password: [''],
+        password2: [''],
+
+      })
+
+    setTimeout(() => { this.verifPass = true }, 3000);
   }
   
-  //Redirection apres la connexion
-  this.userService.getConnexion(user).subscribe(
-    data=>{
-     /*  console.log(data) */
-      /* if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
-          this.route.navigateByUrl('acceuil')
-          this.spin = true
-      }  */
-    }, 
-    /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
-    error=>{
-     /*  console.log(error) */
-    /*  console.log(error) */
-      if(error == 'Unauthorized'){
-        this.errorSms ='Cette utilisateur est archivé'
-        this.spin = false
-        setTimeout(()=>{ this.errorSms = false}, 3001); 
-      }else {
-      this.errorSms ='Vous  etes pas dans la base de données'
-      this.spin = false
-      setTimeout(()=>{ this.errorSms = false}, 3001); 
-    }
-    }
-   );
 }
 }
 
