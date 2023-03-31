@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
     })
     .then((result) => {
       if(result.isConfirmed){
-        this.userService.getLogOut();
+        this.router.navigateByUrl('login')
       }
     })
   }
