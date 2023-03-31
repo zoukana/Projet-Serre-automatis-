@@ -186,8 +186,8 @@ console.log(items);
     try {
       MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("test");
-        var col = dbo.collection('tempHum2');
+        var dbo = db.db("arrosaget");
+        var col = dbo.collection('serre');
         col.deleteMany()
             
     })
