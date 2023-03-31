@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/acceuil', title: 'HOME',  icon: 'fa fa-home', class: '' },
     { path: '/localisation', title: 'LOCALISATION',  icon:'fa fa-map-marker', class: '' },
     { path: '/table', title: 'HISTORIQUE',  icon:'fa fa-history', class: '' },
-  /*   { path: '/arrosage', title: 'PARAMETRE',  icon:'fa fa-cogs', class: '' }, */
+  //  { path: '/arrosage', title: 'PARAMETRE',  icon:'fa fa-cogs', class: '' }, 
   /*   { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' } */
 ];
 
@@ -45,6 +45,7 @@ constructor(private userService : UsersService, private sanitizer: DomSanitizer,
   this.menuItemsUser = USERS.filter(menuItem => menuItem);
 }
 ngOnInit(): void {
+
   this.roles = localStorage.getItem('role') == "Admin"
  if (this.userService.getLoggedIn() !== "Admin") {
     this.roles = true
@@ -70,6 +71,9 @@ ngOnInit(): void {
   );
 
 }
+
+
+
 logOut(){
 this.userService.getLogOut();
 // this.ngOnInit()

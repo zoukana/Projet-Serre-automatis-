@@ -4,7 +4,7 @@ import { User } from '../models/user';
 import { env } from 'src/env';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
-import { Temphum } from '../models/temphum';
+import { Serre} from '../models/serre';
 
 
 @Injectable({
@@ -31,9 +31,12 @@ export class UsersService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         /* console.log(user.data) */
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
-        localStorage.setItem('role', JSON.stringify(user.data?.roles));
-        localStorage.setItem('img', JSON.stringify(user.data?.img));
         localStorage.setItem('email', JSON.stringify(user.data?.email));
+        localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
+        localStorage.setItem('nom', JSON.stringify(user.data?.nom));
+
+
+
 
         this.currentUserSubject.next(user);
         return user;
@@ -45,7 +48,12 @@ export class UsersService {
   getToken() {
     return localStorage.getItem('currentUser');
   }
- 
+  getPrenom() {
+    return localStorage.getItem('prenom');
+  }
+  getnom() {
+    return localStorage.getItem('nom');
+  }
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem('currentUser');
     return authToken !== null ? true : false;
@@ -62,16 +70,16 @@ export class UsersService {
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)
   };
-  getData(){
-    return this.httpClient.get<Temphum>(`${env.apiUrl}/pap`)
-  };
+  /* getData(){
+    return this.httpClient.get<Serre>(`${env.apiUrl}/pap`)
+  }; */
 
 
   historique(){
     return this.httpClient.get(`${env.apiUrl}/pap`)
   };
 
-  changeRole(id:any,user: User){
+/*   changeRole(id:any,user: User){
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
   };
@@ -81,20 +89,25 @@ export class UsersService {
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
   }
-
+ */
   addUsers(user: User){
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }
 
   getLogOut(){
-    let removeToken = localStorage.removeItem('currentUser');
-    if (removeToken == null) {
-      this.router.navigate(['']);
-    }
+  localStorage.removeItem('currentUser');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('nom');
+  localStorage.removeItem('email');
+
+  // this.router.navigate(['']);
+
+    // if (removeToken == null && removeprenom == null &&  removenom == null && removemail == null) {
+    // }
   }
-  getRole(){
+ /*  getRole(){
     return localStorage.getItem('role');
-  }
+  } */
 }
 
 

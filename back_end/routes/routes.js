@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const check = require('./midleware');
 var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/test";
+var url = "mongodb+srv://oumy:1234@cluster0.aymongodb.net/arrosage";
 module.exports = router;
 
 /* pour la connection */
@@ -19,9 +19,9 @@ router.post("/login",  async (req, res, next) => {
     existingUser = await Model.findOne({ email: email });
     if (!existingUser) {
       return res.status(400).send("email doesn't exist...!");
-    }else if(existingUser.etat == false){
+    }/* else if(existingUser.etat == false){
       return res.status(401).send("user est archivé...!");
-    }
+    } */
       
       
     //check if password is correct
@@ -52,8 +52,8 @@ router.post("/login",  async (req, res, next) => {
         data: {
           userId: existingUser.id,
           email: existingUser.email,
-          roles: existingUser.roles,
-          img: existingUser.img,
+          prenom: existingUser.prenom,
+          nom: existingUser.nom,
           token: token,
         },
     });
@@ -62,19 +62,15 @@ router.post("/login",  async (req, res, next) => {
 /*  la méthode POST passe les paramètres dans le corps de la requête. */
 router.post('/post', async(req, res) => {
 
-const { email, password, prenom, nom, date_inscri, roles, etat, matricule, img } = req.body;
+const { email, password, prenom, nom} = req.body;
 const users = [];
 
 const newUser = Model({
     email,
     password, 
-    prenom, 
-    nom, 
-    date_inscri,
-    roles,
-    etat, 
-    matricule,
-    img
+     prenom, 
+    nom
+ 
 
 });
 
@@ -170,8 +166,8 @@ router.get('/pap', async(req, res) => {
 
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("test");
-    var col = dbo.collection('tempHum2');
+    var dbo = db.db("arrosage");
+    var col = dbo.collection('serre');
     col.find().toArray(function(err, items) {
         console.log(items);
              res.json(items)
@@ -190,8 +186,8 @@ console.log(items);
     try {
       MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("test");
-        var col = dbo.collection('tempHum2');
+        var dbo = db.db("arrosaget");
+        var col = dbo.collection('serre');
         col.deleteMany()
             
     })

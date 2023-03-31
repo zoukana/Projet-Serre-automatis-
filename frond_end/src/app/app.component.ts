@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { ROUTES } from '../app/users/sidebar/sidebar.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -22,6 +23,10 @@ export class AppComponent implements OnInit {
   showHead:any;
   history: Set<any> = new Set()
   hist: any[] = []
+ 
+
+   prenom = localStorage.getItem('prenom');   
+    nom = localStorage.getItem('nom');
   constructor(private userService : UsersService, private router: Router,location: Location,  private element: ElementRef ) {
     setInterval(() => {
       this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds()}, + 1);
@@ -56,11 +61,28 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.userService.getLogOut();
-    this.router.navigateByUrl('login')
+    // this.userService.getLogOut();
+    // this.router.navigateByUrl('login')
+    Swal.fire({
+      title: 'Voulez-vous vous vous deconnecter?',
+      icon: 'warning',
+      confirmButtonColor: "#B82010 ",
+      cancelButtonColor: "green" ,
+      showCancelButton: true,
+      confirmButtonText: 'oui',
+      cancelButtonText: 'Annuler',
+  
+    })
+    .then((result) => {
+      if(result.isConfirmed){
+        this.router.navigateByUrl('login')
+      }
+    })
   }
 
   ngOnInit(){
+
+    
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
