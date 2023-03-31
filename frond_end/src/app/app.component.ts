@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   showHead:any;
   history: Set<any> = new Set()
   hist: any[] = []
-  currentUser: any = {};
+ 
 
    prenom = localStorage.getItem('prenom');   
     nom = localStorage.getItem('nom');
