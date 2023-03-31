@@ -62,10 +62,8 @@ this.spin = true
   this.userService.getConnexion(user).subscribe(
     data=>{
      /*  console.log(data) */
-      /* if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
           this.route.navigateByUrl('acceuil')
-          this.spin = true
-      }  */
+   
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
     error=>{
