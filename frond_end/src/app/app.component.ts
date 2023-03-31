@@ -71,6 +71,7 @@ export class AppComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'oui',
       cancelButtonText: 'Annuler',
+      
   
     })
     .then((result) => {

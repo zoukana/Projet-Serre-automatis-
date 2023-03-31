@@ -197,6 +197,20 @@ console.log(items);
     catch (error) {
     res.status(400).json({ message: error.message })
     }
+
+    router.post('/add-temphum', async(req, res) => {
+
+      const { temperature, humidite_sol, humidite_serre} = req.body;
+      const serres = [];
+      
+      const newSerre = Model({
+        temperature,
+        humidite_sol, 
+        humidite_serre, 
+         
+       
+      
+      });
     })
   // list data
 /* router.get('/pap', function(req, res) {
@@ -205,3 +219,5 @@ console.log(items);
       res.json(sales);
   });
 }); */
+
+})

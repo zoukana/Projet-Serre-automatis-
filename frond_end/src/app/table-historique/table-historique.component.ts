@@ -33,7 +33,8 @@ export class TableHistoriqueComponent implements OnInit{
 last: any;
  dethierr: any;
  moyTemp!: number;
- moyHum!: number;
+ moyHum_Sol!: number;
+ moyHum_Serre!: number;
 searchText!: string;
 itemsperpage: number =5;
 p: number = 1;
@@ -63,12 +64,15 @@ hist:donne[]= histo
     });  */
 
     const t7 = this.temp7h[0].temperature;
-    const h7 = this.temp7h[0].humidite;
+    const hsol7 = this.temp7h[0].humidite;
+    const hserre7 = this.temp7h[0].humidite;
     const t18 = this.temp18h[0].temperature;
-    const h18 = this.temp18h[0].humidite;
+    const hsol18 = this.temp18h[0].humidite;
+    const hserre18 = this.temp7h[0].humidite;
   
     this.moyTemp = (parseInt(String(t7)) + parseInt(String(t18)) ) / 2;
-    this.moyHum = (parseInt(String(h7)) + parseInt(String(h18)) ) / 2;
+    this.moyHum_Sol = (parseInt(String(hsol7)) + parseInt(String(hsol18)) ) / 2;
+    this.moyHum_Serre = (parseInt(String(hserre7)) + parseInt(String(hserre18)) ) / 2;
     
     })     
      
