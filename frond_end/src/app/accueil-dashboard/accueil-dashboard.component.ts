@@ -33,7 +33,10 @@ export class AccueilDashboardComponent implements OnInit {
   users:any;
   userActif!:any
   getItem: any = {};
-  constructor( private serServe :UsersService, private socket: Socket){}
+  constructor( private serServe :UsersService, private socket: Socket){
+
+    
+  }
 
 
   ngOnInit(): void {
