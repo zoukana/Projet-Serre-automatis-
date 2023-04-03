@@ -36,7 +36,8 @@ export class GestionArrosageComponent implements OnInit{
  itemsperpage: number =1;
  p: number = 1;
  show:boolean = false;
- hist:donne[]= histo
+ hist:donne[]= histo;
+ buttonDiseabled: boolean = false;
  
  
    constructor(private serre:UsersService) { }// importation du service 

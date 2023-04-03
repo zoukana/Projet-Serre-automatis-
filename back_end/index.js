@@ -42,24 +42,25 @@ var fs = require('fs');
 const { SerialPort } = require('serialport');
 var { ReadlineParser } = require("@serialport/parser-readline")
 const router = require('./routes/routes');
-/* const { Socket } = require('socket.io'); */
-/* const parsers = SerialPort.parsers; */
-/* var path = require('path') */
+const { Socket } = require('socket.io'); 
+// const parsers = SerialPort.parsers; 
+
+ var path = require('path') 
 
 
 
 
-/* var port = new SerialPort({ path:'/dev/ttyUSB0',
+var port = new SerialPort({ path:'/dev/ttyACM0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
     stopBits: 1,
     flowControl: false
-});  */
+});  
 
-/* var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); */
+var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); 
 
-/* port.pipe(parser); */
+// port.pipe(parser); 
 var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 
 
@@ -74,7 +75,10 @@ io.on('connection', function(socket) {
       });
     
 });
-
+parser.on('data',function (data){
+    console.log(data);
+    io.emit('rfid',data)
+})
 
 
 /* parser.on('data', function(data) { */
@@ -128,7 +132,7 @@ io.on('connection', function(socket) {
 
 
   http.listen(3001, ()=>{
-    console.log('server started at ${3000}')/* apres avoir ecouter le port 3000 affiche les données */
+    console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
 /* parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {

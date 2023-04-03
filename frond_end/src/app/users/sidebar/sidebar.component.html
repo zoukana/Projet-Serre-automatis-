@@ -59,39 +59,41 @@
         e.async=!0,
         t.appendChild(e)}();
         </script>
-        
-    
+       
 
 <main>
   
   <h1 class="visually-hidden">Sidebars examples</h1>
   <!-- <div class="b-example-divider"></div> -->
+  <br>
 
   <div class="d-flex flex-column flex-shrink-0 p-3 bg-danger mt-6" style="width: 280px;background-image:linear-gradient(rgba(210, 234, 248, 0.5), rgba(210, 234, 248, 0.5)),
-  url('../assets/usines-de-geranium-en-serre-chaude-30746650 (1).jpg');height: 100vh;background-repeat: no-repeat;background-size: 100% 1000px;">
+  url('../assets/usines-de-geranium-en-serre-chaude-30746650 (1).jpg');height: 100vh;background-repeat: no-repeat;background-size: 100% 1000px; ">
   <div class="d-flex justify-content-center">
     <div class="dropdown d-flex flex-column">
       <div class="d-flex justify-content-center">
        <!--  <img [attr.src]="img" *ngIf="img" class="rounded-circle border" width="60" height="60" alt="" width="100" height="100" class="rounded-circle me-2"/> -->
-        <img  src="" *ngIf="!img" class="rounded-circle border m-1   " height="50" />
-         
+        <div style="background-color: #287481; height: 78px; width: 422px; margin-top: -16px;" class="d-flex justify-content-center"> <p  style="color: aliceblue; margin-top: 20px;" >{{prenom}} {{nom}}</p></div>
+        <div> <p style="color:#fefafa; " class="fs-5">31-03-2023</p></div>
+
       </div>
       
-      <div class="d-flex justify-content-center" style="gap: 15px;" *ngFor="let user of userActif">
+      <!-- <div class="d-flex justify-content-center" style="gap: 15px;" *ngFor="let user of userActif">
        <h5><span class="d-none d-sm-inline ">{{user.prenom | titlecase}} {{user.nom}}</span></h5> <br>
        
       </div>
       <div class="d-flex justify-content-center" *ngFor="let user of userActif">
         <h6> <span class="d-none d-sm-inline ">{{user.matricule | uppercase}}</span></h6>
         
-      </div> 
+      </div>  -->
    
     </div>
   </div>
     <hr style="color:red;">
     <ul class="nav nav-pills flex-column mt-15">
-    
+
       <div class="mt-19" >
+
       <li  style="margin-top: 25;" id="current" routerLinkActive="nav-link bg-light active">
         <a  routerLink="/acceuil" style="text-decoration: none;gap: 15px; margin-top: 25px;" class="fs-5 d-flex">
           <i class=" fa fa-home text-dark"></i>
