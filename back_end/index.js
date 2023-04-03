@@ -86,10 +86,10 @@ parser.on('data',function (data){
      temp = data.split('/');
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
-    /* var humidite_sol = data.slice(6, 8) */; //decoupe de l'humidite
+    var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
 
     //console.log(data.split('/'));
-    io.emit('data', {"temperature": temperature, "humidite_serre": humidite_serre,/* "humidite_serre": humidite_serre */});
+    io.emit('data', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol});
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -112,10 +112,10 @@ parser.on('data',function (data){
     }
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-    /* var humidite_serre = data.slice(6, 8); */ //decoupe de l'humidite */
-   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre/* ,"humidite_sol": humidite_serre */, 'Date': heureEtDate, 'Heure': heureInsertion }; 
-   if ((heur == 16 && min == 13 && sec == 00) || (heur == 16 && min == 14 && sec == 00) ) { 
-    if(sec == 00){ 
+    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+   /* if ((heur == 16 && min == 13 && sec == 00) || (heur == 16 && min == 14 && sec == 00) ) { 
+    if(sec == 00){ */ 
          //Connexion a mongodb et insertion Temperature et humidite
           MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
@@ -127,7 +127,7 @@ parser.on('data',function (data){
             });
         })
     } //Fin if
-}}
+/* }} */
     
 ); 
 
