@@ -49,15 +49,15 @@ const router = require('./routes/routes');
 
 
 
-/* var port = new SerialPort({ path:'/dev/ttyUSB0',
+var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
     stopBits: 1,
     flowControl: false
-});  */
+});  
 
-/* var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); */
+ var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); 
 
 /* port.pipe(parser); */
 var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
