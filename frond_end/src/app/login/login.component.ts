@@ -6,8 +6,6 @@ import { UsersService } from 'src/app/services/users.service';
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
-import { WebsocketService } from '../services/websocket.service';
-// import { data } from 'jquery';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +23,7 @@ export class LoginComponent implements OnInit {
   
 
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router, private websocketService:WebsocketService) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router,) {
     
   }
   
@@ -38,22 +36,7 @@ export class LoginComponent implements OnInit {
       
       })
     
-this.websocketService.arduino().subscribe({
-  next:(data)=>{
-    console.log(data);
-    this.websocketService.getrfid(data).subscribe({
-      next:(data)=>{
-        console.log(data);
-        
-      },
-      error:(err)=>console.log(err)
-      
-    })
-    this.route.navigateByUrl('acceuil')
 
-  }
-  
-})
        
   }
 
