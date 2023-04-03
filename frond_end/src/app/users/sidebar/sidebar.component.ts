@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
+
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -40,11 +41,15 @@ export class SidebarComponent implements OnInit {
 image:any; roles:any; img:any; userActif:any; users:any;
 emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
+   prenom = localStorage.getItem('prenom')?.replace(/"/g,  "");     
+   nom = localStorage.getItem('nom')?.replace(/"/g,  "");
+   
 constructor(private userService : UsersService, private sanitizer: DomSanitizer, private router: Router){
   this.menuItems = ROUTES.filter(menuItem => menuItem);
   this.menuItemsUser = USERS.filter(menuItem => menuItem);
 }
 ngOnInit(): void {
+
 
   this.roles = localStorage.getItem('role') == "Admin"
  if (this.userService.getLoggedIn() !== "Admin") {
