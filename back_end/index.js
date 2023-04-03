@@ -1,5 +1,7 @@
 const express = require('express');/* recupere la variable express dans la boite express */
 const mongoose  = require('mongoose'); //gere link api base de donnees
+const Model = require('../back_end/models/userModel');
+const jwt = require("jsonwebtoken");
 require('dotenv').config();/* pour recuperer le fichier env */
 var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
@@ -45,12 +47,13 @@ const router = require('./routes/routes');
 const { Socket } = require('socket.io'); 
 // const parsers = SerialPort.parsers; 
 
- var path = require('path') 
+ var path = require('path'); 
+const { log } = require('console');
 
 
 
 
-var port = new SerialPort({ path:'/dev/ttyACM0',
+var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -75,9 +78,38 @@ io.on('connection', function(socket) {
       });
     
 });
-parser.on('data',function (data){
-    console.log(data);
-    io.emit('rfid',data)
+parser.on('data', async function (data){
+    //console.log(data);
+        if (data) {
+            let rfid  = data.split("/")[0];
+        
+        let existingrfid;
+       console.log(rfid);
+        existingrfid = await Model.findOne({ rfid: rfid});
+        console.log(existingrfid);
+        if(!existingrfid){
+         // return res.status(401).send("user est archivé...!");
+        }
+        let token;
+       
+          //Creating jwt token
+          token = jwt.sign(
+            { userId: existingrfid.id,rfid: existingrfid.rfid },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+          );
+    io.emit('error', {code: 400, message: 'une erreur est survenue réessayer'})
+    io.emit('rfid',{
+        success: true,
+        data: {
+          email: existingrfid.email,
+          prenom: existingrfid.prenom,
+          nom: existingrfid.nom,
+          rfid: existingrfid.rfid,
+          token: token,
+        },
+    })
+        }
 })
 
 

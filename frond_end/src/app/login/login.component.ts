@@ -7,6 +7,7 @@ import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
 import { WebsocketService } from '../services/websocket.service';
+import { Serre } from '../models/serre';
 // import { data } from 'jquery';
 @Component({
   selector: 'app-login',
@@ -22,6 +23,9 @@ export class LoginComponent implements OnInit {
   verifPass: any = true;
   invalid= false;
   errorMsg:any;
+  donnee:any;
+  table! :Serre[];
+  email: any;
   
 
 
@@ -41,16 +45,10 @@ export class LoginComponent implements OnInit {
 this.websocketService.arduino().subscribe({
   next:(data)=>{
     console.log(data);
-    this.websocketService.getrfid(data).subscribe({
-      next:(data)=>{
-        console.log(data);
-        
-      },
-      error:(err)=>console.log(err)
-      
-    })
-    this.route.navigateByUrl('acceuil')
-
+  
+    
+  
+    this.route.navigateByUrl('acceuil'); 
   }
   
 })
