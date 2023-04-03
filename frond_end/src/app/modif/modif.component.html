@@ -7,74 +7,63 @@
     <title>Document</title>
 </head>
 <body >
-    <div class="box">
-
-      
     
-          <h3 class="titre">Modification mot de passe</h3>
+    
+     <!--  <div class="wrapper"> -->
+        <div class="container main">
+            <div class="row">
 
-        <form action="" class="bloc" (submit)="onSubmit()" [formGroup]="registerForm">
+               
+               
+                <div class="col-md-6 right">
+                   
+                    <form action=""  (submit)="onSubmit()" [formGroup]="registerForm">
+                        <div *ngIf="!verifPass" class="text-danger" id="">
+                            <span>les deux password ne correspondent pas!</span>
+                          </div>
+                    <h3 style="color:rgba(0, 38, 77, 1);">Modification mot de passe</h3> 
+                     <div class="input-box">
 
-            <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
-                <span>{{errorSms}}</span>
-            </div> 
-            
-                
-                <div class="group">
-                    <label for="mdp">Ancien <span style="color: red;">*</span></label>
-                    <input type="password" id="mdp"  [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-                    formControlName="password" type="password" class="form-control" id="pass2">
+                        <div class="input-field">
+                            <input type="password" class="input" id="password" required  formControlName="password" >
+                            <div *ngIf="registerForm.controls['password'].dirty &&  registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="text-red-600">
+                               <span style="color: red;"> <p>Ce champ est requis</p></span>
+                              </div>
+                            <label for="password"> Ancien<span style="color: red;">*</span></label>
+                        </div> <br>
+
+                        <div class="input-field">
+                            <input type="password" class="input" id="password" required  formControlName="password" id="pass1">
+                            <div *ngIf="registerForm.controls['password'].dirty &&  registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="text-red-600">
+                               <span style="color: red;"> <p>Ce champ est requis</p></span>
+                              </div>
+                            <label for="password"> nouveau<span style="color: red;">*</span></label>
+                        </div> <br>
+                        <div class="input-field">
+                            <input type="password" class="input" id="password" required  formControlName="password" id="pass2" (change)="checkPassword()">
+                            <div *ngIf="registerForm.controls['password'].dirty &&  registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="text-red-600">
+                               <span style="color: red;"> <p>Ce champ est requis</p></span>
+                              </div>
+                            <label for="password"> confirmation<span style="color: red;">*</span></label>
+                        </div> <br>
+
+                        
+                        <div class="input-field">
+                            <button type="submit" (click)="onSubmit()" class="submit" >
+                                Modifier
+                            </button>
+                        </div>
+                     </div>
+                    </form>
                 </div>
-    
-                <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
-                class="text-danger">
-             <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
-                 Ce champ est requis
-             </div>
-             <div *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
-               Password doit contenir au minimum 8 caractères
-             </div>
-         </div>
-
-
-         <div class="group">
-            <label for="mdp">  Nouveau <span style="color: red;">*</span></label>
-            <input type="password" id="mdp"  [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-            formControlName="password" type="password" class="form-control" id="pass2">
+            </div>
         </div>
+   <!--  </div> -->
 
-        <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
-        class="text-danger">
-     <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
-         Ce champ est requis
-     </div>
-     <div *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
-       Password doit contenir au minimum 8 caractères
-     </div>
- </div>
-                                            
-            <div class="group">
-                <label for="mdp"> confirmation <span style="color: red;">*</span></label>
-                <input type="password" id="mdp"  [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-                formControlName="password" type="password" class="form-control" id="pass2">
-            </div>
+       
+  
 
-            <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
-            class="text-danger">
-         <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
-             Ce champ est requis
-         </div>
-         <div *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
-           Password doit contenir au minimum 8 caractères
-         </div>
-     </div>
-
-            <div class="group "> 
-                <input type="submit" *ngIf="!spin" value="modifier" class="btn login" >
-            </div>
-        </form>
-    </div>
-
-    
+  
 </body>
 </html>
+

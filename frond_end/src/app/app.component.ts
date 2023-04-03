@@ -76,6 +76,10 @@ export class AppComponent implements OnInit {
     .then((result) => {
       if(result.isConfirmed){
         this.router.navigateByUrl('login')
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('prenom');
+        localStorage.removeItem('nom');
+      localStorage.removeItem('email');
       }
     })
   }
