@@ -52,8 +52,8 @@ hist:donne[]= histo
     
    
      this.Serre= data as unknown as Serre[];
-     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
-     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
+     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "07:00:00" && e.Date == this.currentDate)
+     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "18:00:00" && e.Date == this.currentDate)
     /*  this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
      this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last ) */
     /*  console.log(this.temp20); */

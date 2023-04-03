@@ -21,13 +21,8 @@
                         <svg width="80" height="80" viewBox="0 0 147 130" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M73.1243 73.0757C95.7711 73.0208 114.1 56.6499 114.046 36.5267C113.991 16.4035 95.5724 0.121602 72.9256 0.17644C50.2788 0.231279 31.9494 16.6022 32.0043 36.7254C32.0592 56.8486 50.4775 73.1305 73.1243 73.0757ZM109.609 81.0873L93.9131 81.1253C87.5961 83.7225 80.5639 85.2076 73.1574 85.2255C65.7509 85.2435 58.7392 83.7923 52.3797 81.2259L36.6836 81.2639C16.5436 81.3126 0.260354 95.8561 0.30914 113.752L0.32018 117.802C0.338467 124.51 6.47791 129.937 14.0268 129.919L132.531 129.632C140.08 129.613 146.19 124.156 146.171 117.449L146.16 113.399C146.111 95.5029 129.749 81.0385 109.609 81.0873Z" fill="white"/>
                             </svg>
-                           
                         </div> 
-                        
                      <div class="input-box">
-                        <div *ngIf="errorSms!" style="color: red; margin-top: -12px;" class=" " id="">
-                            <span>{{errorSms}}</span>
-                        </div>
                         <div class="bloc1" >
                           <img src="../../assets/Rectangle 118.png" alt="">
                         </div>
@@ -35,9 +30,7 @@
                         <div class="bloc2">
                             <p>Vous pouvez scanner avec votre carte pour se connecter </p>
                             </div>
-                           
                         <div class="input-field">
-                         
                             <input type="text" class="input" id="email" required autocomplete="off" formControlName="email" >
                             <div *ngIf="registerForm.controls['email'].dirty &&  registerForm.controls['email'].errors && registerForm.controls['email'].errors['required']" class="text-red-600">
                                 <span style="color: red;"> <p>Ce champ est requis</p></span>
