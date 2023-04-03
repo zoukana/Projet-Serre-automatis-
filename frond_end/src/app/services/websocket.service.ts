@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User } from '../models/user';
 import { env } from 'src/env';
 @Injectable({
   providedIn: 'root'

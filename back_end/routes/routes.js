@@ -21,7 +21,7 @@ router.post("/rfid",  async (req, res, next) => {
   try {
     //Creating jwt token
     token = jwt.sign(
-      { rfid: existingrfid.rfid },
+      { userId: existingrfid.id,rfid: existingrfid.rfid },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -36,7 +36,6 @@ router.post("/rfid",  async (req, res, next) => {
     .json({
       success: true,
       data: {
-        userId: existingrfid.id,
         email: existingrfid.email,
         prenom: existingrfid.prenom,
         nom: existingrfid.nom,

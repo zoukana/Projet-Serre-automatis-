@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   
 
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router, private websocketService:WebsocketService) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router, private websocketService: WebsocketService) {
     
   }
   
