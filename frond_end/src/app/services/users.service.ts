@@ -84,12 +84,12 @@ export class UsersService {
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
   };
 
-
-  modifUsers(id:any,user: User){
+*/
+  modifUsers(id:any,user:any){
    
-    return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
+    return this.httpClient.patch<any>(`${env.apiUrl}/update/${id}`,user);
   }
- */
+ 
   addUsers(user: User){
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }

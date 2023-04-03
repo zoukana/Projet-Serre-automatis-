@@ -112,37 +112,37 @@ router.get('/getOne/:id', async(req, res) => {
 const data = await Model.findById(req.params.id);
 res.json(data)
 })
-
+ //6422b5ecc8018ff8248ecf00
 /* update by id methode  pour la mdodification*/
 router.patch('/update/:id', async (req, res) => {
+  const { ancien, nouveau} = req.body;
+  console.log(req.body);
 try {
 const id = req.params.id;
-const updatedData = req.body;
+//const updatedData = req.body;
 const options = { new: true };
+const result = await Model.findOne({_id:id})
 
-if (updatedData.password){
-    const hash = await bcrypt.hash(updatedData.password, 10);
-    updatedData.password = hash;
-    
-            const result = await Model.findByIdAndUpdate(
-            id, updatedData, options
-            );
-    
-          return  res.send(result);
-    
-        }
+const passwordMatch = await bcrypt.compare(ancien,result.password);
+console.log(result)
 
-
-    const result = await Model.findByIdAndUpdate(
-        id, updatedData, options
-    )
-
-   return res.send(result)
+if(!passwordMatch){
+  return res.status(400).json({message: 'incorrect password'});
 }
-catch (error) {
-    res.status(400).json({ message: error.message })
+
+
+const hashedPassword = await bcrypt.hash(nouveau, 10);
+
+result.password = hashedPassword;
+
+await Model.findByIdAndUpdate(id, {password:hashedPassword}, options )
+
+return res.status(200).json({message: 'modifier avec succes'});
+
+} catch(error) {
+   res.status(400).json({message: error.message})
 }
-})
+
 /* delete by id method pour supprimer */
 
 router.delete('/delete/:id', async(req, res) => {
@@ -197,11 +197,11 @@ console.log(items);
     catch (error) {
     res.status(400).json({ message: error.message })
     }
-    })
+    });
   // list data
 /* router.get('/pap', function(req, res) {
   Modeltemp.find(function (err, sales) {
       if (err) return next(err);
       res.json(sales);
-  });
-}); */
+  });*/
+}); 

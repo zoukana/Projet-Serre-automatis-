@@ -20,21 +20,22 @@ export class ModifComponent {
   errorSms:any;
   spin= false;
   verifPass:any = true;
-  
+  //emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router,) {
+    this.registerForm = this.formBuilder.group({
     
+      password:['',[Validators.required,]],
+      password2:['',[Validators.required,]],
+      password3:['',[Validators.required,]],
+      
+      }) 
+      
   }
   
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
     
-      email:['',[Validators.required,Validators.email]],
-      
-      password:['',[Validators.required,Validators.minLength(8)]],
-      
-      })
   
      
 
@@ -44,16 +45,32 @@ export class ModifComponent {
 
   
 onSubmit(){
+
 this.submitted = true
 this.spin = true
 
  if(this.registerForm.invalid){
   this.spin = false
   return ;
-} 
 
- 
+} 
+console.log(this.registerForm.value);
+
+ const user = {
+  nouveau: this.registerForm.value.password,
+  ancien: this.registerForm.value.password3
+
+ }
+
+ const id1= localStorage.getItem('id')?.replace(/"/g, '');
+ const id = id1?.split('').join('')  //'64233837a90c6e0cd7a3ded5'
+  console.log(user);
   
+   return this.userService.modifUsers(id,user).subscribe(res=>{
+   
+        console.log(res);
+        
+   },)
    
 }
 
@@ -66,18 +83,13 @@ checkPassword = () => {
 
   if (pass1 != pass2) {
     this.verifPass = false;
-    this.registerForm = this.formBuilder.group(
-      {
-
-        password: [''],
-        password2: [''],
-
-      })
+   
 
     setTimeout(() => { this.verifPass = true }, 3000);
   }
-  
+ 
 }
+
 }
 
 

@@ -63,6 +63,7 @@ this.spin = true
     data=>{
      /*  console.log(data) */
           this.route.navigateByUrl('acceuil')
+          
       
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
