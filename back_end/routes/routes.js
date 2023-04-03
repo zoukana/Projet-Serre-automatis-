@@ -12,21 +12,57 @@ var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 
 module.exports = router;
 
+/* pour la connection  RFID*/
+router.post("/rfid",  async (req, res, next) => {
+  let {rfid } = req.body;
+  let existingrfid;
+  existingrfid = await Model.findOne({ rfid: rfid});
+  if(!existingrfid){
+    return res.status(401).send("user est archivé...!");
+  } 
+  let token;
+  try {
+    //Creating jwt token
+    token = jwt.sign(
+      { rfid: existingrfid.rfid },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+  } catch (err) {
+    console.log(err);
+    const error = new Error("Erreur! Quelque chose s'est mal passée.");
+    return next(error);
+  }
+  
+  res
+    .status(200)
+    .json({
+      success: true,
+      data: {
+        userId: existingrfid.id,
+        email: existingrfid.email,
+        prenom: existingrfid.prenom,
+        nom: existingrfid.nom,
+        token: token,
+      },
+  });
+});
+
+
+
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
 
-    let { email, password } = req.body;
+    let { email, password, rfid } = req.body;
     
     let existingUser;
-    
-    existingUser = await Model.findOne({ email: email });
+
+    existingUser = await Model.findOne({ email: email});
+
     if (!existingUser) {
       return res.status(400).send("email doesn't exist...!");
-    }/* else if(existingUser.etat == false){
-      return res.status(401).send("user est archivé...!");
-    } */
-      
-      
+    }
+  
     //check if password is correct
     const isPasswordValid = await bcrypt.compare(password, existingUser.password);
     if (!isPasswordValid) {
@@ -65,14 +101,15 @@ router.post("/login",  async (req, res, next) => {
 /*  la méthode POST passe les paramètres dans le corps de la requête. */
 router.post('/post', async(req, res) => {
 
-const { email, password, prenom, nom} = req.body;
+const { email, password, prenom, nom,rfid} = req.body;
 const users = [];
 
 const newUser = Model({
     email,
     password, 
-    prenom, 
-    nom
+     prenom, 
+    nom,
+    rfid
  
 
 });
@@ -163,7 +200,7 @@ res.status(400).json({ message: error.message })
 router.get('/pap', async(req, res) => {
   try{
   /* const data = await Modeltemp.find();
-  console.log(data);
+rs  console.log(data);
   res.json(data) */
 
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {

@@ -5,6 +5,11 @@ const Model = new mongoose.Schema({
 required: false,
 type: String
 },*/
+rfid: {
+    required: true,
+    type: String
+    },
+    
 nom: {
 required: true,
 type: String

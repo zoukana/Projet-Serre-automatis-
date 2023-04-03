@@ -16,10 +16,6 @@ export class AccueilDashboardComponent implements OnInit {
   [x: string]: any;
 
   currentDate:any;
-  temperature!: number;
-  humidite_sol!: number;
-  humidite_serre!: number;
-  arduino:any=[];
   tempHum: any = [];
   Serre: any = [] ;
   temp18h:any
@@ -37,17 +33,7 @@ export class AccueilDashboardComponent implements OnInit {
   users:any;
   userActif!:any
   getItem: any = {};
-  constructor( private serServe :UsersService, private socket: Socket){
-
-    this.socket.connect();
-    this.socket.on('temperature', (temperature: number) => {
-      this.temperature = temperature;
-    });
-    this.socket.on('humidite_serre', (humidite_sol: number) => {
-      this.humidite_sol = this.humidite_sol; 
-    });
-
-  }
+  constructor( private serServe :UsersService, private socket: Socket){}
 
 
   ngOnInit(): void {

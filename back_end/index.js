@@ -59,7 +59,7 @@ var path = require('path')
 
 var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
-/* port.pipe(parser); */
+// port.pipe(parser); 
 var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 
 
@@ -74,7 +74,10 @@ io.on('connection', function(socket) {
       });
     
 });
-
+parser.on('data',function (data){
+    console.log(data);
+    io.emit('rfid',data)
+})
 
 
  parser.on('data', function(data) { 

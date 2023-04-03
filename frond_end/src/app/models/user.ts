@@ -3,6 +3,7 @@ email?: String;
 password?: String;
 nom?: String;
 prenom?: String;
+rfid?:String;
 
 data?:{
     token: String;
