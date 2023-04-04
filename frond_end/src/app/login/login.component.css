@@ -5,6 +5,11 @@
   background: #ececec;
   padding: 0 20px 0 20px;
 } */
+.body{
+  background: rgba(162, 216, 226, 1);
+  height:100vh ;
+  
+}
 .main{
   display: flex;
   justify-content: center;
