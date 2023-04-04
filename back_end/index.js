@@ -53,7 +53,7 @@ const { log } = require('console');
 
 
 
-var port = new SerialPort({ path:'/dev/ttyACM0',
+var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -61,7 +61,7 @@ var port = new SerialPort({ path:'/dev/ttyACM0',
     flowControl: false
 });  
 
-var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); 
+ var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); 
 
 // port.pipe(parser); 
 var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
@@ -117,13 +117,15 @@ parser.on('data', async function (data){
 /* parser.on('data', function(data) { */
     
     //console.log('les information sont: ' + data);
-    /* temp = data.split('/');
+     temp = data.split('/');
     var temperature = data.slice(0, 2); //decoupe de la temperature
-    var humidite = data.slice(3, 5); //decoupe de l'humidite
+    var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
+    var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
+
     //console.log(data.split('/'));
-    io.emit('data', {"temperature": temperature, "humidite": humidite});
-    var datHeure = new Date(); */
-   /*  var min = datHeure.getMinutes();
+    io.emit('data', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol});
+    var datHeure = new Date(); 
+     var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
     var sec = datHeure.getSeconds(); //secondes
     var mois = datHeure.getDate(); //renvoie le chiffre du jour du mois 
@@ -134,7 +136,7 @@ parser.on('data', async function (data){
     if (sec < 10) { sec = '0' + sec; }
     if (min < 10) { min = '0' + min; }
     var heureInsertion = heur + ':' + min + ':' + sec;
-    var heureEtDate = mois + '/' + numMois + '/' + laDate; */
+    var heureEtDate = mois + '/' + numMois + '/' + laDate; 
     //console.log(heureInsertion);
     //console.log(heureEtDate);
     const fetchMovies = (socket) => {
@@ -142,16 +144,17 @@ parser.on('data', async function (data){
             .then(data => io.emit('fetchMovies', data))
             .catch(logError)
     }
-    /* var temperature = data.slice(0, 2); //decoupe de la temperature
-    var humidite = data.slice(3, 5); //decoupe de l'humidite */
-  /*   var tempEtHum = { "temperature": temperature, "humidite": humidite,'Date': heureEtDate, 'Heure': heureInsertion }; */
-  /*   if ((heur == 17 && min == 10 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) { */
-    //if(sec == 00){ 
+    var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
+    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+   if ((heur == 16 && min == 13 && sec == 00) || (heur == 16 && min == 14 && sec == 00) ) { 
+    if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-    /*      MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("test");
-            dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
+            var dbo = db.db("arrosage");
+            dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted");
                 db.close();
@@ -160,18 +163,18 @@ parser.on('data', async function (data){
     } //Fin if
 }
     
-/* ); */
+//); 
 
-
+ 
 
   http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
-/* parser.on('mute', function(mute){
+ parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("dhtTemp2");
-    var col = dbo.collection('tempHum2');
+    var dbo = db.db("arrosage");
+    var col = dbo.collection('serre');
     col.find().toArray(function(err, items) {
         console.log(items);
         io.emit('mute', items);     
@@ -180,4 +183,4 @@ console.log(items);
 })
 
 })
-} ) */
+} ) 
