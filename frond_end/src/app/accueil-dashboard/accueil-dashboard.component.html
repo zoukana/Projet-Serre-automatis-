@@ -69,10 +69,17 @@
         <div class="card d-flex align-items-center mt-2" style="width: 229px; height: 214px;">
           
           <div class="card-body mt-3 mr-auto " >
-              <h3 class="text-center fs-5">Temperature</h3>
-              <div style="margin-left: -30px;"> <img src="../../assets/thermometres-mesurant-chaleur-froid-vector-illustration-icone-thermometre-equipement-montrant-chaud_-removebg-preview (3) 1.png" alt="">
+             <!--  <h3 class="text-center fs-5">Temperature</h3>
+              <div style="margin-left: -30px;"> <img src="../../assets/thermometres-mesurant-chaleur-froid-vector-illustration-icone-thermometre-equipement-montrant-chaud_-removebg-preview (3) 1.png" alt="" style="width: 55px;">
+                <div class="ml-6 fs-5 " *ngFor="let i of tempHum">{{i.temperature}}°C</div>
+              </div> -->
+              <h3 class="text-center fs-5 ">Temperature</h3>
+              <div class="d-flex mt-4 justify-content-between">
+                <div style="margin-left: -20px;"><img src="../../assets/thermometres-mesurant-chaleur-froid-vector-illustration-icone-thermometre-equipement-montrant-chaud_-removebg-preview (3) 1.png" alt="" style="width: 60px;"></div>
+              
+                <div class="ml-6 fs-5 mt-1" *ngFor="let i of tempHum">{{i.temperature}}°C</div>
               </div>
-              <div class="ml-6 fs-5 " *ngFor="let i of tempHum">{{i.temperature}}°C</div>
+              
               
            <!--  <div class="d-flex justify-content-around mt-3 mr-auto ">
               <div  style="font-size: 50px; color: red;">{{moyTemp | number:'1.0-0'}}°C</div>
@@ -87,14 +94,20 @@
        
       
         <div class="card-body mt-3 mr-auto " >
-            <h3 class="text-center fs-5">Luminosité</h3>
-            <img src="../../assets/1242163 1.png" alt="">
+            <!-- <h3 class="text-center fs-5">Luminosité</h3>
+            <img src="../../assets/1242163 1.png" alt=""> -->
             <!--  <div class="d-flex justify-content-around mt-3 mr-auto ">
             <div  style="font-size: 50px; color: red;" *ngFor="let i of tempHum">{{i.temperature}}°C</div>
             <div  style="font-size: 50px; color: green; margin-left: 75px;" *ngFor="let i of tempHum">{{i.humidite}}%</div>
          </div> -->
 
-         <div class="ml-6 fs-5 " *ngFor="let i of tempHum">{{i.luminosite}}lux</div>
+         <!-- <div class="ml-6 fs-5 " *ngFor="let i of tempHum">{{i.luminosite}}lux</div> -->
+         <h3 class="text-center fs-5 ">Temperature</h3>
+         <div class="d-flex mt-3 justify-content-between">
+          <img src="../../assets/1242163 1.png" alt="">
+         
+           <div class="ml-6 fs-5 mt-3" *ngFor="let i of tempHum">{{i.luminosite}}lux</div>
+         </div>
         </div>
       </div>
     
