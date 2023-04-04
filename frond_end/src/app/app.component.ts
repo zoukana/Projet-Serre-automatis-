@@ -75,6 +75,7 @@ console.log(this.currentDate);
       showCancelButton: true,
       confirmButtonText: 'oui',
       cancelButtonText: 'Annuler',
+      
   
     })
     .then((result) => {
