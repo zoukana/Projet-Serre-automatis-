@@ -53,7 +53,7 @@ const { log } = require('console');
 
 
 
-var port = new SerialPort({ path:'/dev/ttyUSB0',
+var port = new SerialPort({ path:'/dev/ttyACM0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -78,6 +78,7 @@ io.on('connection', function(socket) {
       });
     
 });
+/*
 parser.on('data', async function (data){
     //console.log(data);
         if (data) {
@@ -112,7 +113,7 @@ parser.on('data', async function (data){
         }
 })
 
-
+*/
 /* parser.on('data', function(data) { */
     
     //console.log('les information sont: ' + data);

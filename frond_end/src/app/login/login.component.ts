@@ -45,9 +45,6 @@ export class LoginComponent implements OnInit {
 this.websocketService.arduino().subscribe({
   next:(data)=>{
     console.log(data);
-  
-    
-  
     this.route.navigateByUrl('acceuil'); 
   }
   
