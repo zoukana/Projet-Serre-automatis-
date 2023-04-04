@@ -14,7 +14,11 @@ module.exports = router;
 
 /* pour la connection  RFID*/
 /*
+<<<<<<< HEAD
 router.post("/rfid",  async (req, res, next) => {
+=======
+router.post("/login",  async (req, res, next) => {
+>>>>>>> 6cbe11399f584a0e8546eb547fc112749cf8a08c
   let {rfid } = req.body;
   let existingrfid;
   //console.log(rfid);
@@ -50,7 +54,9 @@ router.post("/rfid",  async (req, res, next) => {
       },
   });
 });
+
 */
+
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
 

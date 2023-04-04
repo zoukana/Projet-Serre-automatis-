@@ -44,11 +44,9 @@ var fs = require('fs');
 const { SerialPort } = require('serialport');
 var { ReadlineParser } = require("@serialport/parser-readline")
 const router = require('./routes/routes');
-const { Socket } = require('socket.io'); 
-// const parsers = SerialPort.parsers; 
-
- var path = require('path'); 
-const { log } = require('console');
+ const { Socket } = require('socket.io');
+/* const parser = SerialPort.parsers; */ 
+var path = require('path') 
 
 
 
@@ -87,7 +85,6 @@ parser.on('data', async function (data){
         let existingrfid;
        console.log(rfid);
         existingrfid = await Model.findOne({ rfid: rfid});
-        console.log(existingrfid);
         if(!existingrfid){
          // return res.status(401).send("user est archivé...!");
         }
