@@ -13,12 +13,13 @@ var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 module.exports = router;
 
 /* pour la connection  RFID*/
-router.post("/login",  async (req, res, next) => {
+/*
+router.post("/rfid",  async (req, res, next) => {
   let {rfid } = req.body;
   let existingrfid;
-  console.log(rfid);
+  //console.log(rfid);
   existingrfid = await Model.findOne({ rfid: rfid});
-  console.log(existingrfid);
+  //console.log(existingrfid);
   if(!existingrfid){
     return res.status(401).send("user est archivé...!");
   } 
@@ -49,9 +50,7 @@ router.post("/login",  async (req, res, next) => {
       },
   });
 });
-
-
-
+*/
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
 

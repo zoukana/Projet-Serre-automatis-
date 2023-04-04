@@ -53,7 +53,7 @@ const { log } = require('console');
 
 
 
-var port = new SerialPort({ path:'/dev/ttyUSB0',
+var port = new SerialPort({ path:'/dev/ttyACM0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -114,7 +114,8 @@ parser.on('data', async function (data){
 })
 
 */
-/* parser.on('data', function(data) { */
+/*
+ parser.on('data', function(data) { 
     
     //console.log('les information sont: ' + data);
      temp = data.split('/');
@@ -146,26 +147,24 @@ parser.on('data', async function (data){
     }
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
-   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol , 'Date': heureEtDate, 'Heure': heureInsertion }; 
-   if ((heur == 16 && min == 13 && sec == 00) || (heur == 16 && min == 14 && sec == 00) ) { 
-    if(sec == 00){ 
+  //  var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+  // var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+  // if ((heur == 16 && min == 13 && sec == 00) || (heur == 16 && min == 14 && sec == 00) ) { 
+  //  if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
-            if (err) throw err;
-            var dbo = db.db("arrosage");
-            dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted");
-                db.close();
-            });
-        })
-    } //Fin if
-}
+         // MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+         //   if (err) throw err;
+           // var dbo = db.db("arrosage");
+           // dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
+            //    if (err) throw err;
+            //    console.log("1 document inserted");
+            //    db.close();
+          //  });
+       // })
+//    } //Fin if
+//}
     
 //); 
-
- 
 
   http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
