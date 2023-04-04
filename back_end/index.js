@@ -122,9 +122,10 @@ parser.on('data', async function (data){
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
     var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
+    var luminosite = data.slice(9, 11); //decoupe de l'humidite
 
     //console.log(data.split('/'));
-    io.emit('data', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol});
+    io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -137,7 +138,7 @@ parser.on('data', async function (data){
     if (sec < 10) { sec = '0' + sec; }
     if (min < 10) { min = '0' + min; }
     var heureInsertion = heur + ':' + min + ':' + sec;
-    var heureEtDate = mois + '/' + numMois + '/' + laDate; 
+    var heureEtDate = mois + '-' + numMois + '-' + laDate; 
     //console.log(heureInsertion);
     //console.log(heureEtDate);
     const fetchMovies = (socket) => {
@@ -147,22 +148,34 @@ parser.on('data', async function (data){
     }
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-  //  var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
-  // var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol , 'Date': heureEtDate, 'Heure': heureInsertion }; 
-  // if ((heur == 16 && min == 13 && sec == 00) || (heur == 16 && min == 14 && sec == 00) ) { 
-  //  if(sec == 00){ 
+    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+   if (heur == 13 && min == 47 && sec == 00) { 
+   // if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-         // MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
-         //   if (err) throw err;
-           // var dbo = db.db("arrosage");
-           // dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
-            //    if (err) throw err;
-            //    console.log("1 document inserted");
-            //    db.close();
-          //  });
-       // })
-//    } //Fin if
-//}
+          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("arrosage");
+            dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted");
+                db.close();
+            });
+        })
+ //   } //Fin if
+}
+if(heur == 13 && min == 50 && sec == 00){
+    MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("arrosage");
+        dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            db.close();
+        });
+    })
+}
+
     
 //); 
 
