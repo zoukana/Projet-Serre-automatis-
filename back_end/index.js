@@ -51,7 +51,7 @@ var path = require('path')
 
 
 
-var port = new SerialPort({ path:'/dev/ttyUSB0',
+var port = new SerialPort({ path:'/dev/ttyACM0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -84,7 +84,6 @@ parser.on('data', async function (data){
         let existingrfid;
        console.log(rfid);
         existingrfid = await Model.findOne({ rfid: rfid});
-        console.log(existingrfid);
         if(!existingrfid){
          // return res.status(401).send("user est archivé...!");
         }

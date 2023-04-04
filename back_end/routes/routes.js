@@ -13,6 +13,7 @@ var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 module.exports = router;
 
 /* pour la connection  RFID*/
+/*
 router.post("/login",  async (req, res, next) => {
   let {rfid } = req.body;
   let existingrfid;
@@ -50,7 +51,7 @@ router.post("/login",  async (req, res, next) => {
   });
 });
 
-
+*/
 
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
