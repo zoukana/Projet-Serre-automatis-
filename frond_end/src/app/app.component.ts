@@ -25,12 +25,16 @@ export class AppComponent implements OnInit {
   hist: any[] = []
  
 
+
    prenom = localStorage.getItem('prenom');   
     nom = localStorage.getItem('nom');
+    userActif:any; users:any;
+    emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
   constructor(private userService : UsersService, private router: Router,location: Location,  private element: ElementRef ) {
     setInterval(() => {
       this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds()}, + 1);
   
+console.log(this.currentDate);
 
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
@@ -86,11 +90,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
 
-    
+  /*   console.log(this.prenom); */
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+    
+    this.userService.getUsers().subscribe(
+      data => {
+  
+        this.users = data;
+        this.userActif = this.users.filter((e: any) =>  e.email == this.emailUser)
+      /*   console.log(data); */
+        
+       console.log(this.userActif);
+       
+      }
+    );
+ 
   }
+
   sidebarOpen() {
       const toggleButton = this.toggleButton;
       const body = document.getElementsByTagName('body')[0];
