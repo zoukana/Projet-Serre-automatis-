@@ -7,6 +7,7 @@ import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
 import { BehaviorSubject, from } from 'rxjs';
 import { UsersService } from '../services/users.service';
+
 import histo from '../histo.json';
 
 export interface donne{
@@ -39,7 +40,7 @@ searchText!: string;
 itemsperpage: number =5;
 p: number = 1;
 show:boolean = false;
-hist:donne[]= histo
+public hist:any=[];
 
 
 	constructor(private serre:UsersService) { }// importation du service 
@@ -47,14 +48,15 @@ hist:donne[]= histo
    
 /* Fonction pour la recuperation des données humidité et temperature */
     this.serre.historique().subscribe((data)=>{
+      this.hist= data;
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
      this.last = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere
     
    
      this.Serre= data as unknown as Serre[];
-     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
-     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
+     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "07:00:00" && e.Date == this.currentDate)
+     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "18:00:00" && e.Date == this.currentDate)
     /*  this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
      this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last ) */
     /*  console.log(this.temp20); */
