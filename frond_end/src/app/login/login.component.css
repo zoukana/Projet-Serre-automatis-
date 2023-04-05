@@ -5,6 +5,11 @@
   background: #ececec;
   padding: 0 20px 0 20px;
 } */
+.body{
+  background: rgba(162, 216, 226, 1);
+  height:100vh ;
+  
+}
 .main{
   display: flex;
   justify-content: center;
@@ -18,8 +23,26 @@ img{
   margin-left: -5%;
   margin-top: 5px;
 }
-
-.bloc1 {
+.bloc1{
+  width: 15%;
+  height: 190px;
+  background-color:rgba(40, 116, 129, 0.8);
+  border:5px;
+  border-radius: 0px;
+  text-align: center;
+  align-content: center;
+  /* writing-mode: vertical-lr; */
+ /*  display: flex;
+  align-items: center;
+  justify-content: center; */
+  bottom: 25%;
+  flex-direction: column;
+  margin-left: 70%;
+  margin-bottom: 12% ;
+  position: absolute;
+  margin-right: 27%;
+ }
+/* .bloc1 {
   position: absolute;
   width: 80%;
   height: 200px;
@@ -28,20 +51,24 @@ img{
   border-radius: 0px;
   display: flex;
   margin-left: 420px;
-  margin-top: -150px;
+  margin-top: -150px; 
 
 
-}
+}*/
 .bloc2 {
-  width: 200px;
-  height: 100px;
+  width: 270px;
+  height: 150px;
   background-color: rgba(40, 116, 129, 0.8);
-  position: absolute;
-  top: 210px;
+   position: absolute; 
+  top: 580px;
   margin-left: 420px;
-  margin-top: -0px;
+  margin-top: -70px;
   text-align: center;
   color: white;
+  display: flex;
+  margin-bottom: 165%;
+  margin-right: -20%;
+  text-align: center;
 }
 .row{
   width: 500px;
@@ -77,11 +104,11 @@ i{
   width: 330px;
   box-sizing: border-box;
 }
-.input-box header{
+/* .input-box header{
   font-weight: 700;
   text-align: center;
   margin-bottom: 45px;
-}
+} */
 .input-field{
   display: flex;
   flex-direction: column;
@@ -95,9 +122,8 @@ i{
   display: flex;
   justify-content: center;
   border-radius: 50%;
-  align-items: center;
- 
-  margin-top: -100%; 
+  align-items: center; 
+  margin-top: -85%; 
   margin-left: 35%;
   position: absolute;
 

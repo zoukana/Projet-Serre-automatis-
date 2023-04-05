@@ -31,9 +31,12 @@ export class UsersService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         /* console.log(user.data) */
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        localStorage.setItem('userId', JSON.stringify(user.data?.userId));
         localStorage.setItem('email', JSON.stringify(user.data?.email));
         localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
         localStorage.setItem('nom', JSON.stringify(user.data?.nom));
+       
+
 
 
 
@@ -54,6 +57,7 @@ export class UsersService {
   getnom() {
     return localStorage.getItem('nom');
   }
+  
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem('currentUser');
     return authToken !== null ? true : false;
@@ -99,6 +103,7 @@ export class UsersService {
     localStorage.removeItem('prenom');
     localStorage.removeItem('nom');
   localStorage.removeItem('email');
+  
 
   // this.router.navigate(['']);
 

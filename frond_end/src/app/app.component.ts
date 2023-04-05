@@ -25,8 +25,8 @@ export class AppComponent implements OnInit {
   hist: any[] = []
  
 
-   prenom = localStorage.getItem('prenom');   
-    nom = localStorage.getItem('nom');
+   prenom = localStorage.getItem('prenom')?.replace(/"/g,  "");     
+    nom = localStorage.getItem('nom')?.replace(/"/g,  "");
   constructor(private userService : UsersService, private router: Router,location: Location,  private element: ElementRef ) {
     setInterval(() => {
       this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds()}, + 1);
@@ -71,11 +71,16 @@ export class AppComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'oui',
       cancelButtonText: 'Annuler',
+      
   
     })
     .then((result) => {
       if(result.isConfirmed){
         this.router.navigateByUrl('login')
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('prenom');
+        localStorage.removeItem('nom');
+      localStorage.removeItem('email');
       }
     })
   }

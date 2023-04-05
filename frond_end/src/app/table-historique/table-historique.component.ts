@@ -33,7 +33,8 @@ export class TableHistoriqueComponent implements OnInit{
 last: any;
  dethierr: any;
  moyTemp!: number;
- moyHum!: number;
+ moyHum_Sol!: number;
+ moyHum_Serre!: number;
 searchText!: string;
 itemsperpage: number =5;
 p: number = 1;
@@ -52,8 +53,8 @@ hist:donne[]= histo
     
    
      this.Serre= data as unknown as Serre[];
-     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
-     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
+     this.temp7h = this.Serre.filter((e:any)=> e.Heure == "07:00:00" && e.Date == this.currentDate)
+     this.temp18h = this.Serre.filter((e:any)=> e.Heure == "18:00:00" && e.Date == this.currentDate)
     /*  this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
      this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.last && e.Date <= this.currentDate  && e.Date !== this.last ) */
     /*  console.log(this.temp20); */
@@ -63,12 +64,15 @@ hist:donne[]= histo
     });  */
 
     const t7 = this.temp7h[0].temperature;
-    const h7 = this.temp7h[0].humidite;
+    const hsol7 = this.temp7h[0].humidite;
+    const hserre7 = this.temp7h[0].humidite;
     const t18 = this.temp18h[0].temperature;
-    const h18 = this.temp18h[0].humidite;
+    const hsol18 = this.temp18h[0].humidite;
+    const hserre18 = this.temp7h[0].humidite;
   
     this.moyTemp = (parseInt(String(t7)) + parseInt(String(t18)) ) / 2;
-    this.moyHum = (parseInt(String(h7)) + parseInt(String(h18)) ) / 2;
+    this.moyHum_Sol = (parseInt(String(hsol7)) + parseInt(String(hsol18)) ) / 2;
+    this.moyHum_Serre = (parseInt(String(hserre7)) + parseInt(String(hserre18)) ) / 2;
     
     })     
      

@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body >
+<body class="body">
     
     
      <!--  <div class="wrapper"> -->
         <div class="container main">
+            
+            <div class="bloc1" >
+                <img src="../../assets/Rectangle 118.png" alt="">
+              </div>
+              <div class="bloc2">
+                <p>Vous pouvez scanner avec votre carte pour se connecter </p>
+                </div>
             <div class="row">
-
-               
-               
+                
+                  
                 <div class="col-md-6 right">
                     <form action=""  (ngSubmit)="onSubmit()" [formGroup]="registerForm">
                     <div class="back">
@@ -23,13 +29,9 @@
                             </svg>
                         </div> 
                      <div class="input-box">
-                        <div class="bloc1" >
-                          <img src="../../assets/Rectangle 118.png" alt="">
-                        </div>
+                        
                        
-                        <div class="bloc2">
-                            <p>Vous pouvez scanner avec votre carte pour se connecter </p>
-                            </div>
+                        
                         <div class="input-field">
                             <input type="text" class="input" id="email" required autocomplete="off" formControlName="email" >
                             <div *ngIf="registerForm.controls['email'].dirty &&  registerForm.controls['email'].errors && registerForm.controls['email'].errors['required']" class="text-red-600">

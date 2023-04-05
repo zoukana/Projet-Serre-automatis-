@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
-const serreSchema = new mongoose.Schema({
+const Model = new mongoose.Schema({
 /* matricule: {
 required: false,
 type: String
 },*/
+rfid: {
+    required: true,
+    type: String
+    },
+    
 nom: {
 required: true,
 type: String
@@ -29,4 +34,4 @@ password:{
 })
 
 
-module.exports = mongoose.model('users', serreSchema);/* users nom de la collection */
+module.exports = mongoose.model('users', Model);/* users nom de la collection */

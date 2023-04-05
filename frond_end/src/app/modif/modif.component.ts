@@ -62,12 +62,12 @@ console.log(this.registerForm.value);
 
  }
 
- const id1= localStorage.getItem('id')?.replace(/"/g, '');
- const id = id1?.split('').join('')  //'64233837a90c6e0cd7a3ded5'
-  console.log(user);
+ const id1= localStorage.getItem('userId')?.replace(/"/g, '');
+ const id =  id1?.split(' ').join('')   //'6422b5d3c8018ff8248ecefd'
+  console.log(id == "642d59bfad86d617c945151f");
   
    return this.userService.modifUsers(id,user).subscribe(res=>{
-   
+    this.route.navigateByUrl('acceuil')
         console.log(res);
         
    },)

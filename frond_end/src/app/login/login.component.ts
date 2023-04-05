@@ -62,9 +62,9 @@ this.spin = true
   this.userService.getConnexion(user).subscribe(
     data=>{
      /*  console.log(data) */
+        localStorage.getItem('userId')?.replace(/"/g, '');
           this.route.navigateByUrl('acceuil')
-          
-      
+   
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
     error=>{
