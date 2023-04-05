@@ -91,7 +91,7 @@ router.post("/login",  async (req, res, next) => {
           userId: existingUser.id,
           email: existingUser.email,
           prenom: existingUser.prenom,
-          nom: existingUser.nom,
+          nom: enodexistingUser.nom,
           token: token,
         },
     });

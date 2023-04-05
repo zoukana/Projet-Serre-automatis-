@@ -5,6 +5,8 @@ import { UsersService } from '../services/users.service';
 import { Serre } from '../models/serre'; 
 import { Socket } from 'ngx-socket-io';
 import bodyParser from 'body-parser';
+import { WebsocketService } from '../services/websocket.service';
+
 
 
 @Component({
@@ -33,11 +35,11 @@ export class AccueilDashboardComponent implements OnInit {
   users:any;
   userActif!:any
   getItem: any = {};
-  constructor( private serServe :UsersService, private socket: Socket){}
+  constructor( private serServe :UsersService, private socket: Socket, private websocketService : WebsocketService,private route: Router){}
 
 
   ngOnInit(): void {
-
+       
     //recuperation temperature par heur données et calsul des moyenne 
     /* this.serServe.historique().subscribe((data)=>{
       console.log(data); */
@@ -68,7 +70,7 @@ export class AccueilDashboardComponent implements OnInit {
     
     /* })  */ 
 
-    
+
   const mail = localStorage.getItem('email')?.replace(/['"]+/g, '');
   const prenom = localStorage.getItem('prenom');
   const nom = localStorage.getItem('prenom');
