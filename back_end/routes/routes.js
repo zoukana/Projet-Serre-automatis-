@@ -1,15 +1,19 @@
 const express = require('express');
 const Model = require('../models/userModel');
-const Modeltemp = require('../models/userModel copy');
+const temphum = require('../models/serre');
+/* const Serre = require('../models/serreModel'); */
+// const Modeltemp = require('../models/userModel copy');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const check = require('./midleware');
 var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-var url = "mongodb+srv://oumy:1234@cluster0.aymongodb.net/arrosage";
+var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
+
 module.exports = router;
 
 /* pour la connection  RFID*/
+/*
 router.post("/login",  async (req, res, next) => {
   let {rfid } = req.body;
   let existingrfid;
@@ -47,7 +51,7 @@ router.post("/login",  async (req, res, next) => {
   });
 });
 
-
+*/
 
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
@@ -196,11 +200,10 @@ res.status(400).json({ message: error.message })
 })
 
 /* get all method */
-
 router.get('/pap', async(req, res) => {
   try{
   /* const data = await Modeltemp.find();
-  console.log(data);
+rs  console.log(data);
   res.json(data) */
 
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
@@ -220,12 +223,40 @@ console.log(items);
   res.status(500).json({message: error.message})
   }
   })
+
+ // router.get('/pap', async(req, res) => {
+  // try{
+  /* const data = await Modeltemp.find();
+  console.log(data);
+  res.json(data) */
+
+  /* MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("arrosage");
+    var col = dbo.collection('serre');
+    col.find().toArray(function(err, items) {
+        console.log(items);
+             res.json(items)
+console.log(items); */
+
+/* try{
+  const data = await temphum.find();
+  console.log(data);
+  res.json(data)
+  }
+  catch(error){
+  res.status(500).json({message: error.message}) 
+  }*/
+
+ // })
+
+
   // 
   router.get('/deletetemp', async(req, res) => {
     try {
       MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("arrosaget");
+        var dbo = db.db("arrosage");
         var col = dbo.collection('serre');
         col.deleteMany()
             
@@ -236,6 +267,39 @@ console.log(items);
     catch (error) {
     res.status(400).json({ message: error.message })
     }
+
+    router.post('/add-temphum', async(req, res) => {
+
+      const { temperature, humidite_sol, humidite_serre} = req.body;
+      const serre = [];
+      
+      const newSerre = serre({
+        temperature,
+        humidite_sol, 
+        humidite_serre, 
+      
+      });
+      try {
+
+        /* const oldUser = await Model.findOne({ email });
+      
+        if (oldUser) {
+          return res.status(409).send("Email Already Exist. Please Login");
+        } */
+      
+        /*   const hash = await bcrypt.hash(newUser.password,10);
+          newUser.password = hash; */
+      
+          serre.push(newSerre);
+          /* res.json(newUser); */
+          await newSerre.save();
+      
+          res.status(201).json(newSerre);
+      
+      } catch(error) {
+          res.status(400).json({message: error.message})
+      }
+      
     })
   // list data
 /* router.get('/pap', function(req, res) {
@@ -244,3 +308,5 @@ console.log(items);
       res.json(sales);
   });
 }); */
+
+})
