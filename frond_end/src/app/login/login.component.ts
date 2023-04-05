@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-
+import { User } from '../models/user';
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
@@ -45,7 +45,37 @@ export class LoginComponent implements OnInit {
 this.websocketService.arduino().subscribe({
   next:(data)=>{
     console.log(data);
-    this.route.navigateByUrl('acceuil'); 
+    this.donnee= data as unknown as Serre[];
+  /*   this.temp7h = this.Serre.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate) */
+    const user ={
+ 
+     }
+     this.userService.getConnexion(user).subscribe(
+      data=>{
+     
+            this.route.navigateByUrl('acceuil')
+     
+      }, 
+      /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
+      error=>{
+       /*  console.log(error) */
+      /*  console.log(error) */
+        if(error == 'Unauthorized'){
+          this.errorSms ='Cette utilisateur est archivé'
+          this.spin = false
+          setTimeout(()=>{ this.errorSms = false}, 3001); 
+        }else {
+        this.errorSms ='Vous  etes pas dans la base de données'
+        this.spin = false
+        setTimeout(()=>{ this.errorSms = false}, 3001); 
+      }
+      }
+     );
+  
+     
+  
+     this.route.navigateByUrl('acceuil');  
+   
   }
   
 })
