@@ -31,7 +31,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
+    <tr *ngFor="let i of hist| filter:searchText ">
       <!-- <th rowspan="3" scope="row" class="text-center">Temperature en °C</th> -->
       <td>{{i.Date}}</td>
       <td>{{i.temperature}}°C</td>
