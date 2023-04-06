@@ -17,7 +17,11 @@ export class AccueilDashboardComponent implements OnInit {
   [x: string]: any;
 
   currentDate:any;
-  tempHum: any = [];
+  temperature!: number;
+  humidite_serre!: number;
+  humidite_sol!: number;
+ luminosite!: number;
+  tempHum: any;
   Serre: any = [] ;
   temp18h:any
   temp7h:any
@@ -38,6 +42,13 @@ export class AccueilDashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.socket.connect();
+    this.socket.on('donne', (donne: number) => {
+      this.tempHum = [donne];
+      console.log(donne);
+      
+    });
+    
 
     //recuperation temperature par heur données et calsul des moyenne 
     /* this.serServe.historique().subscribe((data)=>{
