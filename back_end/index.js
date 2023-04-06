@@ -3,19 +3,22 @@ const mongoose  = require('mongoose'); //gere link api base de donnees
 require('dotenv').config();/* pour recuperer le fichier env */
 var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
-
+const Rfid = require('../back_end/models/userModel');
 const routes = require('./routes/routes');
-
+const jwt = require("jsonwebtoken");
 const databaseLink = process.env.DATABASE_URL/* permet de recuperer le lien de la base de donnée */
-
+var bodyParser = require('body-parser')
 mongoose.connect(databaseLink);/* permet d'avoir access à la base mongodb */
 const database = mongoose.connection
 
 const app = express(); /* express sert a ecouté les ports et à envoyer des données */
 
 app.use(cors({origin:'*'}));/*   */
+// parse application/x-www-form-urlencoded
+
 
 app.use(express.json());/* affiche les fichiers au format json */
+// parse application/json
 
 app.use('/api', routes);
 
@@ -79,7 +82,50 @@ parser.on('data',function (data){
     io.emit('rfid',data)
 })
 
-
+parser.on('data', async function (data){
+    /* console.log(data); */
+        if (data) {
+            let rfid  = data.split("/")[0];
+            var tete = { "rfid": rfid  }; 
+        let existingrfid;
+       console.log(tete);
+       /*  existingrfid = await tete.findOne({ rfid: rfid}); */
+       MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("arrosage");
+        dbo.collection("users").findOne( function(err, res) {
+            if (err) throw err;
+            console.log(res);
+            db.close();
+            existingrfid= res
+              console.log(existingrfid);
+        if(!existingrfid){
+         // return res.status(401).send("user est archivé...!");
+        }
+        let token;
+       
+          //Creating jwt token
+          token = jwt.sign(
+            { userId: existingrfid.id,rfid: existingrfid.rfid },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+          );
+    io.emit('error', {code: 400, message: 'une erreur est survenue réessayer'})
+    io.emit('rfid',{
+        success: true,
+        data: {
+          email: existingrfid.email,
+          prenom: existingrfid.prenom,
+          nom: existingrfid.nom,
+          rfid: existingrfid.rfid,
+          token: token,
+        },
+    })
+        });
+    })
+      
+        }
+})
  parser.on('data', function(data) { 
     
     //console.log('les information sont: ' + data);

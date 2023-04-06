@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../models/userModel');
+const Rfid = require('../models/userModel');
 const temphum = require('../models/serre');
 /* const Serre = require('../models/serreModel'); */
 // const Modeltemp = require('../models/userModel copy');
@@ -12,11 +12,14 @@ var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 
 module.exports = router;
 
-/* pour la connection  RFID*/
-router.post("/rfid",  async (req, res, next) => {
-  let {rfid } = req.body;
+// pour la connection  RFID*/
+
+router.post("/login",  async (req, res, next) => {
+  let {rfid} = req.body;
   let existingrfid;
-  existingrfid = await Model.findOne({ rfid: rfid});
+  //console.log(rfid);
+  existingrfid = await Rfid.findOne({ rfid: rfid});
+  console.log(existingrfid);
   if(!existingrfid){
     return res.status(401).send("user est archivé...!");
   } 
@@ -24,7 +27,7 @@ router.post("/rfid",  async (req, res, next) => {
   try {
     //Creating jwt token
     token = jwt.sign(
-      { rfid: existingrfid.rfid },
+      { userId: existingrfid.id,rfid: existingrfid.rfid },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -39,10 +42,10 @@ router.post("/rfid",  async (req, res, next) => {
     .json({
       success: true,
       data: {
-        userId: existingrfid.id,
         email: existingrfid.email,
         prenom: existingrfid.prenom,
         nom: existingrfid.nom,
+        rfid: existingrfid.rfid,
         token: token,
       },
   });
