@@ -189,9 +189,7 @@ if(heur == 12 && min == 50 && sec == 00){
 
 
 
-  /*http.listen(3001, ()=>{
-    console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
-/*})*/
+
 parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
@@ -207,3 +205,7 @@ console.log(items);
 })
 })
  })
+
+  http.listen(3001, ()=>{
+    console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
+})
