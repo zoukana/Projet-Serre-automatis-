@@ -9,6 +9,7 @@ import { WebsocketService } from '../services/websocket.service';
 import io from 'socket.io-client';
 
 
+
 @Component({
   selector: 'app-accueil-dashboard',
   templateUrl: './accueil-dashboard.component.html',
@@ -18,7 +19,11 @@ export class AccueilDashboardComponent implements OnInit {
   [x: string]: any;
 
   currentDate:any;
-  tempHum: any = [];
+  temperature!: number;
+  humidite_serre!: number;
+  humidite_sol!: number;
+ luminosite!: number;
+  tempHum: any;
   Serre: any = [] ;
   temp18h:any
   temp7h:any
@@ -39,7 +44,13 @@ export class AccueilDashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-       
+    this.socket.connect();
+    this.socket.on('donne', (donne: number) => {
+      this.tempHum = [donne];
+      console.log(donne);
+      
+    });
+    
 
     //recuperation temperature par heur données et calsul des moyenne 
     /* this.serServe.historique().subscribe((data)=>{
@@ -76,12 +87,13 @@ export class AccueilDashboardComponent implements OnInit {
   const prenom = localStorage.getItem('prenom');
   const nom = localStorage.getItem('prenom');
 
+/* console.log(prenom); */
 
 
   // console.log(mail);
     this.serServe.getUsers().subscribe(
       data => {
-        console.log(data);
+       /*  console.log(data); */
         
         this.users = data;
         

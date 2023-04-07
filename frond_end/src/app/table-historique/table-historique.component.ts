@@ -7,6 +7,7 @@ import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
 import { BehaviorSubject, from } from 'rxjs';
 import { UsersService } from '../services/users.service';
+
 import histo from '../histo.json';
 
 export interface donne{
@@ -39,7 +40,7 @@ searchText!: string;
 itemsperpage: number =5;
 p: number = 1;
 show:boolean = false;
-hist:donne[]= histo
+public hist:any=[];
 
 
 	constructor(private serre:UsersService) { }// importation du service 
@@ -47,6 +48,7 @@ hist:donne[]= histo
    
 /* Fonction pour la recuperation des données humidité et temperature */
     this.serre.historique().subscribe((data)=>{
+      this.hist= data;
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
      this.last = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere

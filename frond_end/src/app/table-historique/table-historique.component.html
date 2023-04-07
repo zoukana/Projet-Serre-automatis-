@@ -20,8 +20,8 @@
     </div>
   </form>
  <table class="table table-bordered rounded-3">
-  
-  <thead >
+
+  <thead>
     <tr >
       <th scope="col">Date</th>
       <!-- <th scope="col">Heure</th> -->
@@ -33,7 +33,7 @@
   <tbody>
     <tr *ngFor="let i of hist| filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
       <!-- <th rowspan="3" scope="row" class="text-center">Temperature en °C</th> -->
-      <td>{{i.date}}</td>
+      <td>{{i.Date}}</td>
       <td>{{i.temperature}}°C</td>
       <td>{{i.humidite_sol}}%</td> 
       <td>{{i.humidite_serre}}%</td> 

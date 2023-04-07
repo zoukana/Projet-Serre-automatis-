@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../models/userModel');
+const Rfid = require('../models/userModel');
 const temphum = require('../models/serre');
 /* const Serre = require('../models/serreModel'); */
 // const Modeltemp = require('../models/userModel copy');
@@ -9,6 +9,7 @@ const check = require('./midleware');
 var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
 var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
+const Model = require('../models/userModel');
 
 module.exports = router;
 
@@ -17,9 +18,9 @@ module.exports = router;
 router.post("/rfid",  async (req, res, next) => {
   let {rfid } = req.body;
   let existingrfid;
-  console.log(rfid);
+  //console.log(rfid);
   existingrfid = await Model.findOne({ rfid: rfid});
- // console.log(existingrfid);
+  //console.log(existingrfid);
   if(!existingrfid){
     return res.status(401).send("user est archivé...!");
   } 
@@ -50,12 +51,14 @@ router.post("/rfid",  async (req, res, next) => {
       },
   });
 });
+=======
+>>>>>>> 7012657b4a799d2796f5903be35733bca5c7d892
 
 
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
 
-    let { email, password, rfid } = req.body;
+    let { email, password } = req.body;
     
     let existingUser;
 
