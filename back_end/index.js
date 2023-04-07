@@ -53,7 +53,7 @@ const { log } = require('console');
 
 
 
- var port = new SerialPort({ path:'/dev/ttyUSB1',
+ var port = new SerialPort({ path:'/dev/ttyUSB0',
 //var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
