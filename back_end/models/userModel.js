@@ -6,7 +6,7 @@ required: false,
 type: String
 },*/
 rfid: {
-    required: true,
+    required: false,
     type: String
     },
     

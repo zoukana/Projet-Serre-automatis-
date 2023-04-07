@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();/* pour recuperer le fichier env */
 var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
-
+const Model = require('../back_end/models/userModel');
+const jwt = require("jsonwebtoken");
 const routes = require('./routes/routes');
 
 const databaseLink = process.env.DATABASE_URL/* permet de recuperer le lien de la base de donnée */
@@ -52,18 +53,17 @@ const { log } = require('console');
 
 
 
-var port = new SerialPort({ path:'/dev/ttyUSB0',
+ var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
     stopBits: 1,
     flowControl: false
 });  
-
  var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); 
 
-// port.pipe(parser); 
-var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
+/* port.pipe(parser); */
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
 var temoin = '0'
@@ -77,7 +77,6 @@ io.on('connection', function(socket) {
       });
     
 });
-/*
 parser.on('data', async function (data){
     //console.log(data);
         if (data) {
@@ -86,8 +85,9 @@ parser.on('data', async function (data){
         let existingrfid;
        console.log(rfid);
         existingrfid = await Model.findOne({ rfid: rfid});
+        console.log(existingrfid)
         if(!existingrfid){
-         // return res.status(401).send("user est archivé...!");
+         return res.status(401).send("user est archivé...!");
         }
         let token;
        
@@ -107,23 +107,29 @@ parser.on('data', async function (data){
           rfid: existingrfid.rfid,
           token: token,
         },
+        
     })
-        }
+    io.emit('token', token)
+    io.emit('nom',existingrfid.nom )
+    io.emit('prenom',existingrfid.prenom )
+    io.emit('email',existingrfid.email )
+       }
+       
 })
 
-*/
-/*
- parser.on('data', function(data) { 
+
+
+/* parser.on('data', function(data) { */
     
     //console.log('les information sont: ' + data);
-     temp = data.split('/'); console.log(temp)
+  /*    temp = data.split('/'); console.log(temp)
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
     var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
-    var luminosite = data.slice(9); //decoupe de l'humidite
+    var luminosite = data.slice(9); //decoupe de l'humidite */
 
     //console.log(data.split('/'));
-    io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
+   /*  io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -147,16 +153,15 @@ parser.on('data', async function (data){
    
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-   // var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
-   //var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
-  // if ((heur == 08 && min ==23 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
+  //  var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+ //  var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+ //  if ((heur == 08 && min ==23 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
    // if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-         /*
-          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+    /*      MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("arrosage");
-            dbo.collection("serre").insertOne(tempEtHum, function(err, res) {
+            var dbo = db.db("test");
+            dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted");
                 db.close();
@@ -177,23 +182,24 @@ parser.on('data', async function (data){
 } */
 //}
     
-//); 
+/* ); */
+
+
 
   http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
-//})
- parser.on('mute', function(mute){
+})
+/* parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("arrosage");
-    var col = dbo.collection('serre');
+    var dbo = db.db("dhtTemp2");
+    var col = dbo.collection('tempHum2');
     col.find().toArray(function(err, items) {
         console.log(items);
         io.emit('mute', items);     
 console.log(items);
         
 })
+
 })
- })
-})
- //})
+} ) */

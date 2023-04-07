@@ -41,14 +41,46 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
-    
-this.websocketService.arduino().subscribe({
-  next:(data)=>{
-    console.log(data);
-    this.route.navigateByUrl('acceuil'); 
-  }
-  
-})
+    this.websocketService.token().subscribe({
+      next:(data)=>{
+        console.log(data)
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.route.navigateByUrl('acceuil')
+      }
+    });
+    this.websocketService.nom().subscribe({
+      next:(data)=>{
+        console.log(data)
+        localStorage.setItem('nom', JSON.stringify(data));
+       
+      }
+    });
+    this.websocketService.prenom().subscribe({
+      next:(data)=>{
+        console.log(data)
+        localStorage.setItem('prenom', JSON.stringify(data));
+       
+      }
+    });
+    this.websocketService.email().subscribe({
+      next:(data)=>{
+        console.log(data)
+        localStorage.setItem('email', JSON.stringify(data));
+       
+      }
+    });
+
+
+
+      this.websocketService.arduino().subscribe({
+        next:(data)=>{
+          
+          
+         
+      
+        }
+        
+      })
        
   }
 
@@ -72,25 +104,13 @@ this.spin = true
   
   //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
-    data=>{
+   data=>{
      /*  console.log(data) */
           this.route.navigateByUrl('acceuil')
    
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
-    error=>{
-     /*  console.log(error) */
-    /*  console.log(error) */
-      if(error == 'Unauthorized'){
-        this.errorSms ='Cette utilisateur est archivé'
-        this.spin = false
-        setTimeout(()=>{ this.errorSms = false}, 3001); 
-      }else {
-      this.errorSms ='Vous  etes pas dans la base de données'
-      this.spin = false
-      setTimeout(()=>{ this.errorSms = false}, 3001); 
-    }
-    }
+    
    );
 }
 }

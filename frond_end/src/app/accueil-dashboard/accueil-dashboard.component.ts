@@ -7,6 +7,7 @@ import { Socket } from 'ngx-socket-io';
 import bodyParser from 'body-parser';
 
 
+
 @Component({
   selector: 'app-accueil-dashboard',
   templateUrl: './accueil-dashboard.component.html',
@@ -84,12 +85,13 @@ export class AccueilDashboardComponent implements OnInit {
   const prenom = localStorage.getItem('prenom');
   const nom = localStorage.getItem('prenom');
 
+/* console.log(prenom); */
 
 
   // console.log(mail);
     this.serServe.getUsers().subscribe(
       data => {
-        console.log(data);
+       /*  console.log(data); */
         
         this.users = data;
         

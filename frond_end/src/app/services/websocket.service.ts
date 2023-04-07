@@ -25,6 +25,18 @@ export class WebsocketService {
 
  return this.socket.fromEvent('rfid')
   }
+  token(){
+    return this.socket.fromEvent('token')
+  }
+  nom(){
+    return this.socket.fromEvent('nom')
+  }
+  prenom(){
+    return this.socket.fromEvent('prenom')
+  }
+  email(){
+    return this.socket.fromEvent('email')
+  }
   //recuperer données
   getDatas() {
     return this.http.get(`${this.endpoint}/`)
