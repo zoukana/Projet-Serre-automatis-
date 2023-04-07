@@ -17,7 +17,8 @@ import io from 'socket.io-client';
 })
 export class AccueilDashboardComponent implements OnInit {
   [x: string]: any;
-
+ on: boolean = false;
+  off: boolean = true;
   currentDate:any;
   temperature!: number;
   humidite_serre!: number;
@@ -48,10 +49,27 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.on('donne', (donne: number) => {
       this.tempHum = [donne];
       console.log(donne);
-     
       
+     
+     
     });
-    
+   this.websocketService.temperature().subscribe((data:any) => { 
+     if (data>33) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
+         this.img = false;
+        
+         
+        }else{
+          this.img = true;
+        }
+      
+      console.log(data);
+      var tempt = data
+      console.log(tempt
+        );
+      
+      
+
+   })
 
     //recuperation temperature par heur données et calsul des moyenne 
     /* this.serServe.historique().subscribe((data)=>{
@@ -110,6 +128,7 @@ export class AccueilDashboardComponent implements OnInit {
   }
   buttonventilo(){
     this.websocketService.ventilo()
+    
   }
 
   allumer(){
@@ -118,6 +137,7 @@ export class AccueilDashboardComponent implements OnInit {
   }
 
   eteindre(){
+    
     this.img = false;
     this.socket.emit('active', '0');
   }

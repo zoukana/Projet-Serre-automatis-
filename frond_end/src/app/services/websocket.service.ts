@@ -37,6 +37,9 @@ export class WebsocketService {
   email(){
     return this.socket.fromEvent('email')
   }
+  temperature(){
+    return this.socket.fromEvent('temperature')
+  }
   //recuperer données
   getDatas() {
     return this.http.get(`${this.endpoint}/`)
