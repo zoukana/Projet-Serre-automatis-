@@ -68,6 +68,7 @@ var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 var temoin = '0'
 
+
 io.on('connection', function(socket) {
     
      console.log('Node is listening to port'); 
@@ -76,6 +77,9 @@ io.on('connection', function(socket) {
         temoin = arg;
       });
     
+      socket.on('ventilo', () =>{
+      port.write("3")
+      })
 });
 parser.on('data', async function (data){
     //console.log(data);
@@ -120,17 +124,17 @@ parser.on('data', async function (data){
 
 
 
-/* parser.on('data', function(data) { */
+ parser.on('data', function(data) { 
     
     //console.log('les information sont: ' + data);
-  /*    temp = data.split('/'); console.log(temp)
+    temp = data.split('/'); console.log(temp)
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
     var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
-    var luminosite = data.slice(9); //decoupe de l'humidite */
+    var luminosite = data.slice(9); //decoupe de l'humidite
 
     //console.log(data.split('/'));
-   /*  io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
+    io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -154,12 +158,12 @@ parser.on('data', async function (data){
    
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-  //  var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
- //  var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
- //  if ((heur == 08 && min ==23 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
+    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+   if ((heur == 12 && min == 36 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
    // if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-    /*      MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
             var dbo = db.db("test");
             dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
@@ -170,7 +174,7 @@ parser.on('data', async function (data){
         })
  //   } //Fin if
 }
-/* if(heur == 12 && min == 50 && sec == 00){
+if(heur == 12 && min == 50 && sec == 00){
     MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
         if (err) throw err;
         var dbo = db.db("arrosage");
@@ -180,17 +184,15 @@ parser.on('data', async function (data){
             db.close();
         });
     })
-} */
-//}
-    
-/* ); */
+} 
 
 
 
-  http.listen(3001, ()=>{
+
+  /*http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
-})
-/* parser.on('mute', function(mute){
+/*})*/
+parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("dhtTemp2");
@@ -203,4 +205,5 @@ console.log(items);
 })
 
 })
-} ) */
+})
+ })
