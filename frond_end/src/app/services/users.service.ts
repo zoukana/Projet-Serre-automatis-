@@ -29,7 +29,7 @@ export class UsersService {
     return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
       pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        /* console.log(user.data) */
+         console.log(user.data) 
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('email', JSON.stringify(user.data?.email));
         localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));

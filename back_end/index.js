@@ -107,6 +107,10 @@ parser.on('data', async function (data){
         },
         
     })
+    io.emit('token', token)
+    io.emit('nom',existingrfid.nom )
+    io.emit('prenom',existingrfid.prenom )
+    io.emit('email',existingrfid.email )
        }
        
 })
@@ -116,14 +120,14 @@ parser.on('data', async function (data){
 /* parser.on('data', function(data) { */
     
     //console.log('les information sont: ' + data);
-     temp = data.split('/'); console.log(temp)
+  /*    temp = data.split('/'); console.log(temp)
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
     var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
-    var luminosite = data.slice(9); //decoupe de l'humidite
+    var luminosite = data.slice(9); //decoupe de l'humidite */
 
     //console.log(data.split('/'));
-    io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
+   /*  io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -146,9 +150,9 @@ parser.on('data', async function (data){
     }
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
-   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
-   if ((heur == 08 && min ==23 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
+  //  var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+ //  var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+ //  if ((heur == 08 && min ==23 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
    // if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
     /*      MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
@@ -173,7 +177,7 @@ parser.on('data', async function (data){
         });
     })
 } */
-}
+//}
     
 /* ); */
 
