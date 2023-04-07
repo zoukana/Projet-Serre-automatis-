@@ -54,7 +54,6 @@ const { log } = require('console');
 
 
  var port = new SerialPort({ path:'/dev/ttyUSB0',
-//var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -67,25 +66,29 @@ const { log } = require('console');
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
-// var temoin = '0'
+var temoin = '0'
 
-// io.on('connection', function(socket) {
+
+io.on('connection', function(socket) {
     
-//     console.log('Node is listening to port');
-//     socket.on("active", (arg) => {
-//         // console.log(arg); // world
-//         temoin = arg;
-//       });
-/*
      console.log('Node is listening to port'); 
    socket.on("active", (arg) => {
          console.log(arg); // world
         temoin = arg;
       });
-      */
     
-// });
-/*
+      socket.on('optionA', () =>{
+      port.write("1")
+      });
+         
+      socket.on('optionB', () =>{
+        port.write("2")
+        });
+           
+      socket.on('ventilo', () =>{
+        port.write("3")
+        })
+});
 parser.on('data', async function (data){
     //console.log(data);
         if (data) {
@@ -100,51 +103,6 @@ parser.on('data', async function (data){
           return;
         }
         let token;
-       var good= { "rfid": rfid, }; 
-       MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("arrosage");
-        dbo.collection("users").findOne(good, function(err, res) {
-            if (err) throw err;
-            console.log(res);
-            db.close();
-            res = existingrfid;
-            
-            
-           
-            console.log(good)
-            // existingrfid = await Model.findOne({ rfid: rfid}); */
-            /*  if(!existingrfid){
-              return res.status(401).send("user est archivé...!");
-             } */
-          //   let token;
-            
-               //Creating jwt token
-  /*             token = jwt.sign(
-                 { userId: existingrfid.id,rfid: existingrfid.rfid },
-                 process.env.JWT_SECRET,
-                 { expiresIn: "1h" }
-               );
-         io.emit('error', {code: 400, message: 'une erreur est survenue réessayer'})
-         io.emit('rfid',{
-             success: true,
-             data: {
-               email: existingrfid.email,
-               prenom: existingrfid.prenom,
-               nom: existingrfid.nom,
-               rfid: existingrfid.rfid,
-               token: token,
-             },
-         })
-        });
-    })
-*/
-    
-       /*  existingrfid = await Model.findOne({ rfid: rfid}); */
-    /*     if(!existingrfid){
-         return res.status(401).send("user est archivé...!");
-        } */
-     /*    let token;
        
           //Creating jwt token
           token = jwt.sign(
@@ -170,72 +128,21 @@ parser.on('data', async function (data){
     io.emit('email',existingrfid.email )
        }
        
-    }) */
-       // }
-//})
-
-
-
-parser.on('data', async function (data){
-    console.log(data);
-    io.emit('data');
-    
-
 })
 
 
 
-/* parser.on('data', function(data) { */
+ parser.on('data', function(data) { 
     
-//  var button = "0"
-// io.on('connection', function(socket) {
-    
-//     socket.on('data', (data)=>{
-//         // console.log(data);
-//          console.log("connexionA");
-//         port.write('1')
-//     });
-    
-//     socket.on('optionB', (data) => {
-//         console.log("optionB en cours");
-//         port.write('2');
-//       });
-
-//   });
-
-io.on('connection', function(socket) {
-    socket.on('optionA', () => {
-     // console.log("optionA en cours");
-      port.write('1');
-    });
-
-  
-    socket.on('optionB', () => {
-     // console.log("optionB en cours");
-      port.write('2');
-    });
-
-    socket.on('ventilo', () => {
-        // console.log("optionB en cours");
-         port.write('3');
-       });
-  
-  });
-  
-
-
-   
-      
- //parser.on('data', function(data) { 
     //console.log('les information sont: ' + data);
-  /*    temp = data.split('/'); console.log(temp)
+    temp = data.split('/'); console.log(temp)
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
     var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
-    var luminosite = data.slice(9); //decoupe de l'humidite */
+    var luminosite = data.slice(9); //decoupe de l'humidite
 
     //console.log(data.split('/'));
-   /*  io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
+    io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -259,12 +166,12 @@ io.on('connection', function(socket) {
    
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre = data.slice(3, 5); //decoupe de l'humidite */
-  //  var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
- //  var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
- //  if ((heur == 08 && min ==23 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
+    var humidite_sol = data.slice(6, 8);  //decoupe de l'humidite */
+   var tempEtHum = { "temperature": temperature, "humidite_serre": humidite_serre, "humidite_sol": humidite_sol  , 'Date': heureEtDate, 'Heure': heureInsertion }; 
+   if ((heur == 12 && min == 36 && sec == 00) ||(heur == 11 && min == 42 && sec == 00)) { 
    // if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-    /*      MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
             var dbo = db.db("test");
             dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
@@ -275,7 +182,7 @@ io.on('connection', function(socket) {
         })
  //   } //Fin if
 }
-/* if(heur == 12 && min == 50 && sec == 00){
+if(heur == 12 && min == 50 && sec == 00){
     MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
         if (err) throw err;
         var dbo = db.db("arrosage");
@@ -285,17 +192,13 @@ io.on('connection', function(socket) {
             db.close();
         });
     })
-} */
-//}
-    
-/* ); */
+} 
 
 
 
-  http.listen(3001, ()=>{
-    console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
-})
-/* parser.on('mute', function(mute){
+
+ 
+parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("dhtTemp2");
@@ -308,4 +211,8 @@ console.log(items);
 })
 
 })
-} ) */
+})
+ })
+ http.listen(3001, ()=>{
+  console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
+})

@@ -28,12 +28,20 @@ export interface donne{
 })
 export class GestionArrosageComponent implements OnInit{
 //message pour si l'option est activé
-  showMessage: boolean = false;
+  showMessageA: boolean = false;
+  showMessageB: boolean = false;
   route: any;
-  afficherMessage() {
-    this.showMessage = true;
+  afficherMessageA() {
+    this.showMessageA = true;
     setTimeout(() => {
-      this.showMessage = false;
+      this.showMessageA = false;
+    }, 3000); // Disparaître après 5 secondes
+  }
+
+  afficherMessageB() {
+    this.showMessageB = true;
+    setTimeout(() => {
+      this.showMessageB = false;
     }, 3000); // Disparaître après 5 secondes
   }
 

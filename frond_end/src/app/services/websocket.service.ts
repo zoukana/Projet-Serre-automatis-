@@ -45,11 +45,11 @@ export class WebsocketService {
   
   buttonA(){
     this.socket.emit('optionA', '1')
-    //console.log("connexionA");
+    console.log("connexionA");
   }
   buttonB(){
     this.socket.emit('optionB', '2')
-    //console.log("connexionB");
+    console.log("connexionB");
   }
 
   ventilo(){

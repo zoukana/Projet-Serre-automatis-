@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { User } from '../models/user';
+
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
