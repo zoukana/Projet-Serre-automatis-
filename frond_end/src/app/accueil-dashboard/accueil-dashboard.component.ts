@@ -92,6 +92,10 @@ export class AccueilDashboardComponent implements OnInit {
   
       })
 
+
+  }
+  buttonventilo(){
+    this.websocketService.ventilo()
   }
 
   allumer(){
