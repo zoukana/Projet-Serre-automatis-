@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();/* pour recuperer le fichier env */
 var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
-const Model = require('../back_end/models/userModel');
-const jwt = require("jsonwebtoken");
+// const Model = require('../back_end/models/userModel');
+// const jwt = require("jsonwebtoken");
 const routes = require('./routes/routes');
 
 const databaseLink = process.env.DATABASE_URL/* permet de recuperer le lien de la base de donnée */
@@ -53,7 +53,7 @@ const { log } = require('console');
 
 
 
- var port = new SerialPort({ path:'/dev/ttyUSB0',
+ var port = new SerialPort({ path:'/dev/ttyUSB1',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -87,7 +87,8 @@ parser.on('data', async function (data){
         existingrfid = await Model.findOne({ rfid: rfid});
         console.log(existingrfid)
         if(!existingrfid){
-         return res.status(401).send("user est archivé...!");
+          //return res.status(401).send("user est archivé...!");
+          return;
         }
         let token;
        
