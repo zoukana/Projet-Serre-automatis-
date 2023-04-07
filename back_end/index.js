@@ -65,17 +65,18 @@ var port = new SerialPort({ path:'/dev/ttyUSB0',
 var url = "mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/arrosage";
 
 
-var temoin = '0'
+// var temoin = '0'
 
-io.on('connection', function(socket) {
+// io.on('connection', function(socket) {
     
-    console.log('Node is listening to port');
-    socket.on("active", (arg) => {
-        // console.log(arg); // world
-        temoin = arg;
-      });
+//     console.log('Node is listening to port');
+//     socket.on("active", (arg) => {
+//         // console.log(arg); // world
+//         temoin = arg;
+//       });
     
-});
+// });
+/*
 parser.on('data', async function (data){
     //console.log(data);
         if (data) {
@@ -83,11 +84,51 @@ parser.on('data', async function (data){
         
         let existingrfid;
        console.log(rfid);
-        existingrfid = await Model.findOne({ rfid: rfid});
-        if(!existingrfid){
+       var good= { "rfid": rfid, }; 
+       MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("arrosage");
+        dbo.collection("users").findOne(good, function(err, res) {
+            if (err) throw err;
+            console.log(res);
+            db.close();
+            res = existingrfid;
+            
+            
+           
+            console.log(good)
+            // existingrfid = await Model.findOne({ rfid: rfid}); */
+            /*  if(!existingrfid){
+              return res.status(401).send("user est archivé...!");
+             } */
+          //   let token;
+            
+               //Creating jwt token
+  /*             token = jwt.sign(
+                 { userId: existingrfid.id,rfid: existingrfid.rfid },
+                 process.env.JWT_SECRET,
+                 { expiresIn: "1h" }
+               );
+         io.emit('error', {code: 400, message: 'une erreur est survenue réessayer'})
+         io.emit('rfid',{
+             success: true,
+             data: {
+               email: existingrfid.email,
+               prenom: existingrfid.prenom,
+               nom: existingrfid.nom,
+               rfid: existingrfid.rfid,
+               token: token,
+             },
+         })
+        });
+    })
+*/
+    
+       /*  existingrfid = await Model.findOne({ rfid: rfid}); */
+    /*     if(!existingrfid){
          return res.status(401).send("user est archivé...!");
-        }
-        let token;
+        } */
+     /*    let token;
        
           //Creating jwt token
           token = jwt.sign(
@@ -105,13 +146,53 @@ parser.on('data', async function (data){
           rfid: existingrfid.rfid,
           token: token,
         },
-    })
-        }
-})
+    }) */
+       // }
+//})
 
 
- parser.on('data', function(data) { 
+
+parser.on('data', async function (data){
+    console.log(data);
+    io.emit('data');
     
+
+})
+//  var button = "0"
+// io.on('connection', function(socket) {
+    
+//     socket.on('data', (data)=>{
+//         // console.log(data);
+//          console.log("connexionA");
+//         port.write('1')
+//     });
+    
+//     socket.on('optionB', (data) => {
+//         console.log("optionB en cours");
+//         port.write('2');
+//       });
+
+//   });
+
+io.on('connection', function(socket) {
+    socket.on('optionA', () => {
+     // console.log("optionA en cours");
+      port.write('1');
+    });
+
+  
+    socket.on('optionB', () => {
+     // console.log("optionB en cours");
+      port.write('2');
+    });
+  
+  });
+  
+
+
+   
+      
+ parser.on('data', function(data) { 
     //console.log('les information sont: ' + data);
      temp = data.split('/');
     var temperature = data.slice(0, 2); //decoupe de la temperature

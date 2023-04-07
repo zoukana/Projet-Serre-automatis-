@@ -14,12 +14,12 @@ module.exports = router;
 
 /* pour la connection  RFID*/
 /*
-router.post("/login",  async (req, res, next) => {
+router.post("/rfid",  async (req, res, next) => {
   let {rfid } = req.body;
   let existingrfid;
   console.log(rfid);
   existingrfid = await Model.findOne({ rfid: rfid});
-  console.log(existingrfid);
+ // console.log(existingrfid);
   if(!existingrfid){
     return res.status(401).send("user est archivé...!");
   } 
@@ -51,7 +51,6 @@ router.post("/login",  async (req, res, next) => {
   });
 });
 
-*/
 
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {
@@ -95,7 +94,7 @@ router.post("/login",  async (req, res, next) => {
           userId: existingUser.id,
           email: existingUser.email,
           prenom: existingUser.prenom,
-          nom: enodexistingUser.nom,
+         nom: existingUser.nom,
           token: token,
         },
     });

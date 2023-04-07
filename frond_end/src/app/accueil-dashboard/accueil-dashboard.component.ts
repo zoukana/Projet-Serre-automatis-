@@ -6,7 +6,7 @@ import { Serre } from '../models/serre';
 import { Socket } from 'ngx-socket-io';
 import bodyParser from 'body-parser';
 import { WebsocketService } from '../services/websocket.service';
-
+import io from 'socket.io-client';
 
 
 @Component({
@@ -40,6 +40,7 @@ export class AccueilDashboardComponent implements OnInit {
 
   ngOnInit(): void {
        
+
     //recuperation temperature par heur données et calsul des moyenne 
     /* this.serServe.historique().subscribe((data)=>{
       console.log(data); */
@@ -91,9 +92,12 @@ export class AccueilDashboardComponent implements OnInit {
   
       })
 
+
   }
   
-     
+  button(){
+  this.websocketService.buttonA();
+  } 
   
 
 
@@ -106,6 +110,7 @@ export class AccueilDashboardComponent implements OnInit {
     this.img = false;
     this.socket.emit('active', '0');
   }
+
 on_toit_click (){
 
   this.toit= true;

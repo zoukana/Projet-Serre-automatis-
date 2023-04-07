@@ -23,7 +23,7 @@ const routes: Routes = [
 {path:"table", component: TableHistoriqueComponent, canActivate: [AuthGuard]},
 
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
-{path:"arrosage", component: GestionArrosageComponent, canActivate: [AuthGuard] },
+{path:"arrosage", component: GestionArrosageComponent/*, canActivate: [AuthGuard]*/ },
 {path:"localisation", component: LocalisationComponent, canActivate: [AuthGuard] },
 {path:"modif", component: ModifComponent},
 
