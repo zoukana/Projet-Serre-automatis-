@@ -40,6 +40,11 @@ export class WebsocketService {
     //console.log("connexionB");
   }
 
+  ventilo(){
+    this.socket.emit('ventilo', '3')
+    //console.log("connexionB");
+  }
+
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }

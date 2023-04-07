@@ -92,14 +92,7 @@ export class AccueilDashboardComponent implements OnInit {
   
       })
 
-
   }
-  
-  button(){
-  this.websocketService.buttonA();
-  } 
-  
-
 
   allumer(){
     this.img = true;

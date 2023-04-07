@@ -185,6 +185,11 @@ io.on('connection', function(socket) {
      // console.log("optionB en cours");
       port.write('2');
     });
+
+    socket.on('ventilo', () => {
+        // console.log("optionB en cours");
+         port.write('3');
+       });
   
   });
   
