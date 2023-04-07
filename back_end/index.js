@@ -85,7 +85,8 @@ parser.on('data', async function (data){
         existingrfid = await Model.findOne({ rfid: rfid});
         console.log(existingrfid)
         if(!existingrfid){
-         return res.status(401).send("user est archivé...!");
+        //  return res.status(401).send("user est archivé...!");
+        return;
         }
         let token;
        
