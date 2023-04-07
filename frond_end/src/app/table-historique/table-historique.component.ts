@@ -50,9 +50,9 @@ public hist:any=[];
     this.serre.historique().subscribe((data)=>{
       this.hist= data;
       //console.log(data);
-     this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
+     /* this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
      this.last = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere
-    
+     */
    
      this.Serre= data as unknown as Serre[];
      this.temp7h = this.Serre.filter((e:any)=> e.Heure == "07:00:00" && e.Date == this.currentDate)

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { WebsocketService } from '../services/websocket.service';
 
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
+import { WebsocketService } from '../services/websocket.service';
+import { Serre } from '../models/serre';
+// import { data } from 'jquery';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,6 +23,9 @@ export class LoginComponent implements OnInit {
   verifPass: any = true;
   invalid= false;
   errorMsg:any;
+  donnee:any;
+  table! :Serre[];
+  email: any;
   
 
 

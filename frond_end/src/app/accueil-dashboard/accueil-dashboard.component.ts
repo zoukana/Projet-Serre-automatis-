@@ -5,6 +5,8 @@ import { UsersService } from '../services/users.service';
 import { Serre } from '../models/serre'; 
 import { Socket } from 'ngx-socket-io';
 import bodyParser from 'body-parser';
+import { WebsocketService } from '../services/websocket.service';
+import io from 'socket.io-client';
 
 
 
@@ -38,7 +40,7 @@ export class AccueilDashboardComponent implements OnInit {
   users:any;
   userActif!:any
   getItem: any = {};
-  constructor( private serServe :UsersService, private socket: Socket){}
+  constructor( private serServe :UsersService, private socket: Socket, private websocketService : WebsocketService,private route: Router){}
 
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.on('donne', (donne: number) => {
       this.tempHum = [donne];
       console.log(donne);
+     
       
     });
     
@@ -80,7 +83,7 @@ export class AccueilDashboardComponent implements OnInit {
     
     /* })  */ 
 
-    
+
   const mail = localStorage.getItem('email')?.replace(/['"]+/g, '');
   const prenom = localStorage.getItem('prenom');
   const nom = localStorage.getItem('prenom');
@@ -103,11 +106,11 @@ export class AccueilDashboardComponent implements OnInit {
   
       })
 
-  }
-  
-     
-  
 
+  }
+  buttonventilo(){
+    this.websocketService.ventilo()
+  }
 
   allumer(){
     this.img = true;
@@ -118,6 +121,7 @@ export class AccueilDashboardComponent implements OnInit {
     this.img = false;
     this.socket.emit('active', '0');
   }
+
 on_toit_click (){
 
   this.toit= true;

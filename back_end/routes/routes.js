@@ -13,8 +13,48 @@ const Model = require('../models/userModel');
 
 module.exports = router;
 
+/* pour la connection  RFID*/
+/*
+router.post("/login",  async (req, res, next) => {
+  let {rfid } = req.body;
+  let existingrfid;
+  //console.log(rfid);
+  existingrfid = await Model.findOne({ rfid: rfid});
+  //console.log(existingrfid);
+  if(!existingrfid){
+    return res.status(401).send("user est archivé...!");
+  } 
+  let token;
+  try {
+    //Creating jwt token
+    token = jwt.sign(
+      { userId: existingrfid.id,rfid: existingrfid.rfid },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+  } catch (err) {
+    console.log(err);
+    const error = new Error("Erreur! Quelque chose s'est mal passée.");
+    return next(error);
+  }
+  
+  res
+    .status(200)
+    .json({
+      success: true,
+      data: {
+        email: existingrfid.email,
+        prenom: existingrfid.prenom,
+        nom: existingrfid.nom,
+        rfid: existingrfid.rfid,
+        token: token,
+      },
+  });
+});
+=======
+>>>>>>> 7012657b4a799d2796f5903be35733bca5c7d892
 
-
+*/
 
 /* pour la connection */
 router.post("/login",  async (req, res, next) => {

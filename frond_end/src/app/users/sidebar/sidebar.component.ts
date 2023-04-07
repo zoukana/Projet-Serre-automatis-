@@ -41,7 +41,8 @@ export class SidebarComponent implements OnInit {
 image:any; roles:any; img:any; userActif:any; users:any;
 emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
-   prenom = localStorage.getItem('prenom')?.replace(/"/g,  "");     
+   prenom = localStorage.getItem('prenom')?.replace(/"/g,  "");    
+    
    nom = localStorage.getItem('nom')?.replace(/"/g,  "");
    
 constructor(private userService : UsersService, private sanitizer: DomSanitizer, private router: Router){

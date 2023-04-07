@@ -1,4 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -27,6 +28,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
  
 
 @NgModule({
+
     declarations: [
         AppComponent,
         LoginComponent,
@@ -40,6 +42,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
     ],
     bootstrap: [AppComponent],
     imports: [
+        [NgbModule],
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
