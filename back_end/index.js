@@ -76,11 +76,13 @@ var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 //         // console.log(arg); // world
 //         temoin = arg;
 //       });
+/*
      console.log('Node is listening to port'); 
    socket.on("active", (arg) => {
          console.log(arg); // world
         temoin = arg;
       });
+      */
     
 // });
 /*
@@ -224,7 +226,7 @@ io.on('connection', function(socket) {
 
    
       
- parser.on('data', function(data) { 
+ //parser.on('data', function(data) { 
     //console.log('les information sont: ' + data);
   /*    temp = data.split('/'); console.log(temp)
     var temperature = data.slice(0, 2); //decoupe de la temperature
