@@ -54,13 +54,13 @@ export class AccueilDashboardComponent implements OnInit {
      
     });
    this.websocketService.temperature().subscribe((data:any) => { 
-     if (data>33) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
+     if (data>27) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
          this.img = false;
         
          
-        }else{
+        }/* else{
           this.img = true;
-        }
+        } */
       
       console.log(data);
       var tempt = data
