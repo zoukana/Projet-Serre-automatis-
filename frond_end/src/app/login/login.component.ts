@@ -105,6 +105,7 @@ this.spin = true
   //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
    data=>{
+   // localStorage.setItem('currentUser', JSON.stringify(data.token));
      /*  console.log(data) */
           this.route.navigateByUrl('acceuil')
    

@@ -103,7 +103,7 @@
          </div> -->
 
          <!-- <div class="ml-6 fs-5 " *ngFor="let i of tempHum">{{i.luminosite}}lux</div> -->
-         <h3 class="text-center fs-5 ">Temperature</h3>
+         <h3 class="text-center fs-5 ">Luminosité</h3>
          <div class="d-flex mt-3 justify-content-between">
           <img src="../../assets/1242163 1.png" alt="">
          
@@ -126,12 +126,14 @@
             <div >
               <p class="mt-4"> Ouverture </p>
                <p> Fermeture </p>
-            </div>
-            
                
-              <img *ngIf="img" (click)="eteindre()" (click)="buttonventilo()"   class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
-
-              <img *ngIf="!img " (click)="allumer()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+            </div>
+            <a (click)="buttonventilOn()">
+              <img *ngIf="img" (click)="eteindre()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> 
+            </a>
+            <a (click)="buttonventilOff()" >
+             <img *ngIf="!img" (click)="allumer()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+            </a>
           </div>
           <img *ngIf="img" style=" height: 160px; width: 160px; " src="../../assets/FANNNNNN.png" alt="Card image cap">
           <img *ngIf="!img" style=" height: 160px; width: 160px; " src="../../assets/fan-gif-46-black-fan-transparent-background.gif" alt="Card image cap">
@@ -149,13 +151,13 @@
                   <p class="mt-4"> Ouverture </p>
                    <p> Fermeture </p>
                 </div>
-                
-                   
+                <a (click)="buttonporteOn()">
                   <img *ngIf="porte" (click)="off_porte_click()"class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
+                </a>
                 
-               
-             
-                  <img *ngIf="!porte"   (click)="on_porte_click()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+               <a (click)="buttonporteOff()">       
+                <img *ngIf="!porte"   (click)="on_porte_click()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+               </a>
               </div>
               <img *ngIf="porte" style=" height: 160px; width: 160px; " src="../../assets/2fl..jpg" alt="Card image cap">
               <img *ngIf="!porte" style=" height: 160px; width: 160px; " src="../../assets/ffm.jpg" alt="Card image cap">
@@ -173,13 +175,14 @@
                   <p class="mt-4"> Ouverture </p>
                    <p> Fermeture </p>
                 </div>
+                <a (click)="buttontoitureOn()">           
+                <img *ngIf="toit" (click)="off_toit_click()"class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
+                </a>
                 
-                   
-                  <img *ngIf="toit" (click)="off_toit_click()"class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">
-                
-               
-             
-                  <img *ngIf="!toit"   (click)="on_toit_click()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+               <a (click)="buttontoitureOff()">
+                <img *ngIf="!toit"   (click)="on_toit_click()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
+               </a>
+
               </div>
               <img *ngIf="toit" style=" height: 160px; width: 160px; " src="../../assets/72560-5577467 2.png" alt="Card image cap">
               <img *ngIf="!toit" style=" height: 160px; width: 160px; " src="../../assets/72560-5579745 1.png" alt="Card image cap">
@@ -208,8 +211,13 @@
             
               <img  *ngIf="!arrosage"  class="d-flex align-items-center mt-4" style="width: 128px;height: 104px;"  src="../../assets/arrosage.png" alt="Card image cap"> 
               <img  *ngIf="arrosage"  class="d-flex align-items-center mt-4" style="width: 128px;height: 104px;"  src="../../assets/arrosage.gif" alt="Card image cap"> 
-              <div class="mt-3" > <img  *ngIf="arrosage" (click)="off_arrosage_click()" class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap"> 
-                <img *ngIf="!arrosage"   (click)="on_arrosage_click()"class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> 
+              <div class="mt-3" > 
+                <a (click)="buttonarrosageOff()">
+                  <img  *ngIf="arrosage" (click)="off_arrosage_click()" class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap"> 
+                </a>
+                <a (click)="buttonarrosageOn()">
+                  <img *ngIf="!arrosage"   (click)="on_arrosage_click()"class="ml-6" style=" height: 120px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> 
+                </a>
               </div>
 
              <!--  <div>
