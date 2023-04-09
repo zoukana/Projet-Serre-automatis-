@@ -48,6 +48,8 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.on('donne', (donne: number) => {
       this.tempHum = [donne];
       console.log(donne);
+    //  this.temperature = this.tempHum;
+    //  console.log(this.temperature);
      
       
     });
@@ -89,7 +91,11 @@ export class AccueilDashboardComponent implements OnInit {
   const nom = localStorage.getItem('prenom');
 
 /* console.log(prenom); */
-
+// this.websocketService.arduino().subscribe((data:any)=>{
+//   //console.log(data);
+//   //console.log('bonjour'); 
+//   this.donnees = data;
+// })
 
   // console.log(mail);
     this.serServe.getUsers().subscribe(
