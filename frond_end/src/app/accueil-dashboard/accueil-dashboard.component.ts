@@ -48,10 +48,8 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.on('donne', (donne: number) => {
       this.tempHum = [donne];
       console.log(donne);
-    //  this.temperature = this.tempHum;
-    //  console.log(this.temperature);
+
      
-      
     });
     
 
