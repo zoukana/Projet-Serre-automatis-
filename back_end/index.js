@@ -125,8 +125,8 @@ parser.on('data', async function (data){
         existingrfid = await Model.findOne({ rfid: rfid});
        // console.log(existingrfid)
         if(!existingrfid){
-          //return res.status(401).send("user est archivé...!");
-          return;
+        //  return res.status(401).send("user est archivé...!");
+        return;
         }
         let token;
        
@@ -169,6 +169,7 @@ parser.on('data', async function (data){
 
     //console.log(data.split('/'));
     io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
+    io.emit('temperature',temperature)
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
