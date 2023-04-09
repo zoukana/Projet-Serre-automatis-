@@ -107,10 +107,30 @@ export class AccueilDashboardComponent implements OnInit {
 
 
   }
-  buttonventilo(){
-    this.websocketService.ventilo()
+  buttonventilOn(){
+    this.websocketService.ventilOn()
   }
-
+  buttonventilOff(){
+    this.websocketService.ventilOff()
+  }
+  buttontoitureOn(){
+    this.websocketService.toitureOn()
+  }
+  buttontoitureOff(){
+    this.websocketService.toitureOff()
+  }
+  buttonporteOn(){
+    this.websocketService.porteOn()
+  }
+  buttonporteOff(){
+    this.websocketService.porteOff()
+  }
+  buttonarrosageOn(){
+    this.websocketService.arrosageOn()
+  }
+  buttonarrosageOff(){
+    this.websocketService.arrosageOff()
+  }
   allumer(){
     this.img = true;
     this.socket.emit('active', '1');

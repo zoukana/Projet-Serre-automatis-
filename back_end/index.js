@@ -73,7 +73,7 @@ io.on('connection', function(socket) {
     
      console.log('Node is listening to port'); 
    socket.on("active", (arg) => {
-         console.log(arg); // world
+        // console.log(arg); // world
         temoin = arg;
       });
     
@@ -85,9 +85,35 @@ io.on('connection', function(socket) {
         port.write("2")
         });
            
-      socket.on('ventilo', () =>{
-        port.write("3")
+      socket.on('ventilOn', () =>{
+        port.write('3')
+      //  console.log("venhhhhtilon");
         })
+        socket.on('ventilOff', () =>{
+          port.write("4")
+        //  console.log("ventiloff");
+          })
+                   
+      socket.on('toitureOn', () =>{
+        port.write("5")
+        })
+
+        socket.on('toitureOff', () =>{
+          port.write("6")
+          })
+
+          socket.on('porteOn', () =>{
+            port.write("7")
+            })
+            socket.on('porteOff', () =>{
+              port.write("8")
+              })
+              socket.on('arrosageOn', () =>{
+                port.write("9")
+                })
+                socket.on('arrosageOff', () =>{
+                  port.write("0")
+                  })    
 });
 parser.on('data', async function (data){
     //console.log(data);
@@ -95,9 +121,9 @@ parser.on('data', async function (data){
             let rfid  = data.split("/")[0];
         
         let existingrfid;
-       console.log(rfid);
+      // console.log(rfid);
         existingrfid = await Model.findOne({ rfid: rfid});
-        console.log(existingrfid)
+       // console.log(existingrfid)
         if(!existingrfid){
           //return res.status(401).send("user est archivé...!");
           return;
@@ -133,9 +159,9 @@ parser.on('data', async function (data){
 
 
  parser.on('data', function(data) { 
-    
+  console.log(data)
     //console.log('les information sont: ' + data);
-    temp = data.split('/'); console.log(temp)
+    temp = data.split('/'); 
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
     var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
@@ -206,7 +232,7 @@ MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     col.find().toArray(function(err, items) {
         console.log(items);
         io.emit('mute', items);     
-console.log(items);
+//console.log(items);
         
 })
 
