@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-
+import Swal from 'sweetalert2';
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
@@ -107,10 +107,29 @@ this.spin = true
    data=>{
      /*  console.log(data) */
           this.route.navigateByUrl('acceuil')
+          this.spin = true
    
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
-    
+    error=>{
+      /*  console.log(error) */
+     /*  console.log(error) */
+       if(error == 'Unauthorized'){
+         this.errorSms ='Cette utilisateur est archivé'
+         this.spin = false
+         setTimeout(()=>{ this.errorSms = false}, 3001); 
+       }else {
+  
+       this.errorSms ='Vous  etes pas dans la base de données'
+       this.spin = false
+       setTimeout(()=>{ this.errorSms = false}, 3001); 
+     }
+     }
    );
+
 }
 }
+
+
+
+
