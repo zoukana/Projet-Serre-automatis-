@@ -95,10 +95,10 @@ export class AccueilDashboardComponent implements OnInit {
     this.T = data
     console.log(this.T);
      if (this.T>30) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
-         this.img = true;
+         this.img = false;
         }
          else if(this.T<=30){
-          this.img = false;
+          this.img = true;
         } 
    })
 
@@ -190,9 +190,8 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.emit('active', '1');
   }
 
-  eteindre(){
-    
-    this.img = false;
+  eteindre(){   
+  this.img = false;
     this.socket.emit('active', '0');
   }
 

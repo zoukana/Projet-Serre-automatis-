@@ -43,28 +43,28 @@ export class LoginComponent implements OnInit {
       })
     this.websocketService.token().subscribe({
       next:(data)=>{
-        console.log(data)
+        //console.log(data)
         localStorage.setItem('currentUser', JSON.stringify(data));
         this.route.navigateByUrl('acceuil')
       }
     });
     this.websocketService.nom().subscribe({
       next:(data)=>{
-        console.log(data)
+        //console.log(data)
         localStorage.setItem('nom', JSON.stringify(data));
        
       }
     });
     this.websocketService.prenom().subscribe({
       next:(data)=>{
-        console.log(data)
+        //console.log(data)
         localStorage.setItem('prenom', JSON.stringify(data));
        
       }
     });
     this.websocketService.email().subscribe({
       next:(data)=>{
-        console.log(data)
+        //console.log(data)
         localStorage.setItem('email', JSON.stringify(data));
        
       }

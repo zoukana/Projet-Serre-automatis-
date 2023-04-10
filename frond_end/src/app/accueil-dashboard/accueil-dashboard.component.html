@@ -124,16 +124,17 @@
 
           <div class=" d-flex justify-content-between"> 
             <div >
-              <p class="mt-4"> Ouverture </p>
-               <p> Fermeture </p>
-               
+              <!-- <p class="mt-4"> Ouverture </p> -->
+               <p style="margin-left: 10px; font-size: 24px;"> VENTILATEUR </p>
+               <br>
+               <br>
             </div>
-            <!-- <a (click)="buttonventilOn()"> -->
-              <img *ngIf="img"   (click)="eteindre()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> 
+             <!-- <a (click)="buttonventilOn()"> -->
+              <!-- <img *ngIf="img"   (click)="eteindre()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap">  -->
             <!-- </a> -->
             <!-- <a (click)="buttonventilOff()" > -->
-             <img *ngIf="!img " (click)="allumer()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
-            <!-- </a> -->
+             <!-- <img *ngIf="!img " (click)="allumer()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap"> -->
+            <!-- </a>  -->
           </div>
           <img *ngIf="img" style=" height: 160px; width: 160px; " src={{imageventiloff}} alt="Card image cap">
           <img *ngIf="!img" style=" height: 160px; width: 160px; " src={{imageventilOn}} alt="Card image cap">
