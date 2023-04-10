@@ -45,10 +45,11 @@ onSubmit(){
 this.submitted = true
 this.spin = true
 
- if(this.registerForm.invalid){
- /*  this.spin = false */
-  return ;
-} 
+//  if(this.registerForm.invalid){
+//  /*  this.spin = false */
+//  console.log("errr")
+//   return ;
+// } 
 
  /* /insertion sur la base de données/ */
   const user ={
@@ -61,7 +62,7 @@ this.spin = true
   //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
     data=>{
-     /*  console.log(data) */
+      console.log(data)
         localStorage.getItem('userId')?.replace(/"/g, '');
           this.route.navigateByUrl('acceuil')
    
