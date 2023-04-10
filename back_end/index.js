@@ -162,10 +162,10 @@ parser.on('data', async function (data){
   console.log(data)
     //console.log('les information sont: ' + data);
     temp = data.split('/'); 
-    var temperature = data.slice(0, 1); //decoupe de la temperature
-    var humidite_serre  = data.slice(2, 3); //decoupe de l'humidite
-    var humidite_sol = data.slice(4, 6); //decoupe de l'humidite
-    var luminosite = data.slice(8, 11); //decoupe de l'humidite
+    var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite_serre  = data.slice(3, 5); //decoupe de l'humidite
+    var humidite_sol = data.slice(6, 8); //decoupe de l'humidite
+    var luminosite = data.slice(9,11); //decoupe de l'humidite
     var distance = data.slice(12);
     //console.log(data.split('/'));
     io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite, "distance":distance});
@@ -174,6 +174,10 @@ parser.on('data', async function (data){
     io.emit('humidite_sol', humidite_sol);
     io.emit('luminosite', luminosite);
     io.emit('distance', distance);
+    console.log(temperature);
+    console.log(humidite_serre);
+    console.log(humidite_sol);
+    console.log(luminosite);
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
