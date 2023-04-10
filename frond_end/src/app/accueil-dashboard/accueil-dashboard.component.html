@@ -128,12 +128,12 @@
                <p> Fermeture </p>
                
             </div>
-            <a (click)="buttonventilOn()">
+            <!-- <a (click)="buttonventilOn()"> -->
               <img *ngIf="img"   (click)="eteindre()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-off-png-image_4461289.png" alt="Card image cap"> 
-            </a>
-            <a (click)="buttonventilOff()" >
+            <!-- </a> -->
+            <!-- <a (click)="buttonventilOff()" > -->
              <img *ngIf="!img " (click)="allumer()" class="ml-6" style=" height: 122px ;width: 70px;  " src="../../assets/pngtree-white-switch-on-png-image_7391099.png" alt="Card image cap">
-            </a>
+            <!-- </a> -->
           </div>
           <img *ngIf="img" style=" height: 160px; width: 160px; " src={{imageventiloff}} alt="Card image cap">
           <img *ngIf="!img" style=" height: 160px; width: 160px; " src={{imageventilOn}} alt="Card image cap">
@@ -200,8 +200,8 @@
                 <ng-template #archive> -->
                   
                   <div class="text-center" > Detection intrusion</div>
-                    <img  style="width: 68px;height: 74px;" class="card-img-top rounded-circle taicard" src="../../assets/Group 84.png" alt="Card image cap"> 
-                  <!-- <img  style="width: 68px;height: 74px;" class="card-img-top rounded-circle taicard"  src="../../assets/arrosage.png"> -->
+                    <img *ngIf="buzzer" style="width: 68px;height: 74px;" class="card-img-top rounded-circle taicard" src="../../assets/Group 84.png" alt="Card image cap"> 
+                  <img *ngIf="!buzzer" style="width: 68px;height: 74px;" class="card-img-top rounded-circle taicard"  src="../../assets/music-equalizer-gif-animation-2 2.png"> 
                <!--   </ng-template>  
               </div> 
                

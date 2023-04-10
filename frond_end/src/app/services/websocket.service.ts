@@ -49,6 +49,9 @@ export class WebsocketService {
   luminosite(){
     return this.socket.fromEvent('luminosite')
   }
+  distance(){
+    return this.socket.fromEvent('distance')
+  }
   //recuperer données
   getDatas() {
     return this.http.get(`${this.endpoint}/`)

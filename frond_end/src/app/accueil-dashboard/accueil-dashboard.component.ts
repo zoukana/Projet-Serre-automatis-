@@ -34,6 +34,7 @@ export class AccueilDashboardComponent implements OnInit {
   toit:boolean =true;
   porte:boolean =true;
   arrosage:boolean =false;
+  buzzer:boolean=true;
   dethier:any;
   temp20: any;
   img:boolean =true;
@@ -42,6 +43,7 @@ export class AccueilDashboardComponent implements OnInit {
   userActif!:any
   getItem: any = {};
   T:any;
+  D:any
   imageventilOn = "assets/fan-gif-46-black-fan-transparent-background.gif";
   imageventiloff = "assets/FANNNNNN.png";
   constructor( private serServe :UsersService, private socket: Socket, private websocketService : WebsocketService,private route: Router){}
@@ -66,6 +68,17 @@ export class AccueilDashboardComponent implements OnInit {
      
      
     });
+    this.websocketService.distance().subscribe((data:any) =>{
+      console.log(data);
+      this.D = data
+      console.log(this.D);
+       if (this.D>250) {
+            this.buzzer = false;
+          }
+           else if(this.D<=250){
+            this.buzzer = true;
+          } 
+    })
   this.websocketService.humidite_serre().subscribe((data:any) =>{
     console.log(data);
     
@@ -81,13 +94,12 @@ export class AccueilDashboardComponent implements OnInit {
    this.websocketService.temperature().subscribe((data:any) => { 
     this.T = data
     console.log(this.T);
-    //  if (data>26) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
-    //      this.img = false;
-          
-    //     }
-        //  else{
-        //   this.img = true;
-        // } 
+     if (this.T>30) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
+         this.img = true;
+        }
+         else if(this.T<=30){
+          this.img = false;
+        } 
    })
 
     //recuperation temperature par heur données et calsul des moyenne 
