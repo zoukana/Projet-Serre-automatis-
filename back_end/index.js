@@ -169,7 +169,10 @@ parser.on('data', async function (data){
 
     //console.log(data.split('/'));
     io.emit('donne', {"temperature": temperature, "humidite_serre": humidite_serre,"humidite_sol": humidite_sol,"luminosite": luminosite});
-    io.emit('temperature',temperature)
+    io.emit('temperature',temperature);
+    io.emit('humidite_serre',humidite_serre);
+    io.emit('humidite_sol', humidite_sol);
+    io.emit('luminosite', luminosite);
     var datHeure = new Date(); 
      var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure

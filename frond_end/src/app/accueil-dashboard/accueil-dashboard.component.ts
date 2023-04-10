@@ -41,6 +41,9 @@ export class AccueilDashboardComponent implements OnInit {
   users:any;
   userActif!:any
   getItem: any = {};
+  T:any;
+  imageventilOn = "assets/fan-gif-46-black-fan-transparent-background.gif";
+  imageventiloff = "assets/FANNNNNN.png";
   constructor( private serServe :UsersService, private socket: Socket, private websocketService : WebsocketService,private route: Router){}
 
 
@@ -49,29 +52,42 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.on('donne', (donne: number) => {
       this.tempHum = [donne];
       console.log(donne);
- const t = this.temperature;
- console.log(t);
+ const T = this.temperature;
+ const H = this.humidite_serre;
+ const humidite_sol = this.humidite_sol;
+ const luminosite = this.luminosite;
+
+ 
+ 
+ 
+ 
  
       
      
      
     });
+  this.websocketService.humidite_serre().subscribe((data:any) =>{
+    console.log(data);
+    
+  });
+  this.websocketService.humidite_sol().subscribe((data:any) => {
+    console.log(data);
+    
+  });
+  this.websocketService.luminosite().subscribe((data:any) =>{
+    console.log(data);
+    
+  })
    this.websocketService.temperature().subscribe((data:any) => { 
-     if (data>26) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
-         this.img = false;
-        
-         
-        }/* else{
-          this.img = true;
-        } */
-      
-      console.log(data);
-      var tempt = data
-      console.log(tempt
-        );
-      
-      
-
+    this.T = data
+    console.log(this.T);
+    //  if (data>26) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
+    //      this.img = false;
+          
+    //     }
+        //  else{
+        //   this.img = true;
+        // } 
    })
 
     //recuperation temperature par heur données et calsul des moyenne 

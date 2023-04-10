@@ -40,6 +40,15 @@ export class WebsocketService {
   temperature(){
     return this.socket.fromEvent('temperature')
   }
+  humidite_serre(){
+    return this.socket.fromEvent('humidite_serre')
+  }
+  humidite_sol(){
+    return this.socket.fromEvent('humidite_sol')
+  }
+  luminosite(){
+    return this.socket.fromEvent('luminosite')
+  }
   //recuperer données
   getDatas() {
     return this.http.get(`${this.endpoint}/`)
