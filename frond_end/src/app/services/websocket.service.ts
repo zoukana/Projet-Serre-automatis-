@@ -37,6 +37,9 @@ export class WebsocketService {
   email(){
     return this.socket.fromEvent('email')
   }
+  temperature(){
+    return this.socket.fromEvent('temperature')
+  }
   //recuperer données
   getDatas() {
     return this.http.get(`${this.endpoint}/`)
@@ -52,11 +55,32 @@ export class WebsocketService {
     console.log("connexionB");
   }
 
-  ventilo(){
-    this.socket.emit('ventilo', '3')
+  ventilOn(){
+    this.socket.emit('ventilOn', '3')
+    console.log("connexionB");
+  }
+  ventilOff(){
+    this.socket.emit('ventilOff', '4')
     //console.log("connexionB");
   }
-
+  toitureOn(){
+    this.socket.emit('toitureOn', '5')
+  }
+  toitureOff(){
+    this.socket.emit('toitureOff', '6')
+  }
+  porteOn(){
+    this.socket.emit('porteOn', '7')
+  }
+  porteOff(){
+    this.socket.emit('porteOff', '8')
+  }
+  arrosageOn(){
+    this.socket.emit('arrosageOn', '9')
+  }
+  arrosageOff(){
+    this.socket.emit('arrosageOff', '0')
+  }
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }

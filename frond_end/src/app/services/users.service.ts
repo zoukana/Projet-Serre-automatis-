@@ -26,15 +26,15 @@ export class UsersService {
   }
  getConnexion(user:User){
     return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
-      pipe(map(user => {
+      pipe(map(res => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
        /*  console.log(user.data)  */
-        localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
-        localStorage.setItem('email', JSON.stringify(user.data?.email));
-        localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
-        localStorage.setItem('nom', JSON.stringify(user.data?.nom));
-        this.currentUserSubject.next(user);
-        return user;
+        localStorage.setItem('currentUser', JSON.stringify(res.data?.token));
+        localStorage.setItem('email', JSON.stringify(res.data?.email));
+        localStorage.setItem('prenom', JSON.stringify(res.data?.prenom));
+        localStorage.setItem('nom', JSON.stringify(res.data?.nom));
+        this.currentUserSubject.next(res);
+        return res;
         
       }));
  }
