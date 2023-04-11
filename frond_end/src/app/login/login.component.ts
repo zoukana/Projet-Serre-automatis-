@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-
+import Swal from 'sweetalert2';
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
+import { WebsocketService } from '../services/websocket.service';
+import { Serre } from '../models/serre';
+// import { data } from 'jquery';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,10 +23,13 @@ export class LoginComponent implements OnInit {
   verifPass: any = true;
   invalid= false;
   errorMsg:any;
+  donnee:any;
+  table! :Serre[];
+  email: any;
   
 
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router,) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router, private websocketService: WebsocketService) {
     
   }
   
@@ -35,8 +41,46 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
-    
+    this.websocketService.token().subscribe({
+      next:(data)=>{
+        //console.log(data)
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.route.navigateByUrl('acceuil')
+      }
+    });
+    this.websocketService.nom().subscribe({
+      next:(data)=>{
+        //console.log(data)
+        localStorage.setItem('nom', JSON.stringify(data));
+       
+      }
+    });
+    this.websocketService.prenom().subscribe({
+      next:(data)=>{
+        //console.log(data)
+        localStorage.setItem('prenom', JSON.stringify(data));
+       
+      }
+    });
+    this.websocketService.email().subscribe({
+      next:(data)=>{
+        //console.log(data)
+        localStorage.setItem('email', JSON.stringify(data));
+       
+      }
+    });
 
+
+
+      this.websocketService.arduino().subscribe({
+        next:(data)=>{
+          
+          
+         
+      
+        }
+        
+      })
        
   }
 
@@ -64,23 +108,33 @@ this.spin = true
     data=>{
       console.log(data)
         localStorage.getItem('userId')?.replace(/"/g, '');
+   
+   // localStorage.setItem('currentUser', JSON.stringify(data.token));
+     /*  console.log(data) */
           this.route.navigateByUrl('acceuil')
+          this.spin = true
    
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
     error=>{
+      /*  console.log(error) */
      /*  console.log(error) */
-    /*  console.log(error) */
-      if(error == 'Unauthorized'){
-        this.errorSms ='Cette utilisateur est archivé'
-        this.spin = false
-        setTimeout(()=>{ this.errorSms = false}, 3001); 
-      }else {
-      this.errorSms ='Vous  etes pas dans la base de données'
-      this.spin = false
-      setTimeout(()=>{ this.errorSms = false}, 3001); 
-    }
-    }
+       if(error == 'Unauthorized'){
+         this.errorSms ='Cette utilisateur est archivé'
+         this.spin = false
+         setTimeout(()=>{ this.errorSms = false}, 3001); 
+       }else {
+  
+       this.errorSms ='Vous  etes pas dans la base de données'
+       this.spin = false
+       setTimeout(()=>{ this.errorSms = false}, 3001); 
+     }
+     }
    );
+
 }
 }
+
+
+
+

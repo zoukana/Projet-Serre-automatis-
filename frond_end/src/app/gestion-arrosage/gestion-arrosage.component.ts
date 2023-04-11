@@ -1,13 +1,20 @@
 import { data } from 'jquery';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Component, OnInit } from '@angular/core';
 import { Serre} from '../models/serre'; 
 /* import { SocketService } from '../meteo.service'; */
-import { io } from 'socket.io-client';
+//import { io } from 'socket.io-client';
 import { Temp_Humid } from '../services/interfaces/movie';
 import { BehaviorSubject, from } from 'rxjs';
 import { UsersService } from '../services/users.service';
 import histo from '../histo.json';
+import { WebsocketService } from '../services/websocket.service';
+import { Socket } from 'ngx-socket-io';
+import io from 'socket.io-client';
+import { Router } from '@angular/router';
+
+
 export interface donne{
   temperature:string;
   humidite_sol:string;
@@ -20,7 +27,27 @@ export interface donne{
   styleUrls: ['./gestion-arrosage.component.css']
 })
 export class GestionArrosageComponent implements OnInit{
+//message pour si l'option est activé
+  showMessageA: boolean = false;
+  showMessageB: boolean = false;
+  route: any;
+  afficherMessageA() {
+    this.showMessageA = true;
+    setTimeout(() => {
+      this.showMessageA = false;
+    }, 3000); // Disparaître après 5 secondes
+  }
+
+  afficherMessageB() {
+    this.showMessageB = true;
+    setTimeout(() => {
+      this.showMessageB = false;
+    }, 3000); // Disparaître après 5 secondes
+  }
+
   /* Declaration des variables */
+  button1Active = false;
+  button2Active = false;
   Serre!: Serre[] ;
   temp! :any [];
   currentDate!: any;
@@ -38,9 +65,18 @@ export class GestionArrosageComponent implements OnInit{
  show:boolean = false;
  hist:donne[]= histo;
  buttonDiseabled: boolean = false;
- 
- 
-   constructor(private serre:UsersService) { }// importation du service 
+  private socket = io('http://localhost:3001'); // remplacer http://localhost:3000 par l'URL de votre serveur Socket.io
+
+ activateButton(buttonNumber: number) {
+  if (buttonNumber === 1) {
+    this.button1Active = true;
+    this.button2Active = false;
+  } else if (buttonNumber === 2) {
+    this.button1Active = false;
+    this.button2Active = true;
+  }
+}
+   constructor(private serre:UsersService, private websocketservice:WebsocketService) { }// importation du service 
    ngOnInit()  {
     
  /* Fonction pour la recuperation des données humidité et temperature */
@@ -79,5 +115,24 @@ export class GestionArrosageComponent implements OnInit{
    public afficher():void{
      this.show = !this.show;
    }
- }
+
+
+   buttonOptionA() {
+
+this.websocketservice.buttonA();
+  }
+  
+  buttonOptionB() {
+    this.websocketservice.buttonB();
+  }
+  
+  //  buttonOptionB(){
+  //   this.websocketservice.buttonB()
+  //      }
+  // buttonOptionB(){
+  //   this.socket.on('optionB', () => {
+  //     console.log("optionB en cours");
+  //   });
+  // }
  
+  }

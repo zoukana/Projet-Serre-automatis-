@@ -24,13 +24,12 @@ export class UsersService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-
-  getConnexion(user:User){
+ getConnexion(user:User){
     return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
-      pipe(map(user => {
+      pipe(map(res => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         /* console.log(user.data) */
-        localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+      /*   localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('userId', JSON.stringify(user.data?.userId));
         localStorage.setItem('email', JSON.stringify(user.data?.email));
         localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
@@ -42,13 +41,19 @@ export class UsersService {
 
 
         this.currentUserSubject.next(user);
-        return user;
+        return user; */
+       /*  console.log(user.data)  */
+        localStorage.setItem('currentUser', JSON.stringify(res.data?.token));
+        localStorage.setItem('email', JSON.stringify(res.data?.email));
+        localStorage.setItem('prenom', JSON.stringify(res.data?.prenom));
+        localStorage.setItem('nom', JSON.stringify(res.data?.nom));
+        this.currentUserSubject.next(res);
+        return res;
+        
       }));
-
-  }
-
+ }
   
-  getToken() {
+    getToken() {
     return localStorage.getItem('currentUser');
   }
   getPrenom() {
@@ -74,12 +79,11 @@ export class UsersService {
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)
   };
-  /* getData(){
+ /*   getData(){
     return this.httpClient.get<Serre>(`${env.apiUrl}/pap`)
-  }; */
-
-
-  historique(){
+  }; 
+ */
+ historique(){
     return this.httpClient.get(`${env.apiUrl}/pap`)
   };
 
@@ -89,9 +93,8 @@ export class UsersService {
   };
 
 */
-  modifUsers(id:any,user:any){
-   
-    return this.httpClient.patch<any>(`${env.apiUrl}/update/${id}`,user);
+ modifUsers(id:any,user: User){
+ return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
   }
  
   addUsers(user: User){
@@ -100,14 +103,16 @@ export class UsersService {
 
   getLogOut(){
   localStorage.removeItem('currentUser');
-    localStorage.removeItem('prenom');
-    localStorage.removeItem('nom');
+  localStorage.removeItem('prenom');
+  localStorage.removeItem('nom');
   localStorage.removeItem('email');
   
 
   // this.router.navigate(['']);
 
     // if (removeToken == null && removeprenom == null &&  removenom == null && removemail == null) {
+ // this.router.navigate(['']);
+ // if (removeToken == null && removeprenom == null &&  removenom == null && removemail == null) {
     // }
   }
  /*  getRole(){

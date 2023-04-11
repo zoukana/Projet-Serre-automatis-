@@ -5,6 +5,9 @@ import { UsersService } from '../services/users.service';
 import { Serre } from '../models/serre'; 
 import { Socket } from 'ngx-socket-io';
 import bodyParser from 'body-parser';
+import { WebsocketService } from '../services/websocket.service';
+import io from 'socket.io-client';
+
 
 
 @Component({
@@ -14,9 +17,14 @@ import bodyParser from 'body-parser';
 })
 export class AccueilDashboardComponent implements OnInit {
   [x: string]: any;
-
+ on: boolean = false;
+  off: boolean = true;
   currentDate:any;
-  tempHum: any = [];
+  temperature!: number;
+  humidite_serre!: number;
+  humidite_sol!: number;
+ luminosite!: number;
+  tempHum: any;
   Serre: any = [] ;
   temp18h:any
   temp7h:any
@@ -26,6 +34,7 @@ export class AccueilDashboardComponent implements OnInit {
   toit:boolean =true;
   porte:boolean =true;
   arrosage:boolean =false;
+  buzzer:boolean=true;
   dethier:any;
   temp20: any;
   img:boolean =true;
@@ -33,10 +42,65 @@ export class AccueilDashboardComponent implements OnInit {
   users:any;
   userActif!:any
   getItem: any = {};
-  constructor( private serServe :UsersService, private socket: Socket){}
+  T:any;
+  D:any
+  imageventilOn = "assets/fan-gif-46-black-fan-transparent-background.gif";
+  imageventiloff = "assets/FANNNNNN.png";
+  constructor( private serServe :UsersService, private socket: Socket, private websocketService : WebsocketService,private route: Router){}
 
 
   ngOnInit(): void {
+    this.socket.connect();
+    this.socket.on('donne', (donne: number) => {
+      this.tempHum = [donne];
+      console.log(donne);
+ const T = this.temperature;
+ const H = this.humidite_serre;
+ const humidite_sol = this.humidite_sol;
+ const luminosite = this.luminosite;
+
+ 
+ 
+ 
+ 
+ 
+      
+     
+     
+    });
+    this.websocketService.distance().subscribe((data:any) =>{
+      console.log(data);
+      this.D = data
+      console.log(this.D);
+       if (this.D>250) {
+            this.buzzer = false;
+          }
+           else if(this.D<=250){
+            this.buzzer = true;
+          } 
+    })
+  this.websocketService.humidite_serre().subscribe((data:any) =>{
+    console.log(data);
+    
+  });
+  this.websocketService.humidite_sol().subscribe((data:any) => {
+    console.log(data);
+    
+  });
+  this.websocketService.luminosite().subscribe((data:any) =>{
+    console.log(data);
+    
+  })
+   this.websocketService.temperature().subscribe((data:any) => { 
+    this.T = data
+    console.log(this.T);
+     if (this.T>30) { // Afficher le ventillateur allumé lorsque la temperature est supérieur a 30
+         this.img = false;
+        }
+         else if(this.T<=30){
+          this.img = true;
+        } 
+   })
 
     //recuperation temperature par heur données et calsul des moyenne 
     /* this.serServe.historique().subscribe((data)=>{
@@ -68,42 +132,69 @@ export class AccueilDashboardComponent implements OnInit {
     
     /* })  */ 
 
-    
+
   const mail = localStorage.getItem('email')?.replace(/['"]+/g, '');
   const prenom = localStorage.getItem('prenom');
   const nom = localStorage.getItem('prenom');
 
-
+/* console.log(prenom); */
+// this.websocketService.arduino().subscribe((data:any)=>{
+//   //console.log(data);
+//   //console.log('bonjour'); 
+//   this.donnees = data;
+// })
 
   // console.log(mail);
     this.serServe.getUsers().subscribe(
       data => {
-        console.log(data);
+       /*  console.log(data); */
         
         this.users = data;
         
         this.userActif = this.users.filter((e: any) =>  e.prenom == prenom )
         console.log(this.userActif);
+        
 
         
   
       })
 
+
   }
-  
-     
-  
-
-
+  buttonventilOn(){
+    this.websocketService.ventilOn()
+  }
+  buttonventilOff(){
+    this.websocketService.ventilOff()
+  }
+  buttontoitureOn(){
+    this.websocketService.toitureOn()
+  }
+  buttontoitureOff(){
+    this.websocketService.toitureOff()
+  }
+  buttonporteOn(){
+    this.websocketService.porteOn()
+  }
+  buttonporteOff(){
+    this.websocketService.porteOff()
+  }
+  buttonarrosageOn(){
+    this.websocketService.arrosageOn()
+  }
+  buttonarrosageOff(){
+    this.websocketService.arrosageOff()
+  }
   allumer(){
     this.img = true;
     this.socket.emit('active', '1');
   }
 
-  eteindre(){
-    this.img = false;
+  eteindre(){   
+  this.img = false;
     this.socket.emit('active', '0');
   }
+
 on_toit_click (){
 
   this.toit= true;
